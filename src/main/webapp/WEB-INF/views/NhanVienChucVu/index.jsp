@@ -25,6 +25,7 @@
             <th>Tên Chức Vụ</th>
             <th colspan="2">Action</th>
         </tr>
+        <c:if test="${not empty NVCV.content}">
         <tbody>
         <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
             <tr>
@@ -41,14 +42,31 @@
                 <td>${ds.trangthai == 1 ?"Hoạt Động" :"Không Hoạt Động"}</td>
                 <td>${ds.chucVu.ten}</td>
                 <td>
-                    <a class="btn btn-danger" href="/nhan-vien-chuc-vu/delete/${ds.id}">Remove</a>
-                        <%--                            <a class="btn btn-danger" href="javascript:remove('${ds.id}')">Remove</a>--%>
+                    <a class="btn btn-danger" href="javascript:remove('${ds.id}')">Remove</a>
                 </td>
             </tr>
         </c:forEach>
         </tbody>
+        </c:if>
+        <c:if test="${ empty NVCV.content}"><h2 style="color: red">No data</h2></c:if>
     </table>
+    <p>${NVCV.number + 1} / ${NVCV.totalPages}</p>
+    <a class="btn btn-danger" href="/nhan-vien-chuc-vu/hien-thi?p=0">Fisrt</a>
+    <a class="btn btn-danger" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.number - 1}">Priev</a>
+    <a class="btn btn-danger" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.number + 1}">Next</a>
+    <a class="btn btn-danger" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.totalPages - 1}">Last</a>
+
 </div>
 </body>
+<script>
+    function remove(id){
+        if (window.confirm("Bạn Có Muốn Xóa Không ?")){
+            location.href="/nhan-vien-chuc-vu/delete/" + id;
+        }else {
+            alert("Đã Hủy")
+        }
+    }
+
+</script>
 </head>
 </html>
