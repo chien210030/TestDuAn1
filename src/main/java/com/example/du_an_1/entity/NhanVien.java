@@ -15,7 +15,7 @@ import java.util.Date;
 @Table(name = "nhanvien")
 public class NhanVien {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Integer id ;
 
     private String ma ;
@@ -30,11 +30,7 @@ public class NhanVien {
     private String email ;
     private  int trangthai ;
 
-@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "idchucvu")
-    private ChucVu chucVu;
-
-
-
-
+    ChucVu chucVu;
 }

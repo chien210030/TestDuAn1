@@ -10,7 +10,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 </head>
 <body>
@@ -19,16 +20,16 @@
     <div class="col-8">
         <br>
         <br>
-        <a class="btn btn-primary" href="/danh-sach-yeu-thich/view-add">Add</a>
+        <a class="btn btn-primary" href="/nhan-vien-chuc-vu/">Add</a>
         <br>
 
         <table border="1" class="table">
 
             <thead>
             <tr>
-                <th>Mã Nhân Viên</th>
-                <th>Mã Chức Vụ</th>
-                <th>Tên Nhân Viên</th>
+                <th>Mã NV</th>
+                <th>Mã CV</th>
+                <th>Tên NV</th>
                 <th>Ngày Sinh</th>
                 <th>Giới Tính</th>
                 <th>Số Điện</th>
@@ -40,41 +41,37 @@
                 <th colspan="2">Action</th>
             </tr>
             </thead>
-            <c:if test="${not empty DSYT.content}">
+            <c:if test="${not empty NVCV.content}">
                 <tbody>
-
-                <c:forEach items="${DSYT.content}" var="ds" varStatus="i" >
+                <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
                     <tr>
+
                         <td>${ds.ma}</td>
-                        <td>${ds.chucvu.ma}</td>
+                        <td>${ds.chucVu.ma}</td>
                         <td>${ds.ten}</td>
-                        <td>${ds.ngaySinh}</td>
-                        <td>${ds.gioiTinh == 1 ? "Nam" : "Nữ"}</td>
+                        <td>${ds.ngaysinh}</td>
+                        <td>${ds.gioitinh == 1 ? "Nam" : "Nữ"}</td>
                         <td>${ds.sdt}</td>
-                        <td>${ds.taiKhoan}</td>
-                        <td>${ds.matKhau}</td>
+                        <td>${ds.taikhoan}</td>
+                        <td>${ds.matkhau}</td>
                         <td>${ds.email}</td>
-                        <td>${ds.trangThai == 1 ?"Hoạt Động" :"Không Hoạt Động"}</td>
-                        <td>${ds.chucvu.ten}</td>
+                        <td>${ds.trangthai == 1 ?"Hoạt Động" :"Không Hoạt Động"}</td>
+                        <td>${ds.chucVu.ten}</td>
                         <td>
-                            <a class="btn btn-danger" href="javascript:remove('${ds.ma}')">Remove</a>
+                            <a class="btn btn-danger" href="/nhan-vien-chuc-vu/delete/${ds.id}">Remove</a>
+<%--                            <a class="btn btn-danger" href="javascript:remove('${ds.id}')">Remove</a>--%>
                         </td>
                     </tr>
                 </c:forEach>
-
-
-
                 </tbody>
+
             </c:if>
-            <c:if test="${ empty DSYT.content}"><h2 style="color: red">No data</h2></c:if>
+            <c:if test="${ empty NVCV.content}"><h2 style="color: red">No data</h2></c:if>
         </table>
 
-
-        <p>${DSYT.number + 1} / ${DSYT.totalPages}</p>
-        <a href="/danh-sach-yeu-thich/hien-thi?p=0">Fisrt</a>
-        <a href="/danh-sach-yeu-thich/hien-thi?p=${DSYT.number - 1}">Priev</a>
-        <a href="/danh-sach-yeu-thich/hien-thi?p=${DSYT.number + 1}">Next</a>
-        <a href="/danh-sach-yeu-thich/hien-thi?p=${DSYT.totalPages - 1}">Last</a>
+        <p>${DSYT.number + 1} / ${NVCV.totalPages}</p>
+        <a href="/nhan-vien-chuc-vu/hien-thi?p=0">Fisrt</a>
+        <a href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.number + 1}">Next</a>
 
     </div>
     <div class="col-2"></div>
@@ -83,14 +80,14 @@
 
 
 </body>
-<script>
-    function remove(ma){
-        if (window.confirm("Bạn Có Muốn Xóa Không ?")){
-            location.href="/danh-sach-yeu-thich/delete/" + ma;
-        }else {
-            alert("Đã Hủy")
-        }
-    }
+<%--<script>--%>
+<%--    function remove(id) {--%>
+<%--        if (window.confirm("Bạn Có Muốn Xóa Không ?")) {--%>
+<%--            location.href = "/nhan-vien-chuc-vu/delete/" + id;--%>
+<%--        } else {--%>
+<%--            alert("Đã Hủy")--%>
+<%--        }--%>
+<%--    }--%>
 
-</script>
+<%--</script>--%>
 </html>
