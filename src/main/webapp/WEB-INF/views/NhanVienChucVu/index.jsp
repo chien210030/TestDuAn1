@@ -14,14 +14,12 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
 </head>
+
 <body>
+
+</div>
 <div class="row">
-    <div class="col-2"></div>
     <div class="col-8">
-        <br>
-        <br>
-        <a class="btn btn-primary" href="/nhan-vien-chuc-vu/">Add</a>
-        <br>
 
         <table border="1" class="table">
 
@@ -58,7 +56,7 @@
                         <td>${ds.trangthai == 1 ?"Hoạt Động" :"Không Hoạt Động"}</td>
                         <td>${ds.chucVu.ten}</td>
                         <td>
-                            <a class="btn btn-danger" href="/nhan-vien-chuc-vu/delete/${ds.id}">Remove</a>
+                           <a class="btn btn-danger" href="/nhan-vien-chuc-vu/delete/${ds.id}">Remove</a>
 <%--                            <a class="btn btn-danger" href="javascript:remove('${ds.id}')">Remove</a>--%>
                         </td>
                     </tr>

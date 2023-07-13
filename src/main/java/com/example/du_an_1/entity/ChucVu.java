@@ -20,6 +20,4 @@ public class ChucVu {
     private String ma ;
     private  String ten ;
 
-    @OneToMany(mappedBy = "chucVu")
-    List<NhanVien> nhanVien;
 }
