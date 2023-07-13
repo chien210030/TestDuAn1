@@ -3,7 +3,9 @@ package com.example.du_an_1.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -15,14 +17,14 @@ import java.util.Date;
 @Table(name = "nhanvien")
 public class NhanVien {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Integer id ;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id ;
 
     private String ma ;
     private  String ten;
     private String tendem ;
     private String ho;
-    private Date    ngaysinh;
+    private LocalDate ngaysinh;
     private int gioitinh ;
     private String sdt ;
     private String taikhoan;

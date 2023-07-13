@@ -8,10 +8,17 @@
 </head>
 <head>
 <body>
+<div class="row">
+    <div class="col-3"></div>
+</div>
 <div class="col-10">
+    <br>
+    <a class="btn btn-primary" href="/nhan-vien-chuc-vu/view-add">Add</a>
+    <br>
     <table border="1" class="table-header">
         <tr>
         <tr>
+            <th>ID</th>
             <th>Mã NV</th>
             <th>Mã CV</th>
             <th>Tên NV</th>
@@ -29,7 +36,7 @@
         <tbody>
         <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
             <tr>
-
+                <td>${ds.id}</td>
                 <td>${ds.ma}</td>
                 <td>${ds.chucVu.ma}</td>
                 <td>${ds.ten}</td>
