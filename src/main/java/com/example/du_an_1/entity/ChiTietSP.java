@@ -16,37 +16,37 @@ public class ChiTietSP {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String ma;
-    private String ten;
+//    private String ma;
+//    private String ten;
     private String mota;
     private int soluongton;
-    private BigDecimal giaNhap;
-    private BigDecimal giaBan;
+    private BigDecimal gianhap;
+    private BigDecimal giaban;
     @ManyToOne
     @JoinColumn(name = "idchatlieu")
-    private ChatLieu chatLieu;
+    private ChatLieu chatlieu;
 
 
     @ManyToOne
     @JoinColumn(name = "idthuonghieu")
-    private ThuongHieu thuongHieu;
+    private ThuongHieu thuonghieu;
     @ManyToOne
     @JoinColumn(name = "idkichco")
-    private KichCo kichCo;
+    private KichCo kichco;
 
     @ManyToOne
     @JoinColumn(name = "idmausac")
-    private MauSac mauSac;
+    private MauSac mausac;
     @ManyToOne
     @JoinColumn(name = "idnsx")
     private NSX nsx;
     @ManyToOne
     @JoinColumn(name = "idsanpham")
-    private  SanPham sanPham;
+    private  SanPham sanpham;
 
     @ManyToOne
     @JoinColumn(name = "iddongsp")
-    private  DongSP dongSP;
+    private  DongSP dongsp;
 
 
 
