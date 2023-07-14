@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -40,18 +41,18 @@ public class NhanVienChucVuController {
         return "/NhanVienChucVu/index";
     }
     @GetMapping("/nhan-vien-chuc-vu/delete/{id}")
-    public String delete(Model model,@PathVariable("id") Integer id){
+    public String delete(Model model,@PathVariable("id") Long id){
         repository.deleteById(id);
         return "redirect:/nhan-vien-chuc-vu/hien-thi";
     }
     @GetMapping("/nhan-vien-chuc-vu/view-add")
     public String viewAdd(Model model){
-        List<ChucVu> chucVus = chucVuRepository.findAll();
-        model.addAttribute("chucVu",chucVus);
+        model.addAttribute("chucVu",chucVuRepository.findAll());
         return "/NhanVienChucVu/Add";
     }
     @PostMapping("/nhan-vien-chuc-vu/add")
     public String add(Model model ,
+                      @RequestParam("id") String id,
                       @RequestParam("ma") String ma,
                       @RequestParam("ten") String ten,
                       @RequestParam("chucVu") String chucvu,
@@ -60,25 +61,32 @@ public class NhanVienChucVuController {
                       @RequestParam("taikhoan") String taikhoan,
                       @RequestParam("matkhau") String matkhau,
                       @RequestParam("email") String email,
-                      @RequestParam("trangthai") int trangthai,
-                      @RequestParam("gioitinh") int gioitinh
+                      @RequestParam("trangthai") String trangthai,
+                      @RequestParam("gioitinh") String gioitinh
 
     ){
-
-        NhanVien nv = new NhanVien();
-        ChucVu chucVu =  chucVuRepository.getReferenceById(Integer.valueOf(chucvu));
-        nv.setMa(ma);
-        nv.setChucVu(chucVu);
-        nv.setEmail(email);
-        nv.setTrangthai(trangthai);
-        nv.setGioitinh(gioitinh);
-        nv.setMatkhau(matkhau);
-        nv.setTaikhoan(taikhoan);
-        nv.setTen(ten);
-        nv.setNgaysinh(ngaysinh);
-        nv.setSdt(sdt);
-        repository.save(nv);
+      //  ChucVu chucVu =  chucVuRepository.getReferenceById(Integer.valueOf(chucvu));
+        ChucVu cv = chucVuRepository.findById(Integer.valueOf(chucvu)).orElse(null);
+        NhanVien nhanVien = NhanVien.builder()
+                .id(Long.valueOf(id))
+                .ma(ma)
+                .ten(ten)
+                .chucVu(cv)
+                .ngaysinh(ngaysinh)
+                .sdt(sdt)
+                .taikhoan(taikhoan)
+                .matkhau(matkhau)
+                .email(email)
+                .trangthai(Integer.valueOf(trangthai))
+                .gioitinh(Integer.valueOf(gioitinh))
+                .build();
+        repository.save(nhanVien);
         return "redirect:/nhan-vien-chuc-vu/hien-thi";
     }
-
+    @GetMapping("/nhan-vien-chuc-vu/detail/{id}")
+    public String detail(@PathVariable("id") String id, Model model){
+        model.addAttribute("nhanVien", repository.findById(Long.valueOf(id)).orElse(null));
+        return "/NhanVienChucVu/Detail";
+       // return "/NhanVienChucVu/Add";
+    }
 }

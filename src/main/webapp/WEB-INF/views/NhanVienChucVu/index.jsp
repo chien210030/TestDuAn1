@@ -50,6 +50,7 @@
                 <td>${ds.chucVu.ten}</td>
                 <td>
                     <a class="btn btn-danger" href="javascript:remove('${ds.id}')">Remove</a>
+                    <a class="btn btn-danger" href="/nhan-vien-chuc-vu/detail/${ds.id}">Detail</a>
                 </td>
             </tr>
         </c:forEach>
@@ -73,7 +74,6 @@
             alert("Đã Hủy")
         }
     }
-
 </script>
 </head>
 </html>
