@@ -14,6 +14,10 @@
         <br>
         <br>
         <form action="/nhan-vien-chuc-vu/add" method="post" onsubmit=" return add()">
+            <label>ID NV :</label>
+            <input class="form-control" name="id">
+            <span style="color: red">${erro}</span>
+            <br>
             <label>Mã NV :</label>
             <input class="form-control" name="ma">
             <span style="color: red">${erro}</span>

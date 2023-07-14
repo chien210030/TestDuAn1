@@ -14,12 +14,12 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
+@Builder
 @Table(name = "nhanvien")
 public class NhanVien {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   // @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
-
     private String ma ;
     private  String ten;
     private String tendem ;
