@@ -26,9 +26,10 @@ public class HoaDon {
     private BigDecimal tongtien ;
     private BigDecimal tongtienKM ;
     private  BigDecimal tongtienTT;
+
     @ManyToOne
     @JoinColumn(name = "idkhachhang")
-    private KhachHang khachHang;
+    private KhachHang khachhang;
 
     @ManyToOne
     @JoinColumn(name = "idnhanvien")
