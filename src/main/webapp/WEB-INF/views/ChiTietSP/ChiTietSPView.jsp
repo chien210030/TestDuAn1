@@ -96,12 +96,11 @@
         </div>
     </div>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Products</h1>
+        <h1 class="page-header">Dashboard</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
         </ul>
-     <button><a href="${pageContext.request.contextPath}/showCreate">Add</a></button>
         <table class="table table-hover">
             <thead>
             <th>ma</th>
@@ -123,8 +122,9 @@
             <!-- START CONTENT END -->
             <c:forEach items="${loadSP}" var="sp">
 
+
                 <tr>
-                    <td>${sp.id}</td>
+
                     <td>${sp.sanpham.ma}</td>
                     <td>${sp.sanpham.ten}</td>
                     <td>${sp.mota}</td>
@@ -138,8 +138,7 @@
                     <td>${sp.chatlieu.ten}</td>
                     <td>${sp.thuonghieu.ten}</td>
 
-                    <td><a href="${pageContext.request.contextPath}/delete/${sp.id}"
-                           onclick="return confirm('ban co muon xoa ko')">Remove</a>
+                    <td><a href="">Remove</a>
                         <a href="">Update</a>
                     </td>
                 </tr>
