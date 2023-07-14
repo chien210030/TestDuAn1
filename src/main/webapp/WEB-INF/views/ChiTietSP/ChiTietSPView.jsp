@@ -101,7 +101,10 @@
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
         </ul>
-        <table class="table table-hover">
+        <button> <a href="${pageContext.request.contextPath}/showcreate">add</a></button>
+
+        <form action="${pageContext.request.contextPath}/loadsp">
+            <table class="table table-hover">
             <thead>
             <th>ma</th>
             <th class="text-center">Ten</th>
@@ -138,7 +141,7 @@
                     <td>${sp.chatlieu.ten}</td>
                     <td>${sp.thuonghieu.ten}</td>
 
-                    <td><a href="">Remove</a>
+                    <td><a href="${pageContext.request.contextPath}/delete/${sp.id}">Remove</a>
                         <a href="">Update</a>
                     </td>
                 </tr>
@@ -147,8 +150,9 @@
                 <!-- DUMP CONTENT END -->
             </c:forEach>
             </tbody>
-
         </table>
+        </form>
+
     </div>
 </div>
 
