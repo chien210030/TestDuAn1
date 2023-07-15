@@ -4,6 +4,7 @@ import com.example.du_an_1.entity.ChucVu;
 import com.example.du_an_1.entity.NhanVien;
 import com.example.du_an_1.repository.impl.ChucVuRepository;
 import com.example.du_an_1.repository.impl.NhanVienChucVuRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -88,5 +89,44 @@ public class NhanVienChucVuController {
         model.addAttribute("nhanVien", repository.findById(Long.valueOf(id)).orElse(null));
         return "/NhanVienChucVu/Detail";
        // return "/NhanVienChucVu/Add";
+    }
+
+    @GetMapping("/nhan-vien-chuc-vu/view-update/{id}")
+    public String viewUpdate(@PathVariable("id") String id, Model model){
+        model.addAttribute("update",repository.findById(Long.valueOf(id)).orElse(null));
+        model.addAttribute("chucVu",chucVuRepository.findAll());
+        return "/NhanVienChucVu/Update";
+    }
+    @PostMapping("/nhan-vien-chuc-vu/update")
+    public String update(Model model,
+                         @RequestParam("id") String id,
+                         @RequestParam("ma") String ma,
+                         @RequestParam("ten") String ten,
+                         @RequestParam("ngaysinh") LocalDate ngaysinh,
+                         @RequestParam("chucVu") String chucVu,
+                         @RequestParam("sdt") String sdt,
+                         @RequestParam("taikhoan") String taikhoan,
+                         @RequestParam("matkhau") String matkhau,
+                         @RequestParam("email") String email,
+                         @RequestParam("trangthai") String trangthai,
+                         @RequestParam("gioitinh") String gioitinh){
+        ChucVu chucvu = chucVuRepository.findById(Integer.valueOf(chucVu)).get();
+        NhanVien nhanVien = repository.findById(Long.valueOf(id)).get();
+        NhanVien nv = NhanVien.builder()
+                .ma(ma)
+                .ten(ten)
+                .chucVu(chucvu)
+                .ngaysinh(ngaysinh)
+                .sdt(sdt)
+                .taikhoan(taikhoan)
+                .matkhau(matkhau)
+                .email(email)
+                .trangthai(Integer.valueOf(trangthai))
+                .gioitinh(Integer.valueOf(gioitinh))
+                .build();
+        nv.setId(Long.valueOf(id));
+        BeanUtils.copyProperties(nv,nhanVien);
+        repository.save(nv);
+        return "redirect:/nhan-vien-chuc-vu/hien-thi";
     }
 }

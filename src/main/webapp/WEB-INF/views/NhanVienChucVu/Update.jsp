@@ -13,8 +13,7 @@
     <div class="col-8">
         <h3>Update Nhân Viên Chức Vụ</h3>
         <br>
-        <br>
-        <form action="" method="post">
+        <form action="/nhan-vien-chuc-vu/update" method="post">
             <label>ID Nhân Viên :</label>
             <input class="form-control" name=id value="${update.id}">
             <br>
@@ -28,8 +27,13 @@
             <br>
 
             <label>Giới Tính :</label>
-            <input type="radio" value="true" name="gioitinh" checked ${update.gioitinh == 1 ? "checked":""}>Nam
-            <input type="radio" value="false" name="gioitinh" ${update.gioitinh == 0 ? "checked":""}>Nữ
+            <input type="radio" value="1" name="gioitinh" checked ${update.gioitinh == 1 ? "checked":""}>Nam
+            <input type="radio" value="0" name="gioitinh" ${update.gioitinh == 0 ? "checked":""}>Nữ
+            <br>
+            <br>
+            <label>Trạng Thái :</label>
+            <input type="radio" value="1" name="trangthai" checked ${update.trangthai == 1 ? "checked":""}>Hoạt Động
+            <input type="radio" value="0" name="trangthai" ${update.trangthai == 0 ? "checked":""}>Ngừng Hoạt Động
             <br>
             <br>
             <label>Ngày Sinh :</label>
@@ -52,11 +56,6 @@
             <input class="form-control" name="matkhau" value="${update.matkhau}">
             <br>
 
-            <label>Trạng Thái :</label>
-            <input type="radio" value="true" name="trangthai" checked ${update.trangthai == 1 ? "checked":""}>Hoạt Động
-            <input type="radio" value="false" name="trangthai" ${update.trangthai == 0 ? "checked":""}>Ngừng Hoạt Động
-            <br>
-
             <label>Mã Chức Vụ:</label>
             <select name="chucVu">
                 <c:forEach items="${chucVu}" var="cv">
@@ -64,6 +63,10 @@
                 </c:forEach>
             </select>
             <br>
+            <hr>
+            <br>
+            <button class="btn btn-outline-primary">Update</button>
+            <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi">HOME</a>
         </form>
 
     </div>
