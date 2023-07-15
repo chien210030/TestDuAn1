@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
-        <br>
+        <h3>Thêm Nhân Viên Chức Vụ</h3>
         <br>
         <form action="/nhan-vien-chuc-vu/add" method="post" onsubmit=" return add()">
             <label>ID NV :</label>
@@ -57,10 +57,12 @@
             Trạng Thái :<input type="radio" name="trangthai" value="1" checked>Hoạt Động
             <input type="radio" name="trangthai" value="0">Ngừng Hoạt Động
             <br>
+            <br>
             Giới Tính :<input type="radio" name="gioitinh" value="1" checked>Nam
             <input type="radio" name="gioitinh" value="0">Nữ
             <hr>
-            <button class="btn btn-primary">Add</button>
+            <button class="btn btn-outline-primary">THÊM</button>
+            <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi">HOME</a>
         </form>
 
 
@@ -71,7 +73,7 @@
 </body>
 <script>
     function add(){
-        if (window.confirm("Bạn Có muồn thêm không trang add Không ?")){
+        if (window.confirm("Bạn Có muồn thêm không trang Thêm Không ?")){
 
         }else {
             return false;

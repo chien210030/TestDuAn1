@@ -8,50 +8,63 @@
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
 <body>
-    <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <h3>Update Khách Hàng</h3>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h3>Update Khách Hàng</h3>
+        <br>
+        <br>
+        <form action="/khach-hang/update?id=${update.id}" method="post" onsubmit="return update()">
+            <label>Họ :</label>
+            <input class="form-control" name="ho" value="${update.ho}">
+            <br>
+
+            <label>Tên Đệm :</label>
+            <input class="form-control" name="tendem" value="${update.tendem}">
+            <br>
+
+            <label>Tên :</label>
+            <input class="form-control" name="ten" value="${update.ten}">
+            <br>
+
+            <label>Giới Tính :</label>
+            <input type="radio" value="true" name="gioitinh" checked ${update.gioitinh == true ? "checked":""}>Nam
+            <input type="radio" value="false" name="gioitinh" ${update.gioitinh == false ? "checked":""}>Nữ
             <br>
             <br>
-            <form action="" method="post">
-                <label>Họ :</label>
-                <input class="form-control" name="ho" value="${update.ho}">
-                <br>
+            <label>Ngày Sinh :</label>
+            <input class="form-control" type="date" name="ngaysinh" value="${update.ngaysinh}">
+            <br>
 
-                <label>Tên Đệm :</label>
-                <input class="form-control" name="tendem" value="${update.tendem}">
-                <br>
+            <label>Email :</label>
+            <input class="form-control" name="email" value="${update.email}">
+            <br>
 
-                <label>Tên :</label>
-                <input class="form-control" name="ten" value="${update.ten}">
-                <br>
+            <label>SDT :</label>
+            <input class="form-control" name="sdt" value="${update.sdt}">
+            <br>
 
-                <label>Giới Tính :</label>
-                <input type="radio" value="true" name="gioitinh" checked ${update.gioitinh == true ? "checked":""}>Nam
-                <input type="radio" value="false" name="gioitinh" ${update.gioitinh == false ? "checked":""}>Nữ
-                <br>
-                <br>
-                <label>Ngày Sinh :</label>
-                <input class="form-control" type="" name="ngaysinh" value="${update.ngaysinh}">
-                <br>
+            <label>Điểm Thưởng :</label>
+            <input class="form-control" name="diemthuong" value="${update.diemthuong}">
+            <br>
+            <br>
+            <button class="btn btn-outline-success">Update</button>
+            <a class=" btn btn-outline-secondary" href="/khach-hang/hien-thi">Close</a>
+        </form>
 
-                <label>Email :</label>
-                <input class="form-control" name="email" value="${update.email}">
-                <br>
-
-                <label>SDT :</label>
-                <input class="form-control" name="sdt" value="${update.sdt}">
-                <br>
-
-                <label>Điểm Thưởng :</label>
-                <input class="form-control" name="diemthuong" value="${update.diemthuong}">
-                <br>
-            </form>
-
-        </div>
-        <div class="col-2"></div>
     </div>
+    <div class="col-2"></div>
+</div>
 
 </body>
+
+<script>
+    function update(){
+        if (window.confirm("Bạn có muốn update không!")){
+
+        }else {
+            return false;
+        }
+    }
+</script>
 </html>

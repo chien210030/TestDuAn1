@@ -51,9 +51,8 @@
             <span style="color: red">${nhanVien.gioitinh}</span>
             <br>
             <hr>
-            <button class="btn btn-primary">Add</button>
         </form>
-
+        <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi">HOME</a>
 
     </div>
     <div class="col-3"></div>

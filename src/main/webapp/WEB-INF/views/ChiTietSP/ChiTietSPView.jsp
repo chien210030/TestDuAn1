@@ -72,8 +72,9 @@
 
         <div id="sidebar">
             <div class="container-fluid tmargin">
+<%--                <form action="#" class="search-wrap"></form>--%>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..."/>
+                    <input type="search" class="form-control" placeholder="Search..."/>
                     <span class="input-group-btn">
               <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
           </span>
@@ -96,12 +97,15 @@
         </div>
     </div>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Dashboard</h1>
+        <h1 class="page-header">Products</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
         </ul>
-        <table class="table table-hover">
+        <button> <a href="${pageContext.request.contextPath}/showcreate">add</a></button>
+
+        <form action="${pageContext.request.contextPath}/loadsp">
+            <table class="table table-hover">
             <thead>
             <th>ma</th>
             <th class="text-center">Ten</th>
@@ -138,8 +142,8 @@
                     <td>${sp.chatlieu.ten}</td>
                     <td>${sp.thuonghieu.ten}</td>
 
-                    <td><a href="">Remove</a>
-                        <a href="">Update</a>
+                    <td><a href="${pageContext.request.contextPath}/delete/${sp.id}">Remove</a>
+                        <a href="${pageContext.request.contextPath}/viewupdate/${sp.id}">Update</a>
                     </td>
                 </tr>
 
@@ -147,8 +151,18 @@
                 <!-- DUMP CONTENT END -->
             </c:forEach>
             </tbody>
-
         </table>
+        </form>
+        <div>
+            <ul class="pagination">
+            <a href="?pageNum=${1}">Pre</a>
+                <c:forEach begin="1" end="${totalpages}" varStatus="status">
+                <a href="?pageNum=${status.index}">${status.index}</a>
+
+                </c:forEach>
+                <a href="?pageNum=${totalpages}">next</a>
+            </ul>
+
     </div>
 </div>
 
