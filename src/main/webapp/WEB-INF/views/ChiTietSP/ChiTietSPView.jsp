@@ -143,7 +143,7 @@
                     <td>${sp.thuonghieu.ten}</td>
 
                     <td><a href="${pageContext.request.contextPath}/delete/${sp.id}">Remove</a>
-                        <a href="">Update</a>
+                        <a href="${pageContext.request.contextPath}/viewupdate/${sp.id}">Update</a>
                     </td>
                 </tr>
 
