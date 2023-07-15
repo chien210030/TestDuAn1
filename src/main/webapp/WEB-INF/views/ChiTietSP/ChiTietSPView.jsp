@@ -72,8 +72,9 @@
 
         <div id="sidebar">
             <div class="container-fluid tmargin">
+<%--                <form action="#" class="search-wrap"></form>--%>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..."/>
+                    <input type="search" class="form-control" placeholder="Search..."/>
                     <span class="input-group-btn">
               <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
           </span>
@@ -96,7 +97,7 @@
         </div>
     </div>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Dashboard</h1>
+        <h1 class="page-header">Products</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
@@ -152,6 +153,15 @@
             </tbody>
         </table>
         </form>
+        <div>
+            <ul class="pagination">
+            <a href="?pageNum=${1}">Pre</a>
+                <c:forEach begin="1" end="${totalpages}" varStatus="status">
+                <a href="?pageNum=${status.index}">${status.index}</a>
+
+                </c:forEach>
+                <a href="?pageNum=${totalpages}">next</a>
+            </ul>
 
     </div>
 </div>
