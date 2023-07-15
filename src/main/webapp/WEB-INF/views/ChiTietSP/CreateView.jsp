@@ -71,7 +71,7 @@
 
 <form action="${pageContext.request.contextPath}/add" method="post">
  <div class="mb-3 mt-3">
-     <select name="sanpham">
+   <label> san pham </label>  <select name="sanpham">
          <c:forEach items="${sanPhams}" var="cb">
              <option value="${cb.id}">${cb.ten}</option>
          </c:forEach>
@@ -79,7 +79,7 @@
 
  </div>
   <div class="mb-3 mt-3">
-      <select name="dongsp">
+   <label> dong sp</label>   <select name="dongsp">
           <c:forEach items="${dongsanPhams}" var="cb">
               <option value="${cb.id}">${cb.ten}</option>
           </c:forEach>
@@ -87,7 +87,7 @@
 
   </div>
     <div class="mb-3 mt-3">
-        <select name="chatlieu">
+     <label>chat lieu</label>   <select name="chatlieu">
             <c:forEach items="${chatlieus}" var="cb">
                 <option value="${cb.id}">${cb.ten}</option>
             </c:forEach>
@@ -95,7 +95,7 @@
 
     </div>
     <div class="mb-3 mt-3">
-        <select name="thuonghieu">
+     <label>thuong hieu</label>   <select name="thuonghieu">
             <c:forEach items="${thuonghieus}" var="cb">
                 <option value="${cb.id}">${cb.ten}</option>
             </c:forEach>
@@ -103,14 +103,14 @@
 
     </div>
     <div class="mb-3 mt-3">
-        <select name="kichco">
+       <label>kich co</label> <select name="kichco">
             <c:forEach items="${kichcos}" var="cb">
                 <option value="${cb.id}">${cb.ten}</option>
             </c:forEach>
         </select>
     </div>
     <div class="mb-3 mt-3">
-        <select name="mausac">
+       <label>mau sac</label> <select name="mausac">
             <c:forEach items="${mausacs}" var="cb">
                 <option value="${cb.id}">${cb.ten}</option>
             </c:forEach>
@@ -118,13 +118,18 @@
 
     </div>
     <div class="mb-3 mt-3">
-        <select name="nsx">
+      <label>nha san xuat</label>  <select name="nsx">
             <c:forEach items="${nsxs}" var="cb">
                 <option value="${cb.id}">${cb.ten}</option>
             </c:forEach>
         </select>
 
     </div>
+    <div class="mb-3 mt-3">
+        <label>id:</label>
+        <input type="number" class="form-control" placeholder="Enter id" name="id">
+    </div>
+
     <div class="mb-3 mt-3">
         <label >Mo Ta:</label>
         <input type="text" class="form-control"  placeholder="Enter mota" name="mota">

@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -14,12 +16,15 @@ import java.math.BigDecimal;
 @Table(name = "chitietsp")
 public class ChiTietSP {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Integer id ;
 //    private String ma;
 //    private String ten;
+
     private String mota;
+
     private int soluongton;
+
     private BigDecimal gianhap;
     private BigDecimal giaban;
     @ManyToOne

@@ -127,6 +127,10 @@
     </div>
     <div class="mb-3 mt-3">
         <label >Mo Ta:</label>
+        <input type="text" class="form-control" disabled placeholder="Enter mota" name="mota" value="${loadupdate.id}">
+    </div>
+    <div class="mb-3 mt-3">
+        <label >Mo Ta:</label>
         <input type="text" class="form-control"  placeholder="Enter mota" name="mota" value="${loadupdate.mota}">
     </div>
     <div class="mb-3">
