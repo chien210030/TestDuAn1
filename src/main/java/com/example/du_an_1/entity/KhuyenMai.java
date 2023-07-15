@@ -7,17 +7,16 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @ToString
 @Entity
 @Table(name = "khuyenmai")
 public class KhuyenMai {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String ma;
     private String ten;
@@ -26,6 +25,6 @@ public class KhuyenMai {
     private Date ngayketthuc;
     private String hinhthuckm;
     private BigDecimal giatrigiam;
-    private int trangthai;
+    private Integer trangthai;
 
 }
