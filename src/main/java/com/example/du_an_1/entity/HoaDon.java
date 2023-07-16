@@ -12,19 +12,35 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
-@Table(name = "hoadon")
+@Table(name = "HoaDon")
+
 public class HoaDon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id ;
+    private Long id ;
 
+    @JoinColumn(name="ma")
     private  String ma ;
+
+    @JoinColumn(name = "NgayTao")
     private Date ngaytao ;
+
+    @JoinColumn(name = "NgayThanhToan")
     private  Date ngaythanhtoan ;
+
+    @JoinColumn(name = "TrangThai")
     private int trangthai;
+
+    @JoinColumn(name = "GhiChu")
     private  String ghichu ;
+
+    @JoinColumn(name = "TongTien")
     private BigDecimal tongtien ;
+
+    @JoinColumn(name = "TongTienKm")
     private BigDecimal tongtienKM ;
+
+    @JoinColumn(name = "TongTienTT")
     private  BigDecimal tongtienTT;
 
     @ManyToOne
