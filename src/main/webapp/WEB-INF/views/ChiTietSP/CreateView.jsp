@@ -127,7 +127,7 @@
     </div>
     <div class="mb-3 mt-3">
         <label>id:</label>
-        <input type="number" class="form-control" placeholder="Enter id" name="id">
+        <input type="number"  class="form-control" placeholder="Enter id" name="id">
     </div>
 
     <div class="mb-3 mt-3">
