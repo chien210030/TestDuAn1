@@ -15,7 +15,7 @@ public class DongSP {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id ;
+    private Long id ;
     private String ma ;
     private  String ten ;
 }

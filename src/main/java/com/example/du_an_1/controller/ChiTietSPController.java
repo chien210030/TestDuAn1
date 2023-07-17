@@ -117,12 +117,12 @@ private List<SanPham> getsanpham(){
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable(name = "id") Integer id) {
+    public String delete(@PathVariable(name = "id") Long id) {
         chiTietSPRepository.deleteById(id);
         return "redirect:/loadsp";
     }
     @GetMapping("/viewupdate/{id}")
-    public String update(Model model,@PathVariable(name = "id") Integer id){
+    public String update(Model model,@PathVariable(name = "id") Long id){
 
         model.addAttribute("loadupdate",chiTietSPRepository.findById(id).orElse(null));
 

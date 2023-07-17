@@ -7,25 +7,26 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
+ @NoArgsConstructor
+ @AllArgsConstructor
+ @Getter
+ @Setter
 @ToString
 @Entity
 @Table(name = "chitietsp")
 public class ChiTietSP {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-     private Integer id ;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+     private Long  id ;
 //    private String ma;
 //    private String ten;
-
+    @JoinColumn(name = "mota")
     private String mota;
-
+@JoinColumn(name = "soluongton")
     private int soluongton;
-
+    @JoinColumn(name = "gianhap")
     private BigDecimal gianhap;
+    @JoinColumn(name = "giaban")
     private BigDecimal giaban;
     @ManyToOne
     @JoinColumn(name = "idchatlieu")

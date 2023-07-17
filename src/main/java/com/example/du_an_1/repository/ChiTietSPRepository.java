@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ChiTietSPRepository  extends JpaRepository<ChiTietSP,Integer> {
+public interface ChiTietSPRepository  extends JpaRepository<ChiTietSP,Long> {
 //Page<ChiTietSP> findBytenContainsOfsanpham(String keyword, Pageable pageable);
 //Page<SanPham> findByTenContains(String keyword, Pageable pageable);
 }
