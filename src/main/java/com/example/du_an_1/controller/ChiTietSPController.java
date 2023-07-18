@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class ChiTietSPController {
@@ -117,12 +118,12 @@ private List<SanPham> getsanpham(){
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable(name = "id") Long id) {
+    public String delete(@PathVariable(name = "id") UUID id) {
         chiTietSPRepository.deleteById(id);
         return "redirect:/loadsp";
     }
     @GetMapping("/viewupdate/{id}")
-    public String update(Model model,@PathVariable(name = "id") Long id){
+    public String update(Model model,@PathVariable(name = "id")  UUID id){
 
         model.addAttribute("loadupdate",chiTietSPRepository.findById(id).orElse(null));
 

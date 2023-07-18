@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ChiTietSP {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-     private Long  id ;
+     private UUID  id ;
 //    private String ma;
 //    private String ten;
     @JoinColumn(name = "mota")

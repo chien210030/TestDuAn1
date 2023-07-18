@@ -4,6 +4,8 @@ package com.example.du_an_1.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -15,7 +17,7 @@ public class ThuongHieu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  Long id ;
+    private UUID id ;
     private  String ma ;
     private  String ten ;
 }
