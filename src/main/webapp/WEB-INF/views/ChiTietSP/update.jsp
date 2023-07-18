@@ -73,7 +73,7 @@
     <div class="mb-3 mt-3">
       <label>san pham </label>  <select name="sanpham">
             <c:forEach items="${sanphams}" var="cb">
-                <option value="${loadupdate.sanpham.id}">${loadupdate.sanpham.ten}</option>
+                <option value="${loadupdate.sanpham.id}" >${loadupdate.sanpham.ten}</option>
             </c:forEach>
         </select>
 
