@@ -14,25 +14,16 @@
         <h3>Thêm Nhân Viên Chức Vụ</h3>
         <br>
         <form action="/nhan-vien-chuc-vu/add" method="post" onsubmit=" return add()">
-            <label>ID NV :</label>
-            <input class="form-control" name="id">
-            <span style="color: red">${erro}</span>
-            <br>
-            <label>Mã NV :</label>
-            <input class="form-control" name="ma">
-            <span style="color: red">${erro}</span>
-            <br>
-            <label>Mã Chức Vụ :</label>
-            <select name="chucVu">
-                <c:forEach items="${chucVu}" var="cv">
-                    <option value="${cv.id}">${cv.ma}</option>
-                </c:forEach>
-            </select>
-            <br>
-            <br>
             <label>Tên NV :</label>
             <input class="form-control" name="ten">
             <span style="color: red">${erro}</span>
+            <br>
+            <label>Tên Chức Vụ :</label>
+            <select name="chucVu">
+                <c:forEach items="${chucVu}" var="cv">
+                    <option value="${cv.id}">${cv.ten}</option>
+                </c:forEach>
+            </select>
             <br>
             <label>Ngày Sinh :</label>
             <input class="form-control" type="date" name="ngaysinh">

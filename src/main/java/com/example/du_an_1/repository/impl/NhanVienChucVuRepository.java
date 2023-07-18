@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 @Repository
-public interface NhanVienChucVuRepository extends JpaRepository<NhanVien,Long> {
+public interface NhanVienChucVuRepository extends JpaRepository<NhanVien,Integer> {
 }

@@ -23,9 +23,8 @@ import lombok.ToString;
 @Table(name = "chucvu")
 public class ChucVu {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private  Long id ;
-    private String ma ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Integer id ;
     private  String ten ;
 
 }

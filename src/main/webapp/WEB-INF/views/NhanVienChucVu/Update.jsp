@@ -18,11 +18,7 @@
             <input class="form-control" name=id value="${update.id}">
             <br>
 
-            <label>Mã Nhân Viên :</label>
-            <input class="form-control" name="ma" value="${update.ma}">
-            <br>
-
-            <label>Mã Chức Vụ :</label>
+            <label>Tên Nhân Viên :</label>
             <input class="form-control" name="ten" value="${update.ten}">
             <br>
 
@@ -56,10 +52,10 @@
             <input class="form-control" name="matkhau" value="${update.matkhau}">
             <br>
 
-            <label>Mã Chức Vụ:</label>
+            <label>Tên Chức Vụ:</label>
             <select name="chucVu">
                 <c:forEach items="${chucVu}" var="cv">
-                    <option value="${cv.id}" ${cv.id == update.chucVu.id ?'selected = "selected"':""}>${cv.ma}</option>
+                    <option value="${cv.id}" ${cv.id == update.chucVu.id ?'selected = "selected"':""}>${cv.ten}</option>
                 </c:forEach>
             </select>
             <br>

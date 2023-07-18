@@ -21,8 +21,6 @@
             <tr>
             <tr>
                 <th>ID</th>
-                <th>Mã NV</th>
-                <th>Mã CV</th>
                 <th>Tên NV</th>
                 <th>Ngày Sinh</th>
                 <th>Giới Tính</th>
@@ -39,11 +37,9 @@
                 <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
                     <tr>
                         <td>${ds.id}</td>
-                        <td>${ds.ma}</td>
-                        <td>${ds.chucVu.ma}</td>
                         <td>${ds.ten}</td>
                         <td>${ds.ngaysinh}</td>
-                        <td>${ds.gioitinh == 1 ? "Nam" : "Nữ"}</td>
+                        <td>${ds.gioitinh == true ? "Nam" : "Nữ"}</td>
                         <td>${ds.sdt}</td>
                         <td>${ds.taikhoan}</td>
                         <td>${ds.matkhau}</td>

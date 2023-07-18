@@ -17,12 +17,6 @@
             <label>ID NV :</label>
             <span style="color: red">${nhanVien.id}</span>
             <br>
-            <label>Mã NV :</label>
-            <span style="color: red">${nhanVien.ma}</span>
-            <br>
-            <label>Mã Chức Vụ :</label>
-            <span style="color: red">${nhanVien.chucVu.ma}</span>
-            <br>
             <label>Tên Chức Vụ :</label>
             <span style="color: red">${nhanVien.chucVu.ten}</span>
             <br>

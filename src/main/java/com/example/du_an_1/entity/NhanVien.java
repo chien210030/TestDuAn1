@@ -15,24 +15,23 @@ import java.util.Date;
 @ToString
 @Entity
 @Builder
-@Table(name = "nhanvien")
+@Table(name = "users")
 public class NhanVien {
     @Id
-   // @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private String ma ;
     private  String ten;
     private String tendem ;
     private String ho;
     private LocalDate ngaysinh;
-    private int gioitinh ;
+    private Boolean gioitinh ;
     private String sdt ;
     private String taikhoan;
     private String matkhau ;
     private String email ;
-    private  int trangthai ;
+    private  Integer trangthai ;
 
     @ManyToOne
-    @JoinColumn(name = "idchucvu")
+    @JoinColumn(name = "idcv")
     ChucVu chucVu;
 }
