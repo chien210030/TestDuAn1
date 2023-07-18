@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Date;
+import java.util.UUID;
 
-public interface KhuyenMaiRepository extends JpaRepository<KhuyenMai, Integer> {
+public interface KhuyenMaiRepository extends JpaRepository<KhuyenMai, UUID> {
     @Query("SELECT p FROM KhuyenMai p WHERE (?1 IS NULL OR p.ngaybatdau >= ?1) AND (?2 IS NULL OR p.ngayketthuc <= ?2)")
-    Page<KhuyenMai> search(Date startDate, Date endDate, Pageable pageable);
+    Page<KhuyenMai> search(Date startDate, Date endDate,UUID id, Pageable pageable);
 
 }

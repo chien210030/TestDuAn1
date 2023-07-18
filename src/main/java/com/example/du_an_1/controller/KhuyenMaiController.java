@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Controller
 public class KhuyenMaiController {
@@ -39,6 +41,8 @@ public class KhuyenMaiController {
         @DateTimeFormat(pattern = "dd/MM/yyyy")
         Date toDate;
 
+        //        nối bảng nào
+        UUID id;
 //        Long maKhachHang;
     }
 
@@ -50,15 +54,36 @@ public class KhuyenMaiController {
         return dsTrangThai;
     }
 
+    @RequestMapping("/phieugiamgia/sort")
+    public String sort(Model model, @RequestParam(defaultValue="0")int p,
+                       @ModelAttribute("searchForm") SearchForm searchForm) {
+
+        // Sap xep theo nhieu truong
+
+        Sort sort = Sort.by(
+                new Sort.Order(Sort.Direction.ASC, "ngaybatdau"),
+                new Sort.Order(Sort.Direction.ASC, "ten")
+        );
+        Pageable pageable = PageRequest.of(p, 5, sort);
+        Page<KhuyenMai> page = khuyenMaiService.search(
+                searchForm.fromDate, searchForm.toDate, searchForm.id, pageable
+        );
+
+        model.addAttribute("khuyenmai", new KhuyenMai());
+//        model.addAttribute("page", page);
+        return "phieugiamgia/index";
+    }
+
+
     //Lấy ds mã khuyến mãi
     @GetMapping("/khuyen-mai/index")
     public String listKhuyenMai(Model model, @RequestParam(defaultValue="0")int p,
-    @ModelAttribute("searchForm") SearchForm searchForm)
+                                @ModelAttribute("searchForm") SearchForm searchForm)
     {
         System.out.println("searchForm="+ searchForm);
         Pageable pageable = PageRequest.of(p, 5);
         Page<KhuyenMai> page = khuyenMaiService.search(
-                searchForm.fromDate, searchForm.toDate, pageable
+                searchForm.fromDate, searchForm.toDate, searchForm.id, pageable
         );
         model.addAttribute("khuyenmai", new KhuyenMai());
         model.addAttribute("page", page);
@@ -71,7 +96,32 @@ public class KhuyenMaiController {
     @PostMapping("/khuyen-mai/add")
     public String createKhuyenMai(Model model,
                                   @ModelAttribute("khuyenmai") KhuyenMai khuyenMai,
-            BindingResult bindingResult) {
+                                  BindingResult bindingResult) {
+
+        boolean hasErrors = bindingResult.hasErrors();
+
+        if(khuyenMai.getNgaybatdau() != null && khuyenMai.getNgayketthuc() != null &&
+                khuyenMai.getNgaybatdau().getTime() > khuyenMai.getNgayketthuc().getTime()
+        ) {
+            model.addAttribute("dateError", "Ngày bắt đầu phải trước ngày kết thúc");
+            hasErrors = true;
+        }
+
+        if(khuyenMai.getId().toString().isEmpty()){
+            model.addAttribute("idKMError", " không được bỏ trống");
+            hasErrors = true;
+        }
+        //Nối bảng nào
+//        if(khuyenMai.gettablegi().getMa() == null) {
+//            model.addAttribute("maKHError", " không được bỏ trống");
+//            hasErrors = true;
+//        }
+
+        if(hasErrors){
+            model.addAttribute("searchForm", new SearchForm());
+            model.addAttribute("message", "Một số trường đang có lỗi");
+            return "phieugiamgia/index";
+        }
 
         khuyenMaiService.save(khuyenMai);
         return "redirect:/khuyen-mai/index";
@@ -79,7 +129,7 @@ public class KhuyenMaiController {
 
     //View form update
     @GetMapping("/khuyen-mai/view-update/{id}")
-    public String viewUpdate(@PathVariable Integer id, Model model){
+    public String viewUpdate(@PathVariable UUID id, Model model){
         KhuyenMai khuyenMai = khuyenMaiService.getByKhuyenMai(id);
         model.addAttribute("khuyenmai", khuyenMai);
         return "KhuyenMai/update";
@@ -87,9 +137,31 @@ public class KhuyenMaiController {
 
     //Update mã khuyến mãi
     @PostMapping("/khuyen-mai/update/{id}")
-    public String update(@PathVariable Integer id, Model model,
+    public String update(@PathVariable UUID id, Model model,
                          @ModelAttribute("khuyenmai") KhuyenMai khuyenMai,
                          BindingResult bindingResult){
+
+
+        boolean hasErrors = bindingResult.hasErrors();
+
+        if(khuyenMai.getNgaybatdau() != null && khuyenMai.getNgayketthuc() != null &&
+                khuyenMai.getNgaybatdau().getTime() > khuyenMai.getNgayketthuc().getTime()
+        ) {
+            model.addAttribute("dateError", "Ngày bắt đầu phải trước ngày kết thúc");
+            hasErrors = true;
+        }
+        //nối bảng nào
+//        if(phieugiamgia.getNguoisohuu().getMakhachhang() == null) {
+//            model.addAttribute("maKHError", "Khách hàng không được bỏ trống");
+//            hasErrors = true;
+//        }
+
+        if(hasErrors){
+            model.addAttribute("message", "Một số trường đang có lỗi");
+            return "phieugiamgia/update";
+        }
+
+
         System.out.println("ma" + khuyenMai.getMa());
         System.out.println("ten" + khuyenMai.getTen());
         System.out.println("ngaybatdau" + khuyenMai.getNgaybatdau());
@@ -115,7 +187,7 @@ public class KhuyenMaiController {
 
     //Hiển thị chi tiết khuyến mãi
     @GetMapping("/khuyen-mai/detail/{id}")
-    public String detail(@PathVariable Integer id, Model model){
+    public String detail(@PathVariable UUID id, Model model){
         KhuyenMai khuyenMai = khuyenMaiService.getByKhuyenMai(id);
         model.addAttribute("khuyenmai", khuyenMai);
         return "KhuyenMai/detail";
@@ -123,7 +195,7 @@ public class KhuyenMaiController {
 
     //Xoa mã khuyến mãi
     @RequestMapping("/khuyen-mai/remove/{id}")
-    public String deleteKhuyenMai(@PathVariable Integer id){
+    public String deleteKhuyenMai(@PathVariable UUID id){
         khuyenMaiService.deleteByKhuyenMai(id);
         return "redirect:/khuyen-mai/index";
     }
