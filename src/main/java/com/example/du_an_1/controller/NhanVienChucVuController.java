@@ -77,7 +77,7 @@ public class NhanVienChucVuController {
                 .matkhau(matkhau)
                 .email(email)
                 .trangthai(Integer.valueOf(trangthai))
-                .gioitinh(Boolean.valueOf(gioitinh))
+                .GioiTinh(Boolean.valueOf(gioitinh))
                 .build();
         repository.save(nhanVien);
         return "redirect:/nhan-vien-chuc-vu/hien-thi";
@@ -119,7 +119,7 @@ public class NhanVienChucVuController {
                 .matkhau(matkhau)
                 .email(email)
                 .trangthai(Integer.valueOf(trangthai))
-                .gioitinh(Boolean.valueOf(gioitinh))
+                .GioiTinh(Boolean.valueOf(gioitinh))
                 .build();
         nv.setId(Long.valueOf(id));
         BeanUtils.copyProperties(nv,nhanVien);

@@ -24,14 +24,34 @@ public class KhachHangController {
     KhachHangRepository khachHangRepository;
 
     @GetMapping("/khach-hang/hien-thi")
-    public String hienThi(Model model, @RequestParam("Trang") Optional<Integer> p) {
+    public String hienThi(Model model, @RequestParam("trang") Optional<Integer> p) {
 
         Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<KhachHang> page = khachHangRepository.findAll(pageable);
         model.addAttribute("khachHang", page);
         return "/KhachHang/index";
     }
+    @GetMapping("/khach-hang/search")
+    public String timTheoMaVaTen(Model model,String ma,String ten) {
 
+        Pageable pageable = PageRequest.of(0, 5);
+        Page<KhachHang> page = khachHangRepository.findAll(pageable);
+        if(ma.length()>0&&ten.length()>0){
+           page = khachHangRepository.findKhachHangByMaEqualsAndTenEquals(ma,ten,pageable);
+            model.addAttribute("khachHang", page);
+            return "/KhachHang/index";
+        }
+        if(ma.length()>0){
+            page = khachHangRepository.findKhachHangByMaEquals(ma,pageable);
+        }
+        if(ten.length()>0){
+            page = khachHangRepository.findKhachHangByTenEquals(ten,pageable);
+        }
+        System.out.println(ten);
+        System.out.println(ma);
+        model.addAttribute("khachHang", page);
+        return "/KhachHang/index";
+    }
     @GetMapping("/khach-hang/remove/{id}")
     public String remove(@PathVariable("id") Integer id){
         khachHangRepository.deleteById(id);

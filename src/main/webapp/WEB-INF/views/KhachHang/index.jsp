@@ -14,6 +14,21 @@
 <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
+
+        <form action="/khach-hang/search" method="get">
+            <div class="input-group mb-3">
+                Mã:
+                <input type="text" name="ma" class="form-control" aria-label="Text input with checkbox">
+            </div>
+            <div class="input-group mb-3">
+                Tên:
+                <input type="text" name="ten" class="form-control" aria-label="Text input with checkbox">
+            </div>
+            <button type="submit">Tìm</button>
+
+
+        </form>
+
         <br>
         <a class="btn btn-primary" href="/Khach-Hang/view-add">Add</a>
         <br>
@@ -33,7 +48,7 @@
                 <tbody>
                 <c:forEach items="${khachHang.content}" var="ds" varStatus="i">
                     <tr>
-                        <td>${ds.id}</td>
+                       <td>${ds.id}</td>
                         <td>${ds.ho} ${ds.tendem} ${ds.ten}</td>
                         <td>${ds.gioitinh == true ? "Nam" : "Nữ"}</td>
                         <td>${ds.ngaysinh}</td>
@@ -43,7 +58,6 @@
                         <td>
                             <a class="btn btn-outline-danger" href="javascript:remove('${ds.id}')">Remove</a>
                             <a class="btn btn-outline-success" href="/khach-hang/view-update/${ds.id}">Update</a>
-
                         </td>
                     </tr>
                 </c:forEach>
