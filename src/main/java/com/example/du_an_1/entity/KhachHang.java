@@ -57,6 +57,6 @@ public class KhachHang {
     @NotNull(message = "Không được để trống điểm thưởng !")
     private int diemthuong;
 
-    @OneToMany(mappedBy = "KhachHang")
-    List<HoaDon> hoadon;
+//    @OneToMany(mappedBy = "Khachhang")
+//  private   List<HoaDon> hoadon;
 }
