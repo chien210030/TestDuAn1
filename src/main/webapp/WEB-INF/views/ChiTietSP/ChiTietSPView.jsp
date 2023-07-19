@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -68,34 +71,36 @@
     </div>
 </nav>
 <div class="container-fluid">
-    <div class="col-md-3">
+<jsp:include page="Templates/aside.jsp"/>
+<%--    <div class="col-md-3">--%>
 
-        <div id="sidebar">
-            <div class="container-fluid tmargin">
-<%--                <form action="#" class="search-wrap"></form>--%>
-                <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Search..."/>
-                    <span class="input-group-btn">
-              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
-                </div>
-            </div>
+<%--        <div id="sidebar">--%>
+<%--            <div class="container-fluid tmargin">--%>
+<%--&lt;%&ndash;                <form action="#" class="search-wrap"></form>&ndash;%&gt;--%>
+<%--                <div class="input-group">--%>
+<%--                    <input type="search" class="form-control" placeholder="Search..."/>--%>
+<%--                    <span class="input-group-btn">--%>
+<%--              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>--%>
+<%--          </span>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-            <ul class="nav navbar-nav side-bar">
-                <li class="side-bar tmargin"><a href="#"><span
-                        class="glyphicon glyphicon-list">&nbsp;</span>Dashboard</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-flag">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-star">&nbsp;</span>Blotter</a></li>
-                <li class="side-bar">
-                    <a href="#"><span class="glyphicon glyphicon-certificate">&nbsp;</span>Officials</a></li>
+<%--            <ul class="nav navbar-nav side-bar">--%>
+<%--                <li class="side-bar tmargin"><a href="#"><span--%>
+<%--                        class="glyphicon glyphicon-list">&nbsp;</span>Dashboard</a></li>--%>
+<%--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-flag">&nbsp;</span>Purok</a></li>--%>
+<%--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-star">&nbsp;</span>Blotter</a></li>--%>
+<%--                <li class="side-bar">--%>
+<%--                    <a href="#"><span class="glyphicon glyphicon-certificate">&nbsp;</span>Officials</a></li>--%>
 
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a>
-                </li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>
+<%--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a>--%>
+<%--                </li>--%>
+<%--                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>--%>
 
-            </ul>
-        </div>
-    </div>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+
     <div class="col-md-9 animated bounce">
         <h1 class="page-header">Products</h1>
         <ul class="breadcrumb">

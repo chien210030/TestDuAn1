@@ -69,114 +69,95 @@
     </div>
 </nav>
 <div class="container-fluid">
-    <div class="col-md-3">
-        <div id="sidebar">
-            <div class="container-fluid tmargin">
-                <div class="input-group">
-                    <input type="search" class="form-control" placeholder="search....">
-                    <span class="input-group-btn">
-                <button class="btn btn-default"><span class="glyphiconl glyphicon-search">
-
-                </span></button>
-
-
-
-
-
-                </span>
-                </div>
-
+    <jsp:include page="Templates/aside.jsp"/>
+    <div class="col-md-9 animated bounce">
+        <h1 class="page-header">Products</h1>
+        <form action="${pageContext.request.contextPath}/add" method="post">
+            <div class="mb-3 mt-3">
+                <label> san pham </label> <select name="sanpham">
+                <c:forEach items="${sanPhams}" var="cb">
+                    <option value="${cb.id}">${cb.ten}</option>
+                </c:forEach>
+            </select>
 
             </div>
+            <div class="mb-3 mt-3">
+                <label> dong sp</label> <select name="dongsp">
+                <c:forEach items="${dongsanPhams}" var="cb">
+                    <option value="${cb.id}">${cb.ten}</option>
+                </c:forEach>
+            </select>
 
-        </div>
+            </div>
+            <div class="mb-3 mt-3">
+                <label>chat lieu</label> <select name="chatlieu">
+                <c:forEach items="${chatlieus}" var="cb">
+                    <option value="${cb.id}">${cb.ten}</option>
+                </c:forEach>
+            </select>
 
+            </div>
+            <div class="mb-3 mt-3">
+                <label>thuong hieu</label> <select name="thuonghieu">
+                <c:forEach items="${thuonghieus}" var="cb">
+                    <option value="${cb.id}">${cb.ten}</option>
+                </c:forEach>
+            </select>
+
+            </div>
+            <div class="mb-3 mt-3">
+                <label>kich co</label> <select name="kichco">
+                <c:forEach items="${kichcos}" var="cb">
+                    <option value="${cb.id}">${cb.ten}</option>
+                </c:forEach>
+            </select>
+            </div>
+            <div class="mb-3 mt-3">
+                <label>mau sac</label> <select name="mausac">
+                <c:forEach items="${mausacs}" var="cb">
+                    <option value="${cb.id}">${cb.ten}</option>
+                </c:forEach>
+            </select>
+
+            </div>
+            <div class="mb-3 mt-3">
+                <label>nha san xuat</label> <select name="nsx">
+                <c:forEach items="${nsxs}" var="cb">
+                    <option value="${cb.id}">${cb.ten}</option>
+                </c:forEach>
+            </select>
+
+            </div>
+            <%--    <div class="mb-3 mt-3">--%>
+            <%--        <label>id:</label>--%>
+            <%--        <input type="number"  class="form-control" placeholder="Enter id" name="id">--%>
+            <%--    </div>--%>
+
+            <div class="mb-3 mt-3">
+                <label>Mo Ta:</label>
+                <input type="text" class="form-control" placeholder="Enter mota" name="mota">
+            </div>
+            <div class="mb-3">
+                <label>Gia Nhap:</label>
+                <input type="number" class="form-control" placeholder="Enter gianhap" name="gianhap">
+            </div>
+            <div class="mb-3">
+                <label>Gia ban:</label>
+                <input type="number" class="form-control" placeholder="Enter giaban" name="giaban">
+            </div>
+            <div class="mb-3">
+                <label>So Luong Ton:</label>
+                <input type="number" class="form-control" placeholder="Enter soluongton" name="soluongton">
+            </div>
+            <button type="submit">add</button>
+        </form>
 
     </div>
+
 
 
 </div>
-<form action="${pageContext.request.contextPath}/add" method="post">
-    <div class="mb-3 mt-3">
-        <label> san pham </label> <select name="sanpham">
-        <c:forEach items="${sanPhams}" var="cb">
-            <option value="${cb.id}">${cb.ten}</option>
-        </c:forEach>
-    </select>
 
-    </div>
-    <div class="mb-3 mt-3">
-        <label> dong sp</label> <select name="dongsp">
-        <c:forEach items="${dongsanPhams}" var="cb">
-            <option value="${cb.id}">${cb.ten}</option>
-        </c:forEach>
-    </select>
-
-    </div>
-    <div class="mb-3 mt-3">
-        <label>chat lieu</label> <select name="chatlieu">
-        <c:forEach items="${chatlieus}" var="cb">
-            <option value="${cb.id}">${cb.ten}</option>
-        </c:forEach>
-    </select>
-
-    </div>
-    <div class="mb-3 mt-3">
-        <label>thuong hieu</label> <select name="thuonghieu">
-        <c:forEach items="${thuonghieus}" var="cb">
-            <option value="${cb.id}">${cb.ten}</option>
-        </c:forEach>
-    </select>
-
-    </div>
-    <div class="mb-3 mt-3">
-        <label>kich co</label> <select name="kichco">
-        <c:forEach items="${kichcos}" var="cb">
-            <option value="${cb.id}">${cb.ten}</option>
-        </c:forEach>
-    </select>
-    </div>
-    <div class="mb-3 mt-3">
-        <label>mau sac</label> <select name="mausac">
-        <c:forEach items="${mausacs}" var="cb">
-            <option value="${cb.id}">${cb.ten}</option>
-        </c:forEach>
-    </select>
-
-    </div>
-    <div class="mb-3 mt-3">
-        <label>nha san xuat</label> <select name="nsx">
-        <c:forEach items="${nsxs}" var="cb">
-            <option value="${cb.id}">${cb.ten}</option>
-        </c:forEach>
-    </select>
-
-    </div>
-    <%--    <div class="mb-3 mt-3">--%>
-    <%--        <label>id:</label>--%>
-    <%--        <input type="number"  class="form-control" placeholder="Enter id" name="id">--%>
-    <%--    </div>--%>
-
-    <div class="mb-3 mt-3">
-        <label>Mo Ta:</label>
-        <input type="text" class="form-control" placeholder="Enter mota" name="mota">
-    </div>
-    <div class="mb-3">
-        <label>Gia Nhap:</label>
-        <input type="number" class="form-control" placeholder="Enter gianhap" name="gianhap">
-    </div>
-    <div class="mb-3">
-        <label>Gia ban:</label>
-        <input type="number" class="form-control" placeholder="Enter giaban" name="giaban">
-    </div>
-    <div class="mb-3">
-        <label>So Luong Ton:</label>
-        <input type="number" class="form-control" placeholder="Enter soluongton" name="soluongton">
-    </div>
-    <button type="submit">add</button>
-
-
-</form>
 
 </body>
 </html>
