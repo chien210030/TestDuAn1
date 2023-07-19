@@ -12,8 +12,38 @@
         </div>
 
         <ul class="nav navbar-nav side-bar">
-            <li class="side-bar tmargin"><a href="#"><span
-                    class="glyphicon glyphicon-list">&nbsp;</span>Dashboard</a></li>
+            <li class="side-bar tmargin"><a class = "tesst1" href="${pageContext.request.contextPath}/loadsp">
+                <span class="glyphicon glyphicon-list">&nbsp;</span>Products
+            </a>
+                <div class = "test">
+                    <div>
+                        <a href="" class="title">San Pham</a>
+                    </div>
+                    <div>
+                        <a href="" class="title">Dong San Pham</a>
+                    </div>
+                    <div>
+                        <a href="" class="title">Chat lieu </a>
+                    </div>
+                    <div>
+                        <a href="" class="title">Kich co</a>
+                    </div>
+                    <div>
+                        <a href="" class="title">Mau sac</a>
+                    </div>
+                    <div>
+                        <a href="" class="title">Thuong Hieu </a>
+                    </div>
+                    <div>
+                        <a href="" class="title">Nha San Xuat</a>
+                    </div>
+
+
+                </div>
+
+
+
+            </li>
             <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-flag">&nbsp;</span>Purok</a></li>
             <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-star">&nbsp;</span>Blotter</a></li>
             <li class="side-bar">
