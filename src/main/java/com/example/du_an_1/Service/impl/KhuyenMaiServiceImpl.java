@@ -30,6 +30,7 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
 
     @Override
     public void save(KhuyenMai khuyenMai) {
+
         khuyenMaiRepository.save(khuyenMai);
     }
 
