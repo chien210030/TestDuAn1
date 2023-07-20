@@ -5,7 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface KhachHangRepository extends JpaRepository<KhachHang, Integer> {
+import java.util.UUID;
+
+public interface KhachHangRepository extends JpaRepository<KhachHang, UUID> {
     Page<KhachHang> findKhachHangByMaEqualsAndTenEquals(String ma,String ten,Pageable page);
 
     Page<KhachHang> findKhachHangByMaEquals(String ma,Pageable page);

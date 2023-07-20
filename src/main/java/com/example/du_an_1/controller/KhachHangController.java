@@ -16,6 +16,7 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 public class KhachHangController {
@@ -24,13 +25,14 @@ public class KhachHangController {
     KhachHangRepository khachHangRepository;
 
     @GetMapping("/khach-hang/hien-thi")
-    public String hienThi(Model model, @RequestParam("trang") Optional<Integer> p) {
+    public String hienThi(Model model, @RequestParam("p") Optional<Integer> p) {
 
         Pageable pageable = PageRequest.of(p.orElse(0), 5);
         Page<KhachHang> page = khachHangRepository.findAll(pageable);
         model.addAttribute("khachHang", page);
         return "/KhachHang/index";
     }
+
     @GetMapping("/khach-hang/search")
     public String timTheoMaVaTen(Model model,String ma,String ten) {
 
@@ -53,24 +55,24 @@ public class KhachHangController {
         return "/KhachHang/index";
     }
     @GetMapping("/khach-hang/remove/{id}")
-    public String remove(@PathVariable("id") Integer id){
+    public String remove(@PathVariable("id") UUID id){
         khachHangRepository.deleteById(id);
         return "redirect:/khach-hang/hien-thi";
     }
 
     @GetMapping("/khach-hang/view-update/{id}")
-    public String viewUpdate(Model model, @PathVariable("id") Integer id){
+    public String viewUpdate(Model model, @PathVariable("id") UUID id){
 
-        KhachHang khachHang = khachHangRepository.findById(Integer.valueOf(id)).orElse(null);
+        KhachHang khachHang = khachHangRepository.findById(id).orElse(null);
         model.addAttribute("update", khachHang);
 
         return "/KhachHang/viewUpdate";
     }
 
     @GetMapping("/khach-hang/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id){
+    public String detail(Model model, @PathVariable("id") UUID id){
 
-        KhachHang khachHang = khachHangRepository.findById(Integer.valueOf(id)).orElse(null);
+        KhachHang khachHang = khachHangRepository.findById(id).orElse(null);
         model.addAttribute("dt", khachHang);
 
         return "/KhachHang/detailKH";
@@ -79,7 +81,8 @@ public class KhachHangController {
 
     @PostMapping("/khach-hang/update")
     public String update(Model model,
-                         @RequestParam("id") Integer id,
+                         @RequestParam("id") UUID id,
+                         @RequestParam("ma") String ma,
                          @RequestParam("ho") String ho,
                          @RequestParam("tendem") String tendem,
                          @RequestParam("ten") String ten,
@@ -91,8 +94,9 @@ public class KhachHangController {
     ){
 
 
-        KhachHang khachHang = khachHangRepository.findById(Integer.valueOf(id)).orElse(null);
+        KhachHang khachHang = khachHangRepository.findById(id).orElse(null);
 
+        khachHang.setMa(ma);
         khachHang.setHo(ho);
         khachHang.setTendem(tendem);
         khachHang.setTen(ten);

@@ -15,13 +15,14 @@
         <br>
         <br>
         <ul class="list-group">
-            <li class="list-group-item"><h3 style="color: red"> Chi Tiết Sản Phẩm</h3></li>
+            <li class="list-group-item"><h3 style="color: red ; text-align: center"> Chi Tiết Khách Hàng</h3></li>
+            <li class="list-group-item">Mã: ${dt.ma}</li>
             <li class="list-group-item">Họ Và Tên : ${dt.ho} ${dt.tendem} ${dt.ten}</li>
-            <li class="list-group-item">Giới Tính : ${dt.gioitinh}</li>
+            <li class="list-group-item">Giới Tính : ${dt.gioitinh == true ?'Nam':'Nữ'}</li>
             <li class="list-group-item">Ngày Sinh : ${dt.ngaysinh}</li>
             <li class="list-group-item">Email : ${dt.email}</li>
             <li class="list-group-item">SĐT : ${dt.sdt}</li>
-            <li class="list-group-item">Điểm Thưởng : ${dt.DiemThuong}</li>
+            <li class="list-group-item">Điểm Thưởng : ${dt.diemthuong}</li>
             <li class="list-group-item">
 
                 <a class=" btn btn-outline-secondary" href="/khach-hang/hien-thi">Close</a>

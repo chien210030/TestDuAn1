@@ -22,6 +22,12 @@
         <br>
 
         <form:form  action="/khach-hang/add" method="post" modelAttribute="kh" onsubmit="return add()">
+
+            <label>Mã</label>
+            <form:input class="form-control" path="ma"/>
+            <form:errors cssClass="crr" path="ma"></form:errors>
+            <br>
+
             <label>Họ :</label>
             <form:input class="form-control" path="ho"/>
             <form:errors cssClass="crr" path="ho"></form:errors>

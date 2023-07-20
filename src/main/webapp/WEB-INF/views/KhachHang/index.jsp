@@ -11,31 +11,34 @@
 
 <body>
 
+
 <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
-
-        <form action="/khach-hang/search" method="get">
-            <div class="input-group mb-3">
-                Mã:
-                <input type="text" name="ma" class="form-control" aria-label="Text input with checkbox">
-            </div>
-            <div class="input-group mb-3">
-                Tên:
-                <input type="text" name="ten" class="form-control" aria-label="Text input with checkbox">
-            </div>
-            <button type="submit">Tìm</button>
-
-
-        </form>
-
         <br>
-        <a class="btn btn-primary" href="/Khach-Hang/view-add">Add</a>
+        <br>
+        <div class="row">
+            <div class="col-4">
+                <form action="/khach-hang/search" method="get">
+                    Mã : <input type="text" name="ma" class="form-control">
+
+                    Tên : <input type="text" name="ten" class="form-control">
+                    <br>
+                    <button type="submit" class="btn btn-primary">Tìm</button>
+
+                </form>
+            </div>
+            <div class="col-4"></div>
+            <div class="col-4"></div>
+        </div>
+        <br>
+        <a class="btn btn-outline-primary" href="/khach-hang/view-add">Add</a>
+        <br>
         <br>
         <table border="1" class="table table-hover">
             <tr>
-            <tr>
-                <th>ID</th>
+<%--                <th>ID</th>--%>
+                <th>Mã</th>
                 <th>Tên Đầy Đủ</th>
                 <th>Giới Tính</th>
                 <th>Ngày Sinh</th>
@@ -48,7 +51,8 @@
                 <tbody>
                 <c:forEach items="${khachHang.content}" var="ds" varStatus="i">
                     <tr>
-                       <td>${ds.id}</td>
+<%--                       <td>${ds.id}</td>--%>
+                        <td>${ds.ma}</td>
                         <td>${ds.ho} ${ds.tendem} ${ds.ten}</td>
                         <td>${ds.gioitinh == true ? "Nam" : "Nữ"}</td>
                         <td>${ds.ngaysinh}</td>
@@ -58,6 +62,7 @@
                         <td>
                             <a class="btn btn-outline-danger" href="javascript:remove('${ds.id}')">Remove</a>
                             <a class="btn btn-outline-success" href="/khach-hang/view-update/${ds.id}">Update</a>
+                            <a class="btn btn-outline-warning" href="/khach-hang/detail/${ds.id}">Detail</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -66,10 +71,10 @@
             <c:if test="${ empty khachHang.content}"><h2 style="color: red">No data</h2></c:if>
         </table>
         <p>Số Trang : ${khachHang.number + 1} / ${khachHang.totalPages}</p>
-        <a class="btn btn-outline-primary"  href="/Khach-Hang/hien-thi?p=0"> << </a>
-        <a class="btn btn-outline-primary"  href="/Khach-Hang/hien-thi?p=${khachHang.number - 1}"> < </a>
-        <a class="btn btn-outline-primary"  href="/Khach_Hang/hien-thi?p=${hangKhach.number + 1}"> > </a>
-        <a class="btn btn-outline-primary"  href="/Khach-Hang/hien-thi?p=${hangKhach.totalPages - 1}"> >> </a>
+        <a class="btn btn-outline-primary"  href="/khach-hang/hien-thi?p=0"> << </a>
+        <a class="btn btn-outline-primary"  href="/khach-hang/hien-thi?p=${khachHang.number - 1}"> < </a>
+        <a class="btn btn-outline-primary"  href="/khach-hang/hien-thi?p=${khachHang.number + 1}"> > </a>
+        <a class="btn btn-outline-primary"  href="/khach-hang/hien-thi?p=${khachHang.totalPages - 1}"> >> </a>
 
     </div>
     <div class="col-1"></div>

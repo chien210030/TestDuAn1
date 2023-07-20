@@ -15,6 +15,11 @@
         <br>
         <br>
         <form action="/khach-hang/update?id=${update.id}" method="post" onsubmit="return update()">
+
+            <label>Mã :</label>
+            <input class="form-control" name="ma" value="${update.ma}">
+            <br>
+
             <label>Họ :</label>
             <input class="form-control" name="ho" value="${update.ho}">
             <br>
