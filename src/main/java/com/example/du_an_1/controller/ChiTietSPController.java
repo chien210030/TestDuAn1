@@ -24,7 +24,7 @@ public class ChiTietSPController {
     @Autowired
     private DongSPRepository dongSPRepository;
     @Autowired
-        private  ChatLieuRepository chatLieuRepository;
+    private  ChatLieuRepository chatLieuRepository;
     @Autowired
     private ThuongHieuRepository thuongHieuRepository;
     @Autowired
