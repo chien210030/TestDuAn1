@@ -77,7 +77,7 @@ public class NhanVienChucVuController {
                 .matkhau(matkhau)
                 .email(email)
                 .trangthai(Integer.valueOf(trangthai))
-                .GioiTinh(Boolean.valueOf(gioitinh))
+                .gioitinh(Boolean.valueOf(gioitinh))
                 .build();
         repository.save(nhanVien);
         return "redirect:/nhan-vien-chuc-vu/hien-thi";
@@ -98,7 +98,6 @@ public class NhanVienChucVuController {
     @PostMapping("/nhan-vien-chuc-vu/update")
     public String update(Model model,
                          @RequestParam("id") String id,
-                         @RequestParam("ma") String ma,
                          @RequestParam("ten") String ten,
                          @RequestParam("ngaysinh") LocalDate ngaysinh,
                          @RequestParam("chucVu") String chucVu,
@@ -119,7 +118,7 @@ public class NhanVienChucVuController {
                 .matkhau(matkhau)
                 .email(email)
                 .trangthai(Integer.valueOf(trangthai))
-                .GioiTinh(Boolean.valueOf(gioitinh))
+                .gioitinh(Boolean.valueOf(gioitinh))
                 .build();
         nv.setId(Long.valueOf(id));
         BeanUtils.copyProperties(nv,nhanVien);

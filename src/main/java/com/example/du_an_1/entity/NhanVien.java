@@ -24,8 +24,8 @@ public class NhanVien {
     private String tendem ;
     private String ho;
     private LocalDate ngaysinh;
-    @Column(name = "gioitinh")
-    private Boolean GioiTinh ;
+   // @Column(name = "gioitinh")
+    private Boolean gioitinh;
     private String sdt ;
     private String taikhoan;
     private String matkhau ;
