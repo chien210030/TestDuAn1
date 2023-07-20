@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,17 +16,17 @@ import java.util.Date;
 @ToString
 @Entity
 @Builder
-@Table(name = "users")
+@Table(name = "nhanvien")
 public class NhanVien {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id ;
+    private String ma;
     private  String ten;
     private String tendem ;
     private String ho;
     private LocalDate ngaysinh;
-   // @Column(name = "gioitinh")
-    private Boolean gioitinh;
+    private Integer gioitinh;
     private String sdt ;
     private String taikhoan;
     private String matkhau ;
@@ -33,6 +34,6 @@ public class NhanVien {
     private  Integer trangthai ;
 
     @ManyToOne
-    @JoinColumn(name = "idcv")
+    @JoinColumn(name = "idchucvu")
     ChucVu chucVu;
 }

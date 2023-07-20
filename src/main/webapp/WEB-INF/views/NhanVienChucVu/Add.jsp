@@ -97,6 +97,10 @@
             <li><a href="#">Dashboard</a></li>
         </ul>
         <form action="/nhan-vien-chuc-vu/add" method="post" onsubmit=" return add()">
+            <label>Mã NV :</label>
+            <input class="form-control" name="ma">
+            <span style="color: red">${erro}</span>
+            <br>
             <label>Tên NV :</label>
             <input class="form-control" name="ten">
             <span style="color: red">${erro}</span>

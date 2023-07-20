@@ -101,6 +101,7 @@
             <tr>
             <tr>
                 <th>ID</th>
+                <th>Mã NV</th>
                 <th>Tên NV</th>
                 <th>Ngày Sinh</th>
                 <th>Giới Tính</th>
@@ -109,6 +110,7 @@
                 <th>Mật Khẩu</th>
                 <th>Email</th>
                 <th>Trạng Thái</th>
+                <th>Mã Chức Vụ</th>
                 <th>Tên Chức Vụ</th>
                 <th colspan="2">Action</th>
             </tr>
@@ -117,14 +119,16 @@
                 <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
                     <tr>
                         <td>${ds.id}</td>
+                        <td>${ds.ma}</td>
                         <td>${ds.ten}</td>
                         <td>${ds.ngaysinh}</td>
-                        <td>${ds.gioitinh == true ? "Nam" : "Nữ"}</td>
+                        <td>${ds.gioitinh == 1? "Nam" : "Nữ"}</td>
                         <td>${ds.sdt}</td>
                         <td>${ds.taikhoan}</td>
                         <td>${ds.matkhau}</td>
                         <td>${ds.email}</td>
                         <td>${ds.trangthai == 1 ?"Hoạt Động" :"Không Hoạt Động"}</td>
+                        <td>${ds.chucVu.ma}</td>
                         <td>${ds.chucVu.ten}</td>
                         <td>
                             <a class="btn btn-outline-danger" href="javascript:remove('${ds.id}')">XÓA</a>

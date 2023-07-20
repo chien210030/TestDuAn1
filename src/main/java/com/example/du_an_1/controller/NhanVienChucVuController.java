@@ -53,7 +53,7 @@ public class NhanVienChucVuController {
     }
     @PostMapping("/nhan-vien-chuc-vu/add")
     public String add(Model model ,
-                  //    @RequestParam("id") String id,
+                      @RequestParam("ma") String ma,
                       @RequestParam("ten") String ten,
                       @RequestParam("chucVu") String chucvu,
                       @RequestParam("ngaysinh") LocalDate ngaysinh,
@@ -68,8 +68,9 @@ public class NhanVienChucVuController {
       //  ChucVu chucVu =  chucVuRepository.getReferenceById(Integer.valueOf(chucvu));
         ChucVu cv = chucVuRepository.findById(Integer.valueOf(chucvu)).orElse(null);
         NhanVien nhanVien = NhanVien.builder()
-               // .id(Long.valueOf(id))
+                .id(UUID.randomUUID())
                 .ten(ten)
+                .ma(ma)
                 .chucVu(cv)
                 .ngaysinh(ngaysinh)
                 .sdt(sdt)
@@ -77,7 +78,7 @@ public class NhanVienChucVuController {
                 .matkhau(matkhau)
                 .email(email)
                 .trangthai(Integer.valueOf(trangthai))
-                .gioitinh(Boolean.valueOf(gioitinh))
+                .gioitinh(Integer.valueOf(gioitinh))
                 .build();
         repository.save(nhanVien);
         return "redirect:/nhan-vien-chuc-vu/hien-thi";
@@ -118,9 +119,9 @@ public class NhanVienChucVuController {
                 .matkhau(matkhau)
                 .email(email)
                 .trangthai(Integer.valueOf(trangthai))
-                .gioitinh(Boolean.valueOf(gioitinh))
+                .gioitinh(Integer.valueOf(gioitinh))
                 .build();
-        nv.setId(Long.valueOf(id));
+        nv.setId(UUID.randomUUID());
         BeanUtils.copyProperties(nv,nhanVien);
         repository.save(nv);
         return "redirect:/nhan-vien-chuc-vu/hien-thi";
