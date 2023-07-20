@@ -91,16 +91,15 @@
     <jsp:include page="Templates/aside.jsp"/>
 
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">NhanVien</h1>
+        <h1 class="page-header">Nhân Viên</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
         </ul>
-        <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/view-add">THÊM</a>
+        <a class="btn btn-primary " href="/nhan-vien-chuc-vu/view-add">THÊM</a>
         <table border="1" class="table table-hover">
             <tr>
             <tr>
-                <th>ID</th>
                 <th>Mã NV</th>
                 <th>Tên NV</th>
                 <th>Ngày Sinh</th>
@@ -118,7 +117,6 @@
                 <tbody>
                 <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
                     <tr>
-                        <td>${ds.id}</td>
                         <td>${ds.ma}</td>
                         <td>${ds.ten}</td>
                         <td>${ds.ngaysinh}</td>

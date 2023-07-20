@@ -22,7 +22,7 @@ public class ChiTietSP {
 //    private String ten;
     @JoinColumn(name = "mota")
     private String mota;
-@JoinColumn(name = "soluongton")
+    @JoinColumn(name = "soluongton")
     private int soluongton;
     @JoinColumn(name = "gianhap")
     private BigDecimal gianhap;

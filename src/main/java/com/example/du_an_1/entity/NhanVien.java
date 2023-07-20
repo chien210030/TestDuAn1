@@ -2,6 +2,9 @@ package com.example.du_an_1.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -20,18 +23,52 @@ import java.util.UUID;
 public class NhanVien {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id ;
+    @Column(name = "id")
+    private UUID id;
+
+    @Column(name = "ma")
+    //@NotBlank(message = "Không được để chống mã")
     private String ma;
-    private  String ten;
-    private String tendem ;
+
+    @Column(name = "ten")
+   // @NotBlank(message = "Không được để chống ten")
+    private String ten;
+
+    @Column(name = "tendem")
+   // @NotBlank(message = "Không được để chống tendem")
+    private String tendem;
+
+    @Column(name = "ho")
+    //@NotBlank(message = "Không được để chống Họ")
     private String ho;
+
+    @Column(name = "ngaysinh")
     private LocalDate ngaysinh;
+
+    @Column(name = "gioitinh")
+  //  @NotNull(message = "Chọn giới tính")
     private Integer gioitinh;
-    private String sdt ;
+
+    @Column(name = "sdt")
+   // @NotBlank(message = "Không được để chống sdt")
+    private String sdt;
+
+    @Column(name = "taikhoan")
+   // @NotBlank(message = "Không được để chống TK")
     private String taikhoan;
-    private String matkhau ;
-    private String email ;
-    private  Integer trangthai ;
+
+    @Column(name = "matkhau")
+  //  @NotBlank(message = "Không được để chống Mk")
+    private String matkhau;
+
+    @Column(name = "email")
+   // @NotBlank(message = "Không được để chống email")
+   // @Email(message = "Không đúng định dạng")
+    private String email;
+
+    @Column(name = "trangthai")
+  //  @NotNull(message = "Chọn Trạng Thái")
+    private Integer trangthai;
 
     @ManyToOne
     @JoinColumn(name = "idchucvu")
