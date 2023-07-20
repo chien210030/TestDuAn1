@@ -42,7 +42,7 @@ public class SanPhamController {
         model.addAttribute("SP", page.getContent());
 
 
-        return "ChiTietSP/sanpham/viewsanpham";
+        return "sanpham/viewsanpham";
     }
 
 

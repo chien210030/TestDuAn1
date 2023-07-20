@@ -40,7 +40,7 @@
             background-color: #333;
         }
         .test{
-            height: 10rem;
+            height: 15rem;
             display: none;
 
         }
