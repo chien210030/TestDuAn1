@@ -103,13 +103,17 @@
             <input class="form-control" name=id value="${update.id}">
             <br>
 
+            <label>Mã Nhân Viên:</label>
+            <input class="form-control" name=ma value="${update.ma}">
+            <br>
+
             <label>Tên Nhân Viên :</label>
             <input class="form-control" name="ten" value="${update.ten}">
             <br>
 
             <label>Giới Tính :</label>
-            <input type="radio" value="1" name="gioitinh" checked ${update.gioitinh == true ? "checked":""}>Nam
-            <input type="radio" value="0" name="gioitinh" ${update.gioitinh == false ? "checked":""}>Nữ
+            <input type="radio" value="1" name="gioitinh" checked ${update.gioitinh == 1 ? "checked":""}>Nam
+            <input type="radio" value="0" name="gioitinh" ${update.gioitinh == 0 ? "checked":""}>Nữ
             <br>
             <br>
             <label>Trạng Thái :</label>
