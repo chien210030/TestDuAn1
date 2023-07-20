@@ -84,10 +84,10 @@
                     <th>ma</th>
                     <th>ten</th>
                 </tr>
-                <c:forEach items="${sp}" var="i">
+                <c:forEach items="${SP}" var="i">
                 <tr>
                     <td>${i.ma}</td>
-                    <td>${i.ten}</td>
+                    <td class="text-xl-center">${i.ten}</td>
                 </tr>
                 </c:forEach>
             </table>
@@ -95,6 +95,17 @@
 
 
         </form>
+        <div>
+            <ul class="pagination">
+                <a href="?pageNum=${1}">Pre</a>
+                <c:forEach begin="1" end="${totalpages}" varStatus="status">
+                    <a href="?pageNum=${status.index}">${status.index}</a>
+
+                </c:forEach>
+                <a href="?pageNum=${totalpages}">next</a>
+            </ul>
+
+        </div>
 
 
     </div>

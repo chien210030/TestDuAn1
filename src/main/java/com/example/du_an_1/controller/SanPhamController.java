@@ -30,7 +30,7 @@ public class SanPhamController {
     ) {
 
         Pageable pageable= PageRequest.of(pageNum-1,2);
-        Page<SanPham> page = (Page<SanPham>) sanPhamRepository.findAll();
+        Page<SanPham> page =  sanPhamRepository.findAll(pageable);
 //        if(keyword == null || keyword.isBlank()){
 //
 //        }else {
@@ -42,7 +42,7 @@ public class SanPhamController {
         model.addAttribute("SP", page.getContent());
 
 
-        return "sanpham/viewsanpham";
+        return "ChiTietSP/sanpham/viewsanpham";
     }
 
 
