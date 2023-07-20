@@ -21,7 +21,7 @@
             <li class="list-group-item">Ngày Sinh : ${dt.ngaysinh}</li>
             <li class="list-group-item">Email : ${dt.email}</li>
             <li class="list-group-item">SĐT : ${dt.sdt}</li>
-            <li class="list-group-item">Điểm Thưởng : ${dt.diemthuong}</li>
+            <li class="list-group-item">Điểm Thưởng : ${dt.DiemThuong}</li>
             <li class="list-group-item">
 
                 <a class=" btn btn-outline-secondary" href="/khach-hang/hien-thi">Close</a>

@@ -10,25 +10,27 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class KhuyenMaiServiceImpl implements KhuyenMaiService {
 
-   @Autowired
+    @Autowired
     KhuyenMaiRepository khuyenMaiRepository;
 
     @Override
-    public KhuyenMai getByKhuyenMai(Integer id) {
+    public KhuyenMai getByKhuyenMai(UUID id) {
         return khuyenMaiRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void deleteByKhuyenMai(Integer id) {
+    public void deleteByKhuyenMai(UUID id) {
         khuyenMaiRepository.deleteById(id);
     }
 
     @Override
     public void save(KhuyenMai khuyenMai) {
+
         khuyenMaiRepository.save(khuyenMai);
     }
 
@@ -37,8 +39,10 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
         return null;
     }
 
+
+
     @Override
-    public Page<KhuyenMai> search(Date fromDate, Date toDate, Pageable pageable) {
-        return khuyenMaiRepository.search(fromDate, toDate, pageable);
+    public Page<KhuyenMai> search(Date fromDate, Date toDate, UUID id, Pageable pageable) {
+        return khuyenMaiRepository.search(fromDate, toDate, id, pageable);
     }
 }

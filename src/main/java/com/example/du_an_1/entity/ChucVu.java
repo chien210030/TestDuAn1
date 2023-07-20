@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.UUID;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -23,9 +25,9 @@ import lombok.ToString;
 @Table(name = "chucvu")
 public class ChucVu {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id ;
-    private String ma ;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id ;
+    private String ma;
     private  String ten ;
 
 }

@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,37 +20,42 @@ import java.util.List;
 public class KhachHang {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Integer id ;
-
+    @Column(name = "id")
+    private UUID id;
+    @Column(name = "ten")
     @NotBlank(message = "Không được để trống tên !")
-    private String ten ;
+    private String ten;
 
+    @Column(name = "tendem")
     @NotBlank(message = "Không được để trống tên đệm !")
-    private String tendem ;
-
+    private String tendem;
+    @Column(name = "ma")
+    private String ma;
+    @Column(name = "ho")
     @NotBlank(message = "Không được để trống họ !")
-    private String ho ;
+    private String ho;
 
+    @Column(name = "gioitinh")
     @NotNull(message = "Chọn giới tính !")
-    private  Boolean gioitinh ;
+    private Boolean gioitinh;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "ngaysinh")
-    Date ngaysinh = new Date();
+    Date ngaysinh ;
 
+    @Column(name = "email")
     @NotBlank(message = "Không được để trống email !")
     @Email(message = "Email không đúng định dạng !")
-    private String email ;
+    private String email;
 
+    @Column(name = "sdt")
     @NotBlank(message = "Không được để trống sdt !")
-    private String sdt ;
+    private String sdt;
 
+    @Column(name = "diemthuong")
     @NotNull(message = "Không được để trống điểm thưởng !")
     private int diemthuong;
 
-
-    @OneToMany(mappedBy = "khachhang")
-    List<HoaDon> hoadon;
+//    @OneToMany(mappedBy = "Khachhang")
+//  private   List<HoaDon> hoadon;
 }

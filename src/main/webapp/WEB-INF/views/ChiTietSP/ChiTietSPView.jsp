@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,7 +34,7 @@
         }
 
         .side-bar > li > a {
-            color: #eee;
+                colo: #eee;
             width: 220px;
         }
 
@@ -39,70 +42,45 @@
         .side-bar li a:focus {
             background-color: #333;
         }
+        .test{
+            height: 15rem;
+            display: none;
 
-        .tmargin {
-            margin-top: 15px;
         }
+        .tesst1:hover + .test,
+        .test:hover {
+            display: block;
 
+        }
+        .tmargin {
+            margin-top: 20px;
+
+        }
+        .title{
+            text-decoration: none;
+            color: #FFFFFF;
+            margin: 1.2rem;
+
+        }
+        .title:hover{
+            text-decoration: none !important;
+            color: #c69500;
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Admin Panel</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user">&nbsp;</span>Hello Admin</a></li>
-                <li class="active"><a title="View Website" href="#"><span class="glyphicon glyphicon-globe"></span></a>
-                </li>
-                <li><a href="#">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="Templates/navbar.jsp"/>
 <div class="container-fluid">
-    <div class="col-md-3">
+<jsp:include page="Templates/aside.jsp"/>
 
-        <div id="sidebar">
-            <div class="container-fluid tmargin">
-<%--                <form action="#" class="search-wrap"></form>--%>
-                <div class="input-group">
-                    <input type="search" class="form-control" placeholder="Search..."/>
-                    <span class="input-group-btn">
-              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
-                </div>
-            </div>
-
-            <ul class="nav navbar-nav side-bar">
-                <li class="side-bar tmargin"><a href="#"><span
-                        class="glyphicon glyphicon-list">&nbsp;</span>Dashboard</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-flag">&nbsp;</span>Purok</a></li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-star">&nbsp;</span>Blotter</a></li>
-                <li class="side-bar">
-                    <a href="#"><span class="glyphicon glyphicon-certificate">&nbsp;</span>Officials</a></li>
-
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a>
-                </li>
-                <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>
-
-            </ul>
-        </div>
-    </div>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Products</h1>
+        <h1 class="page-header">Products Result</h1>
         <ul class="breadcrumb">
-            <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
-            <li><a href="#">Dashboard</a></li>
+            <li><span class="glyphicon glyphicon-th-large">&nbsp;</span>Products Result</li>
+<%--            <li><a href="#">Dashboard</a></li>--%>
         </ul>
-        <button> <a href="${pageContext.request.contextPath}/showcreate">add</a></button>
+         <a class="btn btn-primary" href="${pageContext.request.contextPath}/showcreate">add</a>
 
         <form action="${pageContext.request.contextPath}/loadsp">
             <table class="table table-hover">
@@ -119,7 +97,7 @@
             <th>kich Co</th>
             <th>Chat Lieu</th>
             <th>Thuong Hieu</th>
-            <th>Action</th>
+
 
             </thead>
             <tbody>
@@ -142,8 +120,8 @@
                     <td>${sp.chatlieu.ten}</td>
                     <td>${sp.thuonghieu.ten}</td>
 
-                    <td><a href="${pageContext.request.contextPath}/delete/${sp.id}">Remove</a>
-                        <a href="${pageContext.request.contextPath}/viewupdate/${sp.id}">Update</a>
+                    <td><a class="btn btn-danger" href="${pageContext.request.contextPath}/delete/${sp.id}">Remove</a></td>
+                       <td> <a class="btn btn-warning" href="${pageContext.request.contextPath}/viewupdate/${sp.id}">Update</a>
                     </td>
                 </tr>
 
