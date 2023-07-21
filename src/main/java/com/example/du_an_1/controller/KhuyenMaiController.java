@@ -54,7 +54,7 @@ public class KhuyenMaiController {
         return dsTrangThai;
     }
 
-    @RequestMapping("/phieugiamgia/sort")
+    @RequestMapping("/khuyen-mai/sort")
     public String sort(Model model, @RequestParam(defaultValue="0")int p,
                        @ModelAttribute("searchForm") SearchForm searchForm) {
 
@@ -70,13 +70,13 @@ public class KhuyenMaiController {
         );
 
         model.addAttribute("khuyenmai", new KhuyenMai());
-//        model.addAttribute("page", page);
-        return "phieugiamgia/index";
+        model.addAttribute("page", page);
+        return "KhuyenMai/index";
     }
 
 
     //Lấy ds mã khuyến mãi
-    @GetMapping("/khuyen-mai/index")
+    @RequestMapping("/khuyen-mai/index")
     public String listKhuyenMai(Model model, @RequestParam(defaultValue="0")int p,
                                 @ModelAttribute("searchForm") SearchForm searchForm)
     {
@@ -107,10 +107,6 @@ public class KhuyenMaiController {
             hasErrors = true;
         }
 
-        if(khuyenMai.getId().toString().isEmpty()){
-            model.addAttribute("idKMError", " không được bỏ trống");
-            hasErrors = true;
-        }
         //Nối bảng nào
 //        if(khuyenMai.gettablegi().getMa() == null) {
 //            model.addAttribute("maKHError", " không được bỏ trống");

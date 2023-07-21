@@ -45,7 +45,7 @@ public class KhuyenMai {
     @NotNull(message = "Giá trị giảm không được trống")
     private BigDecimal giatrigiam;
 
-    @NotBlank(message = "Trạng thái Khuyến Mãi không được trống")
+    @NotNull(message = "Trạng thái Khuyến Mãi không được trống")
     private Integer trangthai;
 
 }
