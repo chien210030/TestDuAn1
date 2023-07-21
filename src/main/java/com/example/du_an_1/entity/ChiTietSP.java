@@ -49,13 +49,13 @@ public class ChiTietSP {
     @ManyToOne
     @JoinColumn(name = "idsanpham")
     private  SanPham sanpham;
-    @ManyToOne
-    @JoinColumn(name = "ma")
-    private  SanPham ma;
-
-    @ManyToOne
-    @JoinColumn(name = "ten")
-    private  SanPham ten ;
+//    @ManyToOne
+//    @JoinColumn(name = "ma")
+//    private  SanPham ma;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "ten")
+//    private  SanPham ten ;
 
     @ManyToOne
     @JoinColumn(name = "iddongsp")

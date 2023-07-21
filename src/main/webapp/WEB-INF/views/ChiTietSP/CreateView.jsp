@@ -11,6 +11,7 @@
 
     <%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">--%>
     <style>
+
         body {
             padding-top: 80px;
         }
@@ -31,7 +32,7 @@
         }
 
         .side-bar > li > a {
-            color: #eee;
+            colo: #eee;
             width: 220px;
         }
 
@@ -39,9 +40,30 @@
         .side-bar li a:focus {
             background-color: #333;
         }
+        .test{
+            height: 15rem;
+            display: none;
 
+        }
+        .tesst1:hover + .test,
+        .test:hover {
+            display: block;
+
+        }
         .tmargin {
-            margin-top: 15px;
+            margin-top: 20px;
+
+        }
+        .title{
+            text-decoration: none;
+            color: #FFFFFF;
+            margin: 1.2rem;
+
+        }
+        .title:hover{
+            text-decoration: none !important;
+            color: #c69500;
+            margin: 20px;
         }
 
 

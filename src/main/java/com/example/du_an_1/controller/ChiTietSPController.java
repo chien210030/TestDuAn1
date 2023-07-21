@@ -76,16 +76,16 @@ private List<SanPham> getsanpham(){
     @GetMapping("/loadsp")
     public String loadChiTietSP(Model model,
                                 @RequestParam(name = "pageNum",required = false,defaultValue = "1") Integer pageNum,
-                                @RequestParam(name = "mota",required = false) String keyword,
-                                @RequestParam(name = "giaban",required = false) BigDecimal giaban
+                                @RequestParam(name = "keyword",required = false) String keyword
+
                                 ) {
 
         Pageable pageable= PageRequest.of(pageNum-1,2);
 
         if(keyword == null || keyword.isBlank()){
- page = chiTietSPRepository.findAll(pageable);
+            page = chiTietSPRepository.findAll(pageable);
         }else {
-            page =chiTietSPRepository.findByMotaContainsAndGiaban(keyword,giaban,pageable);
+
         }
 
 
@@ -95,6 +95,31 @@ private List<SanPham> getsanpham(){
 
         return "ChiTietSP/ChiTietSPView";
     }
+
+    @GetMapping("/search")
+    public String search(Model model,
+                                @RequestParam(name = "pageNum",required = false,defaultValue = "1") Integer pageNum,
+                                @RequestParam(name = "keyword",required = false) String keyword
+
+    ) {
+
+        Pageable pageable= PageRequest.of(pageNum-1,2);
+
+        if(keyword == null || keyword.isBlank()){
+            page = chiTietSPRepository.findAll(pageable);
+        }else {
+            page =chiTietSPRepository.searchByMaAndTen(keyword,keyword,pageable);
+        }
+
+
+        model.addAttribute("totalpages",page.getTotalPages());
+        model.addAttribute("loadSP", page.getContent());
+
+
+        return "ChiTietSP/ChiTietSPView";
+    }
+
+
 
     @GetMapping("/showcreate")
     public String ShowCreate(Model model) {
