@@ -52,7 +52,7 @@
 <div class="container-fluid">
     <jsp:include page="Templates/aside.jsp"/>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Products</h1>
+        <h1 class="page-header">Products Result</h1>
         <form action="${pageContext.request.contextPath}/add" method="post">
             <div class="mb-3 mt-3">
                 <label> san pham </label> <select name="sanpham">

@@ -31,7 +31,7 @@
         }
 
         .side-bar > li > a {
-            color: #eee;
+            colo: #eee;
             width: 220px;
         }
 
@@ -39,9 +39,30 @@
         .side-bar li a:focus {
             background-color: #333;
         }
+        .test{
+            height: 15rem;
+            display: none;
 
+        }
+        .tesst1:hover + .test,
+        .test:hover {
+            display: block;
+
+        }
         .tmargin {
-            margin-top: 15px;
+            margin-top: 20px;
+
+        }
+        .title{
+            text-decoration: none;
+            color: #FFFFFF;
+            margin: 1.2rem;
+
+        }
+        .title:hover{
+            text-decoration: none !important;
+            color: #c69500;
+            margin: 20px;
         }
 
 

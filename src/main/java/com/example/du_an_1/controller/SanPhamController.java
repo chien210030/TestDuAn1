@@ -11,10 +11,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 
@@ -42,8 +41,36 @@ public class SanPhamController {
         model.addAttribute("SP", page.getContent());
 
 
-        return "ChiTietSP/sanpham/viewsanpham";
+        return "ChiTietSP/DSsanpham";
     }
+
+   @GetMapping("/showaddsp")
+    public String viewaddsanpham(){
+
+        return "ChiTietSP/viewaddsanpham";
+    }
+    @PostMapping("/addsp")
+  public String addsp(Model model,@ModelAttribute SanPham sanPham) {
+        SanPham t1 = sanPhamRepository.save(sanPham);
+        return "redirect:/san-pham";
+  }
+
+    @GetMapping("/deletesp/{id}")
+    public String delete(@PathVariable(name = "id") UUID id) {
+        sanPhamRepository.deleteById(id);
+        return "redirect:/san-pham";
+    }
+    @GetMapping("/viewupdateSP/{id}")
+    public String update(Model model,@PathVariable(name = "id")  UUID id){
+
+        model.addAttribute("updateSP",sanPhamRepository.findById(id).orElse(null));
+
+        return "ChiTietSP/viewupdatesanpham";
+    }
+
+
+
+
 
 
 

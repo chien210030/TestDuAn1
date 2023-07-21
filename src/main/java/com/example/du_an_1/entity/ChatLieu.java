@@ -18,7 +18,8 @@ public class ChatLieu {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+    @JoinColumn(name = "ma")
     private  String ma ;
-
+@JoinColumn(name = "ten")
     private  String ten ;
 }

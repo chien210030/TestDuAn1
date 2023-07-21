@@ -20,22 +20,22 @@
                         <a href="${pageContext.request.contextPath}/san-pham" class="title">San Pham</a>
                     </div>
                     <div>
-                        <a href="" class="title">Dong San Pham</a>
+                        <a href="${pageContext.request.contextPath}/loadDongSP" class="title">Dong San Pham</a>
                     </div>
                     <div>
-                        <a href="" class="title">Chat lieu </a>
+                        <a href="${pageContext.request.contextPath}/loadchatlieu" class="title">Chat Lieu </a>
                     </div>
                     <div>
-                        <a href="" class="title">Kich co</a>
+                        <a href="${pageContext.request.contextPath}/loadkichco" class="title">Kich Co</a>
                     </div>
                     <div>
-                        <a href="" class="title">Mau sac</a>
+                        <a href="${pageContext.request.contextPath}/loadMauSac" class="title">Mau Sac</a>
                     </div>
                     <div>
-                        <a href="" class="title">Thuong Hieu </a>
+                        <a href="${pageContext.request.contextPath}/loadThuongHieu" class="title">Thuong Hieu </a>
                     </div>
                     <div>
-                        <a href="" class="title">Nha San Xuat</a>
+                        <a href="${pageContext.request.contextPath}/loadNSX" class="title">Nha San Xuat</a>
                     </div>
 
 

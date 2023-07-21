@@ -1,5 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
     <style>
         body {
             padding-top: 80px;
@@ -65,51 +62,31 @@
             margin: 20px;
         }
 
-
     </style>
 </head>
 <body>
-<jsp:include page="../Templates/navbar.jsp"/>
+
+<jsp:include page="Templates/navbar.jsp"/>
 <div class="container-fluid">
-    <jsp:include page="../Templates/aside.jsp"/>
+    <jsp:include page="Templates/aside.jsp"/>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Products</h1>
-        <ul class="breadcrumb">
-            <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
-            <li><a href="#">Products</a></li>
-        </ul>
-        <form action="${pageContext.request.contextPath}/san-pham">
-            <table>
-                <tr>
-                    <th>ma</th>
-                    <th>ten</th>
-                </tr>
-                <c:forEach items="${SP}" var="i">
-                <tr>
-                    <td>${i.ma}</td>
-                    <td class="text-xl-center">${i.ten}</td>
-                </tr>
-                </c:forEach>
-            </table>
-
-
+        <h1 class="page-header">Products </h1>
+        <form action="${pageContext.request.contextPath}/addKichCo" method="post">
+            <div class="mb-3 mt-3">
+                <label>ma:</label>
+                <input type="text" class="form-control" placeholder="Enter ma" name="ma">
+            </div>
+            <div class="mb-3 mt-3">
+                <label>ten:</label>
+                <input type="text" class="form-control" placeholder="Enter ten" name="ten">
+            </div>
+            <button type="submit">add</button>
 
         </form>
-        <div>
-            <ul class="pagination">
-                <a href="?pageNum=${1}">Pre</a>
-                <c:forEach begin="1" end="${totalpages}" varStatus="status">
-                    <a href="?pageNum=${status.index}">${status.index}</a>
-
-                </c:forEach>
-                <a href="?pageNum=${totalpages}">next</a>
-            </ul>
-
-        </div>
-
 
     </div>
 
 </div>
+
 </body>
 </html>

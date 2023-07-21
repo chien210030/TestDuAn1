@@ -17,7 +17,7 @@
             </a>
                 <div class = "test">
                     <div>
-                        <a href="" class="title">San Pham</a>
+                        <a href="${pageContext.request.contextPath}/san-pham" class="title">San Pham</a>
                     </div>
                     <div>
                         <a href="" class="title">Dong San Pham</a>
