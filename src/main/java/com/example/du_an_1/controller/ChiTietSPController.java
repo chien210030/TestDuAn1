@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
@@ -71,22 +72,21 @@ private List<SanPham> getsanpham(){
 
     }
 
-
-
-//    Page<ChiTietSP> page;
+    Page<ChiTietSP> page;
     @GetMapping("/loadsp")
     public String loadChiTietSP(Model model,
-                       @RequestParam(name = "pageNum",required = false,defaultValue = "1") Integer pageNum,
-                                @RequestParam(name = "ten",required = false) String keyword
+                                @RequestParam(name = "pageNum",required = false,defaultValue = "1") Integer pageNum,
+                                @RequestParam(name = "mota",required = false) String keyword,
+                                @RequestParam(name = "giaban",required = false) BigDecimal giaban
                                 ) {
 
         Pageable pageable= PageRequest.of(pageNum-1,2);
-        Page<ChiTietSP>    page = chiTietSPRepository.findAll(pageable);
-//        if(keyword == null || keyword.isBlank()){
-//
-//        }else {
-//            page =chiTietSPRepository.findBytenContains(keyword,pageable);
-//        }
+
+        if(keyword == null || keyword.isBlank()){
+ page = chiTietSPRepository.findAll(pageable);
+        }else {
+            page =chiTietSPRepository.findByMotaContainsAndGiaban(keyword,giaban,pageable);
+        }
 
 
         model.addAttribute("totalpages",page.getTotalPages());

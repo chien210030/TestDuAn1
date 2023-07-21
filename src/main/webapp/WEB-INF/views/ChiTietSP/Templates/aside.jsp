@@ -2,13 +2,15 @@
 
     <div id="sidebar">
         <div class="container-fluid tmargin">
-            <%--                <form action="#" class="search-wrap"></form>--%>
+                            <form action="#" class="search-wrap">
             <div class="input-group">
-                <input type="search" class="form-control" placeholder="Search..."/>
+                <input type="search" class="form-control" name="mota" placeholder="Search..." value="${param.mota}"/>
                 <span class="input-group-btn">
-              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
           </span>
             </div>
+                            </form>
+
         </div>
 
         <ul class="nav navbar-nav side-bar">
