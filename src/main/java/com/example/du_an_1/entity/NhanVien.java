@@ -73,4 +73,8 @@ public class NhanVien {
     @ManyToOne
     @JoinColumn(name = "idchucvu")
     ChucVu chucVu;
+
+    @ManyToOne
+    @JoinColumn(name = "idca")
+    Ca ca;
 }
