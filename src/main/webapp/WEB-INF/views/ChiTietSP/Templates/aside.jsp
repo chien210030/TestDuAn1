@@ -2,9 +2,9 @@
 
     <div id="sidebar">
         <div class="container-fluid tmargin">
-                            <form action="#" class="search-wrap">
+                            <form action="/search" class="search-wrap" method="get">
             <div class="input-group">
-                <input type="search" class="form-control" name="mota" placeholder="Search..." value="${param.mota}"/>
+                <input type="search" class="form-control" name="keyword"  placeholder="Search..." value=""/>
                 <span class="input-group-btn">
               <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
           </span>
