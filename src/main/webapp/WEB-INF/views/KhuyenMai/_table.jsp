@@ -35,10 +35,10 @@
     </c:if>
 </table>
 
-<%--<a href="/khuyen-mai/index?p=0&fromDate=${param.fromDate}&toDate=${param.toDate}&maKhachHang=${param.maKhachHang}">First</a>--%>
-<%--<a href="/khuyen-mai/index?p=${page.number-1}&fromDate=${param.fromDate}&toDate=${param.toDate}&maKhachHang=${param.maKhachHang}">Prev</a>--%>
-<%--<a href="/khuyen-mai/index?p=${page.number+1}&fromDate=${param.fromDate}&toDate=${param.toDate}&maKhachHang=${param.maKhachHang}">Next</a>--%>
-<%--<a href="/khuyen-mai/index?p=${page.totalPages-1}&fromDate=${param.fromDate}&toDate=${param.toDate}&maKhachHang=${param.maKhachHang}">Last</a>--%>
+<a href="/khuyen-mai/index?p=0&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}">First</a>
+<a href="/khuyen-mai/index?p=${page.number-1}&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}">Prev</a>
+<a href="/khuyen-mai/index?p=${page.number+1}&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}">Next</a>
+<a href="/khuyen-mai/index?p=${page.totalPages-1}&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}">Last</a>
 <div>Trang hiện tại: ${page.number}</div>
 <div>Tổng số trang: ${page.totalPages}</div>
 <div>Tổng số bản ghi:${page.totalElements}</div>
