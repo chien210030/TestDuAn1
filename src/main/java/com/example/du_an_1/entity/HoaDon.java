@@ -6,41 +6,43 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.UUID;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "HoaDon")
+@Table(name = "hoadon")
 
 public class HoaDon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id ;
+    private UUID id ;
 
     @JoinColumn(name="ma")
     private  String ma ;
 
-    @JoinColumn(name = "NgayTao")
+    @JoinColumn(name = "ngaytao")
     private Date ngaytao ;
 
-    @JoinColumn(name = "NgayThanhToan")
+    @JoinColumn(name = "ngaythanhtoan")
     private  Date ngaythanhtoan ;
 
-    @JoinColumn(name = "TrangThai")
+    @JoinColumn(name = "trangthai")
     private int trangthai;
 
-    @JoinColumn(name = "GhiChu")
+    @JoinColumn(name = "ghichu")
     private  String ghichu ;
 
-    @JoinColumn(name = "TongTien")
+    @JoinColumn(name = "tongtien")
     private BigDecimal tongtien ;
 
-    @JoinColumn(name = "TongTienKm")
+    @JoinColumn(name = "tongtienkm")
     private BigDecimal tongtienKM ;
 
-    @JoinColumn(name = "TongTienTT")
+    @JoinColumn(name = "tongtientt")
     private  BigDecimal tongtienTT;
 
     @ManyToOne
