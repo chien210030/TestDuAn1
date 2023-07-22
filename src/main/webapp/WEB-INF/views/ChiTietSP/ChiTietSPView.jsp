@@ -131,17 +131,18 @@
             </tbody>
         </table>
         </form>
-        <div>
+        <nav style="text-align: center" aria-label="Page navigation example">
             <ul class="pagination">
-            <a href="?pageNum=${1}">Pre</a>
-                <c:forEach begin="1" end="${totalpages}" varStatus="status">
-                <a href="?pageNum=${status.index}">${status.index}</a>
 
-                </c:forEach>
-                <a href="?pageNum=${totalpages}">next</a>
+
+    <li class="page-item"><a class="page-link" href="?pageNum=${1}">Previous</a></li>
+    <c:forEach begin="1" end="${totalpages}" varStatus="status">
+    <li class="page-item"><a class="page-link" href="?pageNum=${status.index}">${status.index}</a></li>
+    </c:forEach>
+    <li class="page-item"><a class="page-link" href="?pageNum=${totalpages}">Next</a></li>
             </ul>
 
-    </div>
+    </nav>
 </div>
 
 </div>

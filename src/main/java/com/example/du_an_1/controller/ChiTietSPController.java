@@ -80,7 +80,7 @@ private List<SanPham> getsanpham(){
 
                                 ) {
 
-        Pageable pageable= PageRequest.of(pageNum-1,2);
+        Pageable pageable= PageRequest.of(pageNum-1,4);
 
         if(keyword == null || keyword.isBlank()){
             page = chiTietSPRepository.findAll(pageable);
