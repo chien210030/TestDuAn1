@@ -44,8 +44,8 @@
 
 
             </li>
-            <li class="side-bar"><a href="/nhan-vien-chuc-vu/hien-thi"><span class="glyphicon glyphicon-flag">&nbsp;</span>Users</a></li>
-            <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-star">&nbsp;</span>Blotter</a></li>
+            <li class="side-bar"><a href="/nhan-vien-chuc-vu/hien-thi"><span class="glyphicon glyphicon-flag">&nbsp;</span>NhanVien</a></li>
+            <li class="side-bar"><a href="/khach-hang/hien-thi"><span class="glyphicon glyphicon-star">&nbsp;</span>KhachHang</a></li>
             <li class="side-bar">
                 <a href="#"><span class="glyphicon glyphicon-certificate">&nbsp;</span>Officials</a></li>
 
