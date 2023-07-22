@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!doctype html>
 <html lang="en">
@@ -12,7 +13,6 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif;
             padding-top: 80px;
         }
 
@@ -75,12 +75,13 @@
             padding: 20px;
         }
 
-        .container {
+        .main {
             max-width: 600px;
             margin: 0 auto;
             border: 1px solid #ccc;
             border-radius: 5px;
             padding: 20px;
+            margin-top: 120px;
         }
 
         .form-group {
@@ -145,11 +146,10 @@
     </style>
 </head>
 <body>
-
 <jsp:include page="Templates/navbar.jsp"/>
 <div class="container-fluid">
     <jsp:include page="Templates/aside.jsp"/>
-    <div class="container">
+    <div class="main">
         <h2>Thông tin giao ca</h2>
         <div class="form-group">
             <label for="date">Ngày:</label>
