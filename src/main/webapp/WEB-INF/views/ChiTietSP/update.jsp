@@ -85,7 +85,7 @@
 
             </div>
             <div class="mb-3 mt-3">
-                <label>dong san pham </label>   <select name="dongsp">
+                <label>dong san pham </label>  <select name="dongsp">
                 <c:forEach items="${dongsps}" var="cb">
                     <option value="${loadupdate.dongsp.id}">${loadupdate.dongsp.ten}</option>
                 </c:forEach>
