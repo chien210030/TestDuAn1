@@ -100,13 +100,18 @@
         <h1 class="page-header">Danh sach hoa don</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Hoa Don</a></li>
         </ul>
-        <form action="${pageContext.request.contextPath}/hoa-don/hien-thi" >
+
+        <form action="${pageContext.request.contextPath}/hoa-don/clear" method="post">
+            <button type="submit">Remove all</button>
+        </form>
+
+
             <table class="table table-hover">
                 <thead>
                 <th>Ma hoa don</th>
-                <th class="text-center">Thong tin</th>
+                <th>Thong tin</th>
                 <th>Ngay tao</th>
                 <th>Trang thai</th>
                 <th>Action</th>
@@ -130,16 +135,19 @@
                 </tbody>
 
             </table>
-        </form>
+            <c:if test="${empty HoaDon}">
+                <h2>Khong co hoa don nao</h2>
+            </c:if>
+
         <nav style="text-align: center" aria-label="Page navigation example">
             <ul class="pagination">
 
 
                 <li class="page-item"><a class="page-link" href="?pageNum=${1}">Previous</a></li>
-                <c:forEach begin="1" end="${totalpages}" varStatus="status">
+                <c:forEach begin="1" end="${totalPages}" varStatus="status">
                     <li class="page-item"><a class="page-link" href="?pageNum=${status.index}">${status.index}</a></li>
                 </c:forEach>
-                <li class="page-item"><a class="page-link" href="?pageNum=${totalpages}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?pageNum=${totalPages}">Next</a></li>
             </ul>
 
         </nav>
