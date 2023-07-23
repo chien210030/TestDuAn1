@@ -48,6 +48,12 @@
         .tmargin {
             margin-top: 15px;
         }
+        .center-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: large;
+        }
     </style>
 </head>
 <body>
@@ -136,8 +142,12 @@
 
             </table>
             <c:if test="${empty HoaDon}">
-                <h2>Khong co hoa don nao</h2>
+                <h2 class="text-center">Khong co hoa don nao</h2>
             </c:if>
+
+        <div class="center-button">
+            <button type="button"> <a href="${pageContext.request.contextPath}/hoa-don/tao-moi">Tao hoa don moi</a> </button>
+        </div>
 
         <nav style="text-align: center" aria-label="Page navigation example">
             <ul class="pagination">

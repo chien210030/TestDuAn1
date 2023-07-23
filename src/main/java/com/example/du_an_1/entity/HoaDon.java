@@ -25,10 +25,10 @@ public class HoaDon {
     private  String ma ;
 
     @JoinColumn(name = "ngaytao")
-    private Date ngaytao ;
+    private Date ngaytao;
 
     @JoinColumn(name = "ngaythanhtoan")
-    private  Date ngaythanhtoan ;
+    private  Date ngaythanhtoan;
 
     @JoinColumn(name = "trangthai")
     private int trangthai;
@@ -52,6 +52,4 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "idnhanvien")
     private  NhanVien nhanVien ;
-
-
 }
