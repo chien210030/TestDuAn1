@@ -9,6 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+
+    </style>
+
 </head>
 
 <body>
@@ -74,7 +78,7 @@
     <%--        <div>${maKHError}</div>--%>
     <%--    </p>--%>
 
-    <div class="form-group">
+    <div class="form-group form-inline">
         <label class="col-sm-2 control-label">Trạng thái:</label>
         <div class="col-sm-10">
             <form:radiobuttons path="trangthai" items="${dsTrangThai}" class="form-control"/>
@@ -85,7 +89,7 @@
     ${message}
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-offset-6 col-sm-12">
             <button type="submit" class="btn btn-primary">Add</button>
         </div>
     </div>
