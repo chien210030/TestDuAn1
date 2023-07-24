@@ -77,9 +77,7 @@ public class HoaDonController {
                                   @RequestParam("ghichu") String ghichu,
                                   @RequestParam("tongtien") BigDecimal tongtien,
                                   @RequestParam("tongtienkm") BigDecimal tongtienKM,
-                                  @RequestParam("tongtientt") BigDecimal tongtienTT,
-                                  @RequestParam("maKhachHang") String maKhachHang,
-                                  @RequestParam("maNhanVien") String maNhanVien) {
+                                  @RequestParam("tongtientt") BigDecimal tongtienTT) {
 
         HoaDon hoaDon = new HoaDon();
         hoaDon.setMa(ma);
@@ -91,12 +89,6 @@ public class HoaDonController {
         hoaDon.setTongtienKM(tongtienKM);
         hoaDon.setTongtienTT(tongtienTT);
 
-        KhachHang khachHang = khachHangRepository.findByMa(maKhachHang);
-
-        NhanVien nhanVien = nhanVienChucVuRepository.findByMa(maNhanVien);
-
-        hoaDon.setKhachhang(khachHang);
-        hoaDon.setNhanVien(nhanVien);
 
         hoaDonRepository.save(hoaDon);
 

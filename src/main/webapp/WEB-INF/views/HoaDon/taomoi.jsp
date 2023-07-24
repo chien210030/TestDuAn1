@@ -115,7 +115,7 @@
     <div class="col-md-9 animated bounce">
         <h1 class="page-header">Danh sach hoa don</h1>
         <ul class="breadcrumb">
-            <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
+            <li><span class="glyphicon glyphicon-home">&nbsp;</span><a href="${pageContext.request.contextPath}/hoa-don/hien-thi">Danh sách hóa đơn</a></li>
             <li>Tao Moi Hoa Don</li>
         </ul>
 
@@ -142,27 +142,17 @@
 
             <div class="form-group">
                 <label for="tongtien">Tổng tiền:</label>
-                <input type="number" class="form-control" id="tongtien" name="tongtien">
+                <input type="text" class="form-control" id="tongtien" name="tongtien">
             </div>
 
             <div class="form-group">
                 <label for="tongtienkm">Tổng tiền khuyến mãi:</label>
-                <input type="number" class="form-control" id="tongtienkm" name="tongtienkm">
+                <input type="text" class="form-control" id="tongtienkm" name="tongtienkm">
             </div>
 
             <div class="form-group">
                 <label for="tongtientt">Tổng tiền thanh toán:</label>
-                <input type="number" class="form-control" id="tongtientt" name="tongtientt">
-            </div>
-
-            <div class="form-group">
-                <label for="maKhachHang">Mã khách hàng:</label>
-                <input type="text" class="form-control" id="maKhachHang" name="maKhachHang">
-            </div>
-
-            <div class="form-group">
-                <label for="maNhanVien">Mã nhân viên:</label>
-                <input type="text" class="form-control" id="maNhanVien" name="maNhanVien">
+                <input type="text" class="form-control" id="tongtientt" name="tongtientt">
             </div>
 
             <div class="form-group">

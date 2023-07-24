@@ -130,7 +130,7 @@
                 <c:forEach items="${HoaDon}" var="hd">
                     <tr>
                         <td>${hd.ma}</td>
-                        <td width="50%"></td>
+                        <td width="50%">${hd.ghichu}</td>
                         <td width="10%">
                             <fmt:formatDate value="${hd.ngaytao}" pattern="dd/MM/yyyy" />
                         </td>
