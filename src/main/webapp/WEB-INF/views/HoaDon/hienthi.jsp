@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -134,7 +135,10 @@
                             <fmt:formatDate value="${hd.ngaytao}" pattern="dd/MM/yyyy" />
                         </td>
                         <td>${hd.trangthai == 0 ? 'chua thanh toan' : 'da thanh toan'}</td>
-                        <td><button>Chinh sua hoa don</button></td>
+                        <td>
+                            <button>Edit</button>
+                            <button><a href="">Xóa</a></button>
+                        </td>
                     </tr>
                 </c:forEach>
 
@@ -162,8 +166,6 @@
 
         </nav>
     </div>
-</div>
-
 </div>
 </body>
 </html>

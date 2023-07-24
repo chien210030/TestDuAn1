@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/hoa-don")
@@ -54,6 +55,12 @@ public class HoaDonController {
         return "redirect:/hoa-don/hien-thi";
     }
 
+    @PostMapping("/xoa")
+    public String xoaHoaDon(@RequestParam("id") UUID id){
+        hoaDonRepository.deleteById(id);
+        return "redirect:/hoa-don/hien-thi";
+    }
+
     @GetMapping("/tao-moi")
     public String hienThiFormTaoMoiHoaDon(Model model) {
         HoaDon hoaDon = new HoaDon();
@@ -71,8 +78,8 @@ public class HoaDonController {
                                   @RequestParam("tongtien") BigDecimal tongtien,
                                   @RequestParam("tongtienkm") BigDecimal tongtienKM,
                                   @RequestParam("tongtientt") BigDecimal tongtienTT,
-                                  @RequestParam("khachhangMa") String maKhachHang,
-                                  @RequestParam("nhanvienMa") String maNhanVien) {
+                                  @RequestParam("maKhachHang") String maKhachHang,
+                                  @RequestParam("maNhanVien") String maNhanVien) {
 
         HoaDon hoaDon = new HoaDon();
         hoaDon.setMa(ma);

@@ -156,13 +156,18 @@
             </div>
 
             <div class="form-group">
-                <label for="khachhangMa">Mã khách hàng:</label>
-                <input type="text" class="form-control" id="khachhangMa" name="khachhangMa">
+                <label for="maKhachHang">Mã khách hàng:</label>
+                <input type="text" class="form-control" id="maKhachHang" name="maKhachHang">
             </div>
 
             <div class="form-group">
-                <label for="nhanvienMa">Mã nhân viên:</label>
-                <input type="text" class="form-control" id="nhanvienMa" name="nhanvienMa">
+                <label for="maNhanVien">Mã nhân viên:</label>
+                <input type="text" class="form-control" id="maNhanVien" name="maNhanVien">
+            </div>
+
+            <div class="form-group">
+                <label for="ghichu">Ghi chú:</label>
+                <textarea class="form-control" id="ghichu" name="ghichu">Chưa có ghi chú nào</textarea>
             </div>
 
             <button type="submit" class="btn btn-primary">Lưu</button>
@@ -172,6 +177,7 @@
 <script>
     // Lấy ngày hiện tại và gán vào trường ẩn
     document.getElementById("ngaytao").value = new Date().toISOString().slice(0, 10);
+    document.getElementById("ngaythanhtoan").value = new Date().toISOString().slice(0, 10);
 </script>
 </body>
 </html>
