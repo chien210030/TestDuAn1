@@ -14,6 +14,16 @@
 </head>
 <body>
 <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="page-header">Danh sách Khuyến Mãi</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/khuyen-mai/view-add" class="btn btn-primary">Add</a> <!-- Thêm nút "Add" -->
+        </div>
+    </div>
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -54,8 +64,6 @@
     </table>
 <div class="form-group">
     <div class="col-sm-offset-4 col-sm-8">
-
-<%--    <div class="container">--%>
         <div class="btn-group" role="group" aria-label="Pagination">
             <a href="/khuyen-mai/index?p=0&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}" class="btn btn-default">First</a>
             <a href="/khuyen-mai/index?p=${page.number-1}&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}" class="btn btn-default">Prev</a>
@@ -63,23 +71,15 @@
             <a href="/khuyen-mai/index?p=${page.totalPages-1}&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}" class="btn btn-default">Last</a>
         </div>
         <div>
-            <div class="col-sm-offset-1 col-sm-4">
+            <div class="">
             <div>Trang hiện tại: ${page.number}</div>
             <div>Tổng số trang: ${page.totalPages}</div>
             <div>Tổng số bản ghi: ${page.totalElements}</div>
             </div>
         </div>
-<%--    </div>--%>
-
     </div>
 </div>
-
-
-
-
-
 </div>
-
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

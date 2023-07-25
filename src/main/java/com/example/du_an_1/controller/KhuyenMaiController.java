@@ -93,6 +93,14 @@ public class KhuyenMaiController {
 
     //Tạo mã khuyến mãi
 
+//    @GetMapping("/khuyen-mai/view-add")
+//    public String viewAdd(Model model){
+//
+//        model.addAttribute("khuyenmai",);
+//
+//        return "KhuyenMai/_add";
+//    }
+
     @PostMapping("/khuyen-mai/add")
     public String createKhuyenMai(Model model,
                                   @ModelAttribute("khuyenmai") KhuyenMai khuyenMai,
@@ -116,7 +124,7 @@ public class KhuyenMaiController {
         if(hasErrors){
             model.addAttribute("searchForm", new SearchForm());
             model.addAttribute("message", "Một số trường đang có lỗi");
-            return "phieugiamgia/index";
+            return "KhuyenMai/index";
         }
 
         khuyenMaiService.save(khuyenMai);
@@ -154,7 +162,7 @@ public class KhuyenMaiController {
 
         if(hasErrors){
             model.addAttribute("message", "Một số trường đang có lỗi");
-            return "phieugiamgia/update";
+            return "KhuyenMai/update";
         }
 
 

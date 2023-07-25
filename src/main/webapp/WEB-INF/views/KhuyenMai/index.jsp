@@ -80,9 +80,9 @@
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
-                <jsp:include page="_search.jsp"/>
+            <li class="active">Khuyến Mãi</li>
         </ul>
-        <jsp:include page="_add.jsp"/>
+        <jsp:include page="_search.jsp"/>
         <jsp:include page="_table.jsp"/>
     </div>
 </div>
