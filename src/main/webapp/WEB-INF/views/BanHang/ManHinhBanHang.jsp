@@ -21,7 +21,7 @@
             border: none;
             border-radius: 0;
             overflow-y: auto;
-            background-color: #222;
+            background-color: #222222;
             bottom: 0;
             overflow-x: hidden;
             padding-bottom: 40px;
@@ -136,7 +136,7 @@
     <div class="col-md-5">
 <%--        --HOA DON CHO ----%>
         <div class="col-6 bmarin groove">
-            <h4><b>HOA DON CHO</b></h4>
+            <h4><b>Hóa Đơn Chờ</b></h4>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -157,7 +157,7 @@
         </div>
 <%--    GIO HANG--%>
         <div class="col-6 bmarin groove">
-            <h4><b>GIO HANG</b></h4>
+            <h4><b>Giỏ Hàng</b></h4>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -189,7 +189,7 @@
 
 <%--    SAN PHAM--%>
         <div class="col-6 bmarin groove" >
-            <h4><b>SAN PHAM</b></h4>
+            <h4><b>Sản Phẩm</b></h4>
             <table class="table table-bordered">
               <span>Tim Kiem <input class="form-control-range"/>&#160&#160&#160<a class="btn btn-primary">Search</a></span>
 
