@@ -1,10 +1,6 @@
 package com.example.du_an_1.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +20,8 @@ import java.math.BigDecimal;
 
 public class HoaDonChiTiet {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id ;
     @ManyToOne
     @JoinColumn(name = "idhoadon")
     private HoaDon hoaDon;

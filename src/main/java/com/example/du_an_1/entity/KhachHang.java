@@ -52,17 +52,13 @@ public class KhachHang {
     Date ngaysinh = new Date();
 
     @Column(name = "email")
-    @NotBlank(message = "Không được để trống email !")
-    @Email(message = "Email không đúng định dạng !")
     private String email;
 
     @Column(name = "sdt")
-    @NotBlank(message = "Không được để trống sdt !")
     private String sdt;
 
     @Column(name = "diemthuong")
-    @NotNull(message = "Không được để trống điểm thưởng !")
-    private int diemthuong;
+    private Integer diemthuong;
 
 //    @OneToMany(mappedBy = "Khachhang")
 //  private   List<HoaDon> hoadon;

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -47,6 +48,12 @@
 
         .tmargin {
             margin-top: 15px;
+        }
+        .center-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: large;
         }
     </style>
 </head>
@@ -123,12 +130,15 @@
                 <c:forEach items="${HoaDon}" var="hd">
                     <tr>
                         <td>${hd.ma}</td>
-                        <td width="50%"></td>
+                        <td width="50%">${hd.ghichu}</td>
                         <td width="10%">
                             <fmt:formatDate value="${hd.ngaytao}" pattern="dd/MM/yyyy" />
                         </td>
                         <td>${hd.trangthai == 0 ? 'chua thanh toan' : 'da thanh toan'}</td>
-                        <td><button>Chinh sua hoa don</button></td>
+                        <td>
+                            <button>Edit</button>
+                            <button><a href="">Xóa</a></button>
+                        </td>
                     </tr>
                 </c:forEach>
 
@@ -136,8 +146,12 @@
 
             </table>
             <c:if test="${empty HoaDon}">
-                <h2>Khong co hoa don nao</h2>
+                <h2 class="text-center">Khong co hoa don nao</h2>
             </c:if>
+
+        <div class="center-button">
+            <button type="button"> <a href="${pageContext.request.contextPath}/hoa-don/tao-moi">Tao hoa don moi</a> </button>
+        </div>
 
         <nav style="text-align: center" aria-label="Page navigation example">
             <ul class="pagination">
@@ -152,8 +166,6 @@
 
         </nav>
     </div>
-</div>
-
 </div>
 </body>
 </html>

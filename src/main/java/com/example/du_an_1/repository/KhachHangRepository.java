@@ -14,4 +14,6 @@ public interface KhachHangRepository extends JpaRepository<KhachHang, UUID> {
 
     Page<KhachHang> findKhachHangByTenEquals(String ten,Pageable page);
 
+    KhachHang findByMa(String ma);
+
 }
