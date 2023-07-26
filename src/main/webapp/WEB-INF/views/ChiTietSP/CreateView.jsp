@@ -140,10 +140,10 @@
                 <label>Mo Ta:</label>
                 <input type="text" class="form-control" placeholder="Enter mota" name="mota">
             </div>
-            <div class="mb-3">
-                <label>Gia Nhap:</label>
-                <input type="number" class="form-control" placeholder="Enter gianhap" name="gianhap">
-            </div>
+<%--            <div class="mb-3">--%>
+<%--                <label>Gia Nhap:</label>--%>
+<%--                <input type="number" class="form-control" placeholder="Enter gianhap" name="gianhap">--%>
+<%--            </div>--%>
             <div class="mb-3">
                 <label>Gia ban:</label>
                 <input type="number" class="form-control" placeholder="Enter giaban" name="giaban">

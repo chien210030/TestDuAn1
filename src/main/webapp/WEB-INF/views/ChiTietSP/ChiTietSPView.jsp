@@ -94,7 +94,6 @@
                 <th class="text-center">Ten</th>
                 <th>Mo Ta</th>
                 <th class="text-center">So Luong Ton</th>
-                <th>Gia Nhap</th>
                 <th>Gia Ban</th>
                 <th>Dong SP</th>
                 <th>Nha San Xuat</th>
@@ -116,7 +115,6 @@
                         <td>${sp.sanpham.ten}</td>
                         <td>${sp.mota}</td>
                         <td>${sp.soluongton}</td>
-                        <td>${sp.gianhap}</td>
                         <td>${sp.giaban}</td>
                         <td>${sp.dongsp.ten}</td>
                         <td>${sp.nsx.ten}</td>

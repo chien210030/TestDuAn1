@@ -24,8 +24,7 @@ public class ChiTietSP {
     private String mota;
     @JoinColumn(name = "soluongton")
     private int soluongton;
-    @JoinColumn(name = "gianhap")
-    private BigDecimal gianhap;
+
     @JoinColumn(name = "giaban")
     private BigDecimal giaban;
     @ManyToOne
