@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BanHangController {
 
 
+
     @GetMapping("/ban-hang")
     public String testgiaodien(){
 

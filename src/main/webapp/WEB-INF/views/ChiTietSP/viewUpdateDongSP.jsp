@@ -71,7 +71,7 @@
     <jsp:include page="Templates/aside.jsp"/>
     <div class="col-md-9 animated bounce">
         <h1 class="page-header">Update products</h1>
-        <form action="${pageContext.request.contextPath}/addsp" method="post">
+        <form action="${pageContext.request.contextPath}/addDongsp" method="post">
             <div class="mb-3 mt-3">
                 <label >Id:</label>
                 <input type="hidden" class="form-control"    placeholder="Enter mota" name="id" value="${updateDongSP.id}">

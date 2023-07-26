@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -198,11 +200,11 @@
                         <label>Loai SP:</label> <select name="">
                         <option value=""></option></select>
                     </div>
-                    <div class="col-custom">
-                        <label>MauSP :</label> <select name=""  >
-                        <option value=""></option>
-                    </select>
-                    </div>
+<%--                    <div class="col-custom">--%>
+<%--                        <label>MauSP :</label> <select name=""  >--%>
+<%--                        <option value=""></option>--%>
+<%--                    </select>--%>
+<%--                    </div>--%>
                     <div class="col-custom">
                         <label>Size :</label> <select name="">
                         <option value=""></option></select>
@@ -212,14 +214,14 @@
                         <label>Thuong Hieu :</label> <select name="">
                         <option value=""></option></select>
                     </div>
-                    <div class="col-custom">
-                        <label>NSX :</label> <select name="">
-                        <option value=""></option></select>
-                    </div>
-                    <div class="col-custom">
-                        <label>Chat Lieu:</label> <select name="">
-                        <option value=""></option></select>
-                    </div>
+<%--                    <div class="col-custom">--%>
+<%--                        <label>NSX :</label> <select name="">--%>
+<%--                        <option value=""></option></select>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-custom">--%>
+<%--                        <label>Chat Lieu:</label> <select name="">--%>
+<%--                        <option value=""></option></select>--%>
+<%--                    </div>--%>
 
                 </div>
                 <thead>

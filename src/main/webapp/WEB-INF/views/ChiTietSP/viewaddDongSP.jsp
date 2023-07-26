@@ -70,8 +70,8 @@
 <div class="container-fluid">
     <jsp:include page="Templates/aside.jsp"/>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Products </h1>
-        <form action="${pageContext.request.contextPath}/addsp" method="post">
+        <h1 class="page-header">Categorys add </h1>
+        <form action="${pageContext.request.contextPath}/addDongsp" method="post">
             <div class="mb-3 mt-3">
                 <label>ma:</label>
                 <input type="text" class="form-control" placeholder="Enter ma" name="ma">

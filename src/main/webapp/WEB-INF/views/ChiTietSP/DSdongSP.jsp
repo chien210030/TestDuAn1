@@ -78,13 +78,13 @@
 <div class="container-fluid">
     <jsp:include page="Templates/aside.jsp"/>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Products</h1>
+        <h1 class="page-header">Categorys</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
-            <li><a href="#">Products</a></li>
+            <li><a href="#">Categorys</a></li>
         </ul>
-        <a class=" btn btn-primary" href="${pageContext.request.contextPath}/showaddsp">add</a>
-        <form action="${pageContext.request.contextPath}/san-pham">
+        <a class=" btn btn-primary" href="${pageContext.request.contextPath}/viewaddDongSP">add</a>
+        <form action="${pageContext.request.contextPath}/loadDongSP">
             <table class="table table-hover">
                 <thead>
                 <tr>

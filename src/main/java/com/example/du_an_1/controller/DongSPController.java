@@ -46,7 +46,7 @@ public class DongSPController {
     @GetMapping("/viewaddDongSP")
     public String viewaddsanpham(){
 
-        return "ChiTietSP/viewaddDongSp";
+        return "ChiTietSP/viewaddDongSP";
     }
     @PostMapping("/addDongsp")
     public String addsp(Model model,@ModelAttribute DongSP dongSP) {
