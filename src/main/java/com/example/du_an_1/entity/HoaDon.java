@@ -21,29 +21,32 @@ public class HoaDon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id ;
 
-    @JoinColumn(name="ma")
+    @Column(name="ma")
     private  String ma ;
 
-    @JoinColumn(name = "ngaytao")
+    @Column(name = "ngaytao")
     private Date ngaytao;
 
-    @JoinColumn(name = "ngaythanhtoan")
+    @Column(name = "ngaythanhtoan")
     private  Date ngaythanhtoan;
 
-    @JoinColumn(name = "trangthai")
+    @Column(name = "trangthai")
     private int trangthai;
 
-    @JoinColumn(name = "ghichu")
+    @Column(name = "ghichu")
     private  String ghichu ;
 
-    @JoinColumn(name = "tongtien")
+    @Column(name = "tongtien")
     private BigDecimal tongtien ;
 
-    @JoinColumn(name = "tongtienkm")
-    private BigDecimal tongtienKM ;
+    @Column(name = "tongtienkhuyenmai")
+    private BigDecimal tongtienkm;
 
-    @JoinColumn(name = "tongtientt")
+    @Column(name = "tongtiencanthanhtoan")
     private  BigDecimal tongtientt;
+
+    @Column(name = "tienkhachhangtra")
+    private  BigDecimal tienkhachhangtra;
 
     @ManyToOne
     @JoinColumn(name = "idkhachhang")

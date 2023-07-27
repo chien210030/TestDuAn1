@@ -70,7 +70,7 @@
 <div class="container-fluid">
     <jsp:include page="Templates/aside.jsp"/>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Colors</h1>
+        <h1 class="page-header">Producer</h1>
         <form action="${pageContext.request.contextPath}/addNSX" method="post">
             <div class="mb-3 mt-3">
                 <label>ma:</label>

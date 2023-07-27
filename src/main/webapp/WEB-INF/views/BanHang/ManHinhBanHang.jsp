@@ -158,7 +158,7 @@
                     <tr>
                         <td>${i.ma}</td>
                         <td>${i.ngaytao}</td>
-                        <td>${i.nhanVien.Vten}</td>
+                        <td>${i.nhanVien.ten}</td>
                         <td>${i.khachhang.ten}</td>
                         <td>${i.tongtien}</td>
                         <td>${i.tongtientt}</td>

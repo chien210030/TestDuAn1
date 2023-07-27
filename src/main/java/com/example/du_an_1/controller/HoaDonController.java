@@ -86,7 +86,7 @@ public class HoaDonController {
         hoaDon.setTrangthai(trangthai);
         hoaDon.setGhichu(ghichu);
         hoaDon.setTongtien(tongtien);
-        hoaDon.setTongtienKM(tongtienKM);
+        hoaDon.setTongtienkm(tongtienKM);
         hoaDon.setTongtientt(tongtienTT);
 
 
