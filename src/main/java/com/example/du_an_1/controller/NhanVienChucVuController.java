@@ -1,6 +1,7 @@
 package com.example.du_an_1.controller;
 
 import com.example.du_an_1.entity.ChucVu;
+import com.example.du_an_1.entity.KhachHang;
 import com.example.du_an_1.entity.NhanVien;
 import com.example.du_an_1.repository.impl.ChucVuRepository;
 import com.example.du_an_1.repository.impl.NhanVienChucVuRepository;
@@ -46,6 +47,34 @@ public class NhanVienChucVuController {
         repository.deleteById(id);
         return "redirect:/nhan-vien-chuc-vu/hien-thi";
     }
+
+    @GetMapping("/nhan-vien-chuc-vu/search")
+    public String timTheoMaVaTen(Model model,String ma,String ten) {
+
+        Pageable pageable = PageRequest.of(0, 5);
+        Page<NhanVien> page = repository.findAll(pageable);
+        if(ma.length()>0&&ten.length()>0){
+            page = repository.findNhanVienByMaEqualsAndTenEquals(ma,ten,pageable);
+            model.addAttribute("NVCV", page);
+            return "/NhanVienChucVu/index";
+        }
+        if(ma.length()>0){
+            page = repository.findNhanVienByMaEquals(ma,pageable);
+        }
+        if(ten.length()>0){
+            page = repository.findNhanVienByTenEquals(ten,pageable);
+        }
+
+
+        System.out.println(ten);
+        System.out.println(ma);
+        model.addAttribute("NVCV", page);
+        return "/NhanVienChucVu/index";
+    }
+
+
+
+
     @GetMapping("/nhan-vien-chuc-vu/view-add")
     public String viewAdd(Model model){
         model.addAttribute("chucVu",chucVuRepository.findAll());

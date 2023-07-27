@@ -15,10 +15,12 @@ import java.util.UUID;
 public interface NhanVienChucVuRepository extends JpaRepository<NhanVien, UUID> {
 
 
-    Page<NhanVien> findKhachHangByMaEqualsAndTenEquals(String ma, String ten, Pageable page);
+    Page<NhanVien> findNhanVienByMaEqualsAndTenEquals(String ma, String ten, Pageable page);
 
-    Page<NhanVien> findKhachHangByMaEquals(String ma,Pageable page);
+    Page<NhanVien> findNhanVienByMaEquals(String ma,Pageable page);
 
-    Page<NhanVien> findKhachHangByTenEquals(String ten,Pageable page);
+    Page<NhanVien> findNhanVienByTenEquals(String ten,Pageable page);
+
+    Page<NhanVien> findNhanVienBySdtEquals(String sdt, Pageable page);
 
 }

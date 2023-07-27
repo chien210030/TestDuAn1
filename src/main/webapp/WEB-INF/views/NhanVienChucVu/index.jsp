@@ -96,23 +96,21 @@
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
         </ul>
-        <div class="row">
-            <div class="col-4">
-                <form action="/khach-hang/search" method="get">
+        <div >
+            <div>
+                <form action="/nhan-vien-chuc-vu/search" method="get">
                     Mã : <input type="text" name="ma" class="form-control">
 
                     Tên : <input type="text" name="ten" class="form-control">
                     <br>
-                    <button type="submit" class="btn btn-primary">Tìm</button>
+                    <button type="submit" class="btn btn-primary">Search</button>
 
                 </form>
             </div>
             <div class="col-4"></div>
-            <div class="col-4"></div>
         </div>
-        <br>
-        <a class="btn btn-primary " href="/nhan-vien-chuc-vu/view-add">THÊM</a>
         <table border="1" class="table table-hover">
+            <a class="btn btn-primary " href="/nhan-vien-chuc-vu/view-add">THÊM</a>
             <tr>
             <tr>
                 <th>Mã NV</th>
