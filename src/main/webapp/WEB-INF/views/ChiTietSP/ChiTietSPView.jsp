@@ -80,6 +80,7 @@
     <jsp:include page="Templates/aside.jsp"/>
 
     <div class="col-md-9 animated bounce">
+<%--        <a class="btn btn-success"  onclick="window.history.back()">Back</a>--%>
         <h1 class="page-header">Products Result</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-th-large">&nbsp;</span>Products Result</li>

@@ -87,7 +87,7 @@ public class HoaDonController {
         hoaDon.setGhichu(ghichu);
         hoaDon.setTongtien(tongtien);
         hoaDon.setTongtienKM(tongtienKM);
-        hoaDon.setTongtienTT(tongtienTT);
+        hoaDon.setTongtientt(tongtienTT);
 
 
         hoaDonRepository.save(hoaDon);

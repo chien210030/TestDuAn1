@@ -2,6 +2,7 @@ package com.example.du_an_1.controller;
 
 import com.example.du_an_1.entity.*;
 import com.example.du_an_1.repository.*;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -71,6 +72,15 @@ private List<SanPham> getsanpham(){
         return mauSacRepository.findAll();
 
     }
+//    @RequestMapping ("/back")
+//    public String goBack(HttpServletRequest request){
+//    String referer = request.getHeader("Referer");
+//        if( referer !=null && !referer.isEmpty()){
+//
+//            return "redirect:" + referer;
+//        }
+//    return "redirect:/";
+//    }
 
     Page<ChiTietSP> page;
     @GetMapping("/loadsp")

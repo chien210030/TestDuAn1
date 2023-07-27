@@ -78,7 +78,7 @@
 <div class="container-fluid">
     <jsp:include page="Templates/aside.jsp"/>
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Size</h1>
+        <h1 class="page-header">Colors</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Products</a></li>

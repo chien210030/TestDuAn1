@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
- <style>
+    <style>
         body {
             padding-top: 80px;
         }
@@ -71,16 +72,19 @@
 
         .bmarin {
             /*margin: 40px;*/
-           padding: 40px;
+            padding: 40px;
         }
+
         .row {
             display: flex;
             justify-content: space-between;
         }
+
         .groove {
             border-style: ridge;
 
         }
+
         /*TABS*/
         /* Style the tab */
         .tab {
@@ -126,7 +130,9 @@
             font-size: 28px;
         }
 
-        .topright:hover {color: red;}
+        .topright:hover {
+            color: red;
+        }
 
     </style>
 </head>
@@ -136,28 +142,35 @@
     <jsp:include page="Templates/aside.jsp"/>
 
     <div class="col-md-5">
-<%--        --HOA DON CHO ----%>
+        <%--        --HOA DON  ----%>
         <div class="col-6 bmarin groove">
-            <h4><b>Hóa Đơn Chờ</b></h4>
+            <h4><b>Hóa Đơn </b></h4>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
+                    <th>Ma HD</th>
+                    <th>Ngay Tao</th>
                     <th>Email</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr>
+                <c:forEach items="${HoaDon}" var="i">
+             <tbody>
+                    <tr>
+                        <td>${i.ma}</td>
+                        <td>${i.ngaytao}</td>
+                        <td>${i.nhanVien.Vten}</td>
+                        <td>${i.khachhang.ten}</td>
+                        <td>${i.tongtien}</td>
+                        <td>${i.tongtientt}</td>
+                        <td>${i.ngaytao}</td>
+                        <td>${i.ngaythanhtoan}</td>
+                    </tr>
 
-                </tbody>
+                    </tbody>
+                </c:forEach>
             </table>
         </div>
-<%--    GIO HANG--%>
+        <%--    GIO HANG--%>
         <div class="col-6 bmarin groove">
             <h4><b>Giỏ Hàng</b></h4>
             <table class="table table-bordered">
@@ -189,39 +202,43 @@
 
         </div>
 
-<%--    SAN PHAM--%>
-        <div class="col-6 bmarin groove" >
+        <%--    SAN PHAM--%>
+        <div class="col-6 bmarin groove">
             <h4><b>Sản Phẩm</b></h4>
             <table class="table table-bordered">
-              <span>Tim Kiem <input class="form-control-range"/>&#160&#160&#160<a class="btn btn-primary">Search</a></span>
+                <span>Tim Kiem <input class="form-control-range"/>&#160&#160&#160<a
+                        class="btn btn-primary">Search</a></span>
 
                 <div class="row">
                     <div class="col-custom">
                         <label>Loai SP:</label> <select name="">
-                        <option value=""></option></select>
+                        <option value=""></option>
+                    </select>
                     </div>
-<%--                    <div class="col-custom">--%>
-<%--                        <label>MauSP :</label> <select name=""  >--%>
-<%--                        <option value=""></option>--%>
-<%--                    </select>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="col-custom">--%>
+                    <%--                        <label>MauSP :</label> <select name=""  >--%>
+                    <%--                        <option value=""></option>--%>
+                    <%--                    </select>--%>
+                    <%--                    </div>--%>
                     <div class="col-custom">
                         <label>Size :</label> <select name="">
-                        <option value=""></option></select>
+                        <option value=""></option>
+                    </select>
                     </div>
 
                     <div class="col-custom">
                         <label>Thuong Hieu :</label> <select name="">
-                        <option value=""></option></select>
+                        <option value=""></option>
+                    </select>
                     </div>
-<%--                    <div class="col-custom">--%>
-<%--                        <label>NSX :</label> <select name="">--%>
-<%--                        <option value=""></option></select>--%>
-<%--                    </div>--%>
-<%--                    <div class="col-custom">--%>
-<%--                        <label>Chat Lieu:</label> <select name="">--%>
-<%--                        <option value=""></option></select>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="col-custom">--%>
+                    <%--                        <label>NSX :</label> <select name="">--%>
+                    <%--                        <option value=""></option></select>--%>
+                    <%--                    </div>--%>
+                    <%--                    <div class="col-custom">--%>
+                    <%--                        <label>Chat Lieu:</label> <select name="">--%>
+                    <%--                        <option value=""></option></select>--%>
+                    <%--                    </div>--%>
 
                 </div>
                 <thead>
@@ -241,10 +258,10 @@
                 </tbody>
             </table>
         </div>
-<%--        END SAN PHAM--%>
+        <%--        END SAN PHAM--%>
 
     </div>
-<%--   HOA DON VA KHACH HANG--%>
+    <%--   HOA DON VA KHACH HANG--%>
     <div class="col-md-4 animated bounce">
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'viewhoadon')" id="defaultOpen">Hoa Don</button>
@@ -254,16 +271,16 @@
         <div id="viewhoadon" class="tabcontent">
 
             <div class="form-group">
-                <label>Ma HD</label><input class="form-control-range">
+                <label>Ma HD</label><input class="form-control-range" name="ma">
 
             </div>
 
             <div class="form-group">
-                <label>Ngay Tao</label><input class="form-control">
+                <label>Ngay Tao</label><input class="form-control" name="ngaytao">
 
             </div>
             <div class="form-group">
-                <label>NV TT </label><input class="form-control">
+                <label>NV TT </label><input class="form-control" name="nhanvien.ten">
 
             </div>
             <div class="form-group">
@@ -287,7 +304,8 @@
         </div>
         <div id="viewkhachhang" class="tabcontent">
             <div class="form-group">
-                <label>Tim KH</label><input class="form-control-range">&#160&#160&#160<a class="btn btn-warning">Search</a>
+                <label>Tim KH</label><input class="form-control-range">&#160&#160&#160<a
+                    class="btn btn-warning">Search</a>
 
             </div>
             <div class="form-group">
@@ -313,21 +331,21 @@
             </div>
         </div>
 
-<%--        <div class="col-md-2" >--%>
-<%--            &#160&#160--%>
-<%--                <a class="btn btn-primary">Tao Hoa Don</a>--%>
-<%--            &#160&#160--%>
-<%--             <a class="btn btn-danger">Huy Don</a>--%>
-<%--            &#160&#160--%>
-<%--            <a class="btn btn-success">Thanh Toan</a>--%>
-<%--        </div>--%>
-<%--        <div class="col-md-2 " style="padding-left: 100px">--%>
-<%--            MaKM--%>
-<%--            <select name="" id="">--%>
-<%--            <option value=""></option>--%>
-<%--            </select>--%>
+        <%--        <div class="col-md-2" >--%>
+        <%--            &#160&#160--%>
+        <%--                <a class="btn btn-primary">Tao Hoa Don</a>--%>
+        <%--            &#160&#160--%>
+        <%--             <a class="btn btn-danger">Huy Don</a>--%>
+        <%--            &#160&#160--%>
+        <%--            <a class="btn btn-success">Thanh Toan</a>--%>
+        <%--        </div>--%>
+        <%--        <div class="col-md-2 " style="padding-left: 100px">--%>
+        <%--            MaKM--%>
+        <%--            <select name="" id="">--%>
+        <%--            <option value=""></option>--%>
+        <%--            </select>--%>
 
-<%--        </div>--%>
+        <%--        </div>--%>
         <div class="row" style="padding-top: 10px">
             <div class="col-custom" style="padding-top: 10px">
                 <div class="col-4">
@@ -349,20 +367,18 @@
             </div>
 
             <div class="col-custom">
-               <label>Nhap MaKH</label><input class="">
+                <label>Nhap MaKH</label><input class="">
             </div>
             <div class="col-custom">
-             <label>MaKM</label>
-                <select name="" >
+                <label>MaKM</label>
+                <select name="">
                     <option value=""></option>
                 </select>
             </div>
         </div>
 
 
-
     </div>
-
 
 
 </div>
