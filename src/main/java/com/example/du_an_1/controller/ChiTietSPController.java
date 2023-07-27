@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
+//@SessionAttributes("loadchitietsp")
 public class ChiTietSPController {
 
     @Autowired
@@ -43,10 +44,11 @@ private List<SanPham> getsanpham(){
     return sanPhamRepository.findAll();
 }
     @ModelAttribute("dongsps")
-    private List<DongSP> getdongsp(){
+    public List<DongSP> getdongsp(){
 
         return dongSPRepository.findAll();
     }
+
     @ModelAttribute("chatlieus")
     private List<ChatLieu> getchatlieu(){
 
@@ -72,15 +74,6 @@ private List<SanPham> getsanpham(){
         return mauSacRepository.findAll();
 
     }
-//    @RequestMapping ("/back")
-//    public String goBack(HttpServletRequest request){
-//    String referer = request.getHeader("Referer");
-//        if( referer !=null && !referer.isEmpty()){
-//
-//            return "redirect:" + referer;
-//        }
-//    return "redirect:/";
-//    }
 
     Page<ChiTietSP> page;
     @GetMapping("/loadsp")

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -150,25 +151,44 @@
                 <tr>
                     <th>Ma HD</th>
                     <th>Ngay Tao</th>
-                    <th>Email</th>
+                    <th>Ten NV</th>
+                    <th>Ten KH</th>
+                    <th>Tong tien</th>
+                    <th>Tien km</th>
+                    <th>Tien Thanh Toan</th>
+                    <th>Ngay Thanh Toan</th>
+                    <th>Trang Thai</th>
                 </tr>
                 </thead>
                 <c:forEach items="${HoaDon}" var="i">
-             <tbody>
+                    <tbody>
                     <tr>
                         <td>${i.ma}</td>
-                        <td>${i.ngaytao}</td>
+                        <td>
+                            <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy"/></td>
                         <td>${i.nhanVien.ten}</td>
                         <td>${i.khachhang.ten}</td>
                         <td>${i.tongtien}</td>
+                        <td>${i.tongtienkm}</td>
                         <td>${i.tongtientt}</td>
-                        <td>${i.ngaytao}</td>
-                        <td>${i.ngaythanhtoan}</td>
+                        <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy"/>
+
+                        </td>
+                        <td>${i.trangthai == 1 ? 'Đã Thanh toán':'Chưa Thanh Toán'}</td>
                     </tr>
 
                     </tbody>
                 </c:forEach>
             </table>
+            <ul class="pagination">
+
+
+                <li class="page-item"><a class="page-link" href="?pageNum=${1}">Previous</a></li>
+                <c:forEach begin="1" end="${totalPages}" varStatus="status">
+                    <li class="page-item"><a class="page-link" href="?pageNum=${status.index}">${status.index}</a></li>
+                </c:forEach>
+                <li class="page-item"><a class="page-link" href="?pageNum=${totalPages}">Next</a></li>
+            </ul>
         </div>
         <%--    GIO HANG--%>
         <div class="col-6 bmarin groove">
@@ -211,52 +231,75 @@
 
                 <div class="row">
                     <div class="col-custom">
-                        <label>Loai SP:</label> <select name="">
-                        <option value=""></option>
-                    </select>
-                    </div>
-                    <%--                    <div class="col-custom">--%>
-                    <%--                        <label>MauSP :</label> <select name=""  >--%>
-                    <%--                        <option value=""></option>--%>
-                    <%--                    </select>--%>
-                    <%--                    </div>--%>
-                    <div class="col-custom">
-                        <label>Size :</label> <select name="">
-                        <option value=""></option>
-                    </select>
+
+                        <label>Loai SP:</label>
+                        <select name="">
+                            <c:forEach items="${dongsp}" var="h">
+                                <option value="${h.id}">${h.ten}</option>
+                            </c:forEach>
+                        </select>
                     </div>
 
                     <div class="col-custom">
-                        <label>Thuong Hieu :</label> <select name="">
-                        <option value=""></option>
-                    </select>
+                        <label>Size :</label>
+                        <select name="">
+                            <c:forEach items="${kichco}" var="h">
+                                <option value="${h.id}">${h.ten}</option>
+                            </c:forEach>
+                        </select>
                     </div>
-                    <%--                    <div class="col-custom">--%>
-                    <%--                        <label>NSX :</label> <select name="">--%>
-                    <%--                        <option value=""></option></select>--%>
-                    <%--                    </div>--%>
-                    <%--                    <div class="col-custom">--%>
-                    <%--                        <label>Chat Lieu:</label> <select name="">--%>
-                    <%--                        <option value=""></option></select>--%>
-                    <%--                    </div>--%>
 
+                    <div class="col-custom">
+                        <label>Thuong Hieu :</label>
+                        <select name="">
+                            <c:forEach items="${thuonghieu}" var="h">
+                                <option value="${h.id}">${h.ten}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
                 </div>
                 <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
+                    <th>Ma SP</th>
+                    <th>Ten SP</th>
+                    <th>Gia</th>
+                    <th>So Luong</th>
+                    <th>Mau</th>
+                    <th>Chat Lieu</th>
+                    <th>Mo Ta </th>
+
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr>
+                <c:forEach items="${loadchitietsp}" var="d">
+                    <tbody>
+                    <tr>
+                        <td>${d.sanpham.ma}</td>
+                        <td>${d.sanpham.ten}</td>
+                        <td>${d.giaban}</td>
+                        <td>${d.soluongton}</td>
+                        <td>${d.mausac.ten}</td>
+                        <td>${d.chatlieu.ten}</td>
+                        <td>${d.mota}</td>
 
-                </tbody>
+
+
+
+
+                    </tr>
+
+                    </tbody>
+
+                </c:forEach>
+
             </table>
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="?pageNum=${1}">Previous</a></li>
+                <c:forEach begin="1" end="${totalPages}" varStatus="status">
+                    <li class="page-item"><a class="page-link" href="?pageNum=${status.index}">${status.index}</a></li>
+                </c:forEach>
+                <li class="page-item"><a class="page-link" href="?pageNum=${totalPages}">Next</a></li>
+            </ul>
+
         </div>
         <%--        END SAN PHAM--%>
 
@@ -267,9 +310,9 @@
             <button class="tablinks" onclick="openCity(event, 'viewhoadon')" id="defaultOpen">Hoa Don</button>
             <button class="tablinks" onclick="openCity(event, 'viewkhachhang')">Khach Hang</button>
         </div>
-
+<%--            PHAN TẠO HÓA ĐƠN --%>
         <div id="viewhoadon" class="tabcontent">
-
+            <form action="">
             <div class="form-group">
                 <label>Ma HD</label><input class="form-control-range" name="ma">
 
@@ -299,9 +342,10 @@
                 <label>Tong Tien</label><input class="form-control">
 
             </div>
-
-
+            </form>
         </div>
+
+<%--     END  TẠO HÓA ĐƠN --%>
         <div id="viewkhachhang" class="tabcontent">
             <div class="form-group">
                 <label>Tim KH</label><input class="form-control-range">&#160&#160&#160<a

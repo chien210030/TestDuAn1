@@ -3,6 +3,7 @@ package com.example.du_an_1.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -25,9 +26,11 @@ public class HoaDon {
     private  String ma ;
 
     @Column(name = "ngaytao")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date ngaytao;
 
     @Column(name = "ngaythanhtoan")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private  Date ngaythanhtoan;
 
     @Column(name = "trangthai")
