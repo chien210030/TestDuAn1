@@ -80,10 +80,10 @@
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span><a href="#">Home</a></li>
             <li><a href="#">Dashboard</a></li>
-            <li class="active">Khuyến Mãi</li>
+            <li class="active">Chi tiết Khuyến Mãi</li>
         </ul>
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-6 col-md-offset-2">
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tbody>

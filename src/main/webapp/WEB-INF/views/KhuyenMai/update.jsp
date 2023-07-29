@@ -82,41 +82,41 @@
             <li><a href="#">Dashboard</a></li>
             <li class="active">Cập Nhật Khuyến Mãi</li>
         </ul>
-        <div class="container">
+
             <form:form modelAttribute="khuyenmai" method="post" action="/khuyen-mai/update/${khuyenmai.id}" class="form-horizontal">
 
                 <form:input type="hidden" path="id" />
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Mã phiếu:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <form:input path="ma" class="form-control"/>
                         <form:errors path="ma" element="div" class="text-danger"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Tên phiếu:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <form:input path="ten" class="form-control"/>
                         <form:errors path="ten" element="div" class="text-danger"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Giá trị giảm:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <form:input path="giatrigiam" class="form-control"/>
                         <form:errors path="giatrigiam" element="div" class="text-danger"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Hình thức Khuyến Mãi:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <form:input path="hinhthuckm" class="form-control"/>
                         <form:errors path="hinhthuckm" element="div" class="text-danger"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Ngày bắt đầu:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <form:input path="ngaybatdau" placeholder="dd/MM/yyyy" class="form-control"/>
                         <form:errors path="ngaybatdau" element="div" class="text-danger"/>
                         <div>${dateError}</div>
@@ -124,26 +124,25 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Ngày kết thúc:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <form:input path="ngayketthuc" placeholder="dd/MM/yyyy" class="form-control"/>
                         <form:errors path="ngayketthuc" element="div" class="text-danger"/>
                     </div>
                 </div>
                 <div class="form-group form-inline">
                     <label class="col-sm-2 control-label">Trạng thái:</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-6">
                         <form:radiobuttons path="trangthai" items="${dsTrangThai}" class="form-control"/>
                         <form:errors path="trangthai" element="div" class="alert alert-danger"/>
                     </div>
                 </div>
                 ${message}
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="col-sm-offset-2 col-sm-6">
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                 </div>
             </form:form>
-        </div>
 
     </div>
 </div>
