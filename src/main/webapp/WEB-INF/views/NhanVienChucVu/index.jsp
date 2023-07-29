@@ -104,7 +104,6 @@
                     Tên : <input type="text" name="ten" class="form-control">
                     <br>
                     <button type="submit" class="btn btn-primary">Search</button>
-
                 </form>
             </div>
             <div class="col-4"></div>

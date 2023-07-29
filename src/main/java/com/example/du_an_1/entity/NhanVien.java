@@ -31,43 +31,46 @@ public class NhanVien {
     private String ma;
 
     @Column(name = "ten")
-   // @NotBlank(message = "Không được để chống ten")
+    //@NotBlank(message = "Không được để chống ten")
     private String ten;
 
     @Column(name = "tendem")
-   // @NotBlank(message = "Không được để chống tendem")
+    //@NotBlank(message = "Không được để chống tendem")
     private String tendem;
 
     @Column(name = "ho")
-    //@NotBlank(message = "Không được để chống Họ")
+    ///@NotBlank(message = "Không được để chống Họ")
     private String ho;
 
+    //@NotNull(message = "Ngày bắt đầu không được trống")
+    //@Temporal(TemporalType.DATE)
+    //@DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(name = "ngaysinh")
     private LocalDate ngaysinh;
 
     @Column(name = "gioitinh")
-  //  @NotNull(message = "Chọn giới tính")
+    //@NotNull(message = "Chọn giới tính")
     private Integer gioitinh;
 
     @Column(name = "sdt")
-   // @NotBlank(message = "Không được để chống sdt")
+    //@NotBlank(message = "Không được để chống sdt")
     private String sdt;
 
     @Column(name = "taikhoan")
-   // @NotBlank(message = "Không được để chống TK")
+    //@NotBlank(message = "Không được để chống TK")
     private String taikhoan;
 
     @Column(name = "matkhau")
-  //  @NotBlank(message = "Không được để chống Mk")
+    //@NotBlank(message = "Không được để chống Mk")
     private String matkhau;
 
     @Column(name = "email")
-   // @NotBlank(message = "Không được để chống email")
+    //@NotBlank(message = "Không được để chống email")
    // @Email(message = "Không đúng định dạng")
     private String email;
 
     @Column(name = "trangthai")
-  //  @NotNull(message = "Chọn Trạng Thái")
+    //@NotNull(message = "Chọn Trạng Thái")
     private Integer trangthai;
 
     @ManyToOne
