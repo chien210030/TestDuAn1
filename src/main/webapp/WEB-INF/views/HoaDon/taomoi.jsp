@@ -122,7 +122,7 @@
         <form action="/hoa-don/luu-tao-moi" method="post">
             <div class="form-group">
                 <label for="ma">Mã hóa đơn:</label>
-                <input type="text" class="form-control" id="ma" name="ma" required>
+                <input type="hidden"  class="form-control" id="ma" name="ma">
             </div>
 
             <div class="form-group">

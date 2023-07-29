@@ -58,4 +58,10 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "idnhanvien")
     private  NhanVien nhanVien ;
+
+    @PrePersist
+    private  void generateMa(){
+        this.ma = "HD" + UUID.randomUUID().toString().substring(0,6).toUpperCase();
+
+    }
 }

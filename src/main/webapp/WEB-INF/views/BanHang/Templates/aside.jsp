@@ -14,8 +14,8 @@
         </div>
 
         <ul class="nav navbar-nav side-bar">
-            <li class="side-bar"><a href="/banhang-hoadon"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>Ban Hang</a></li>
-            <li class="side-bar tmargin"><a class = "tesst1" href="${pageContext.request.contextPath}/loadsp">
+            <li class="side-bar "><a href="/banhang-hoadon"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>Ban Hang</a></li>
+            <li class="side-bar"><a class = "tesst1" href="${pageContext.request.contextPath}/loadsp">
                 <span class="glyphicon glyphicon-list">&nbsp;</span>Products
             </a>
                 <div class = "test">

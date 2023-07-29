@@ -2,6 +2,7 @@
          pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +12,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <style>
         body {
             padding-top: 80px;
@@ -165,13 +170,13 @@
                     <tr>
                         <td>${i.ma}</td>
                         <td>
-                            <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy"/></td>
+                            <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm"/></td>
                         <td>${i.nhanVien.ten}</td>
                         <td>${i.khachhang.ten}</td>
                         <td>${i.tongtien}</td>
                         <td>${i.tongtienkm}</td>
                         <td>${i.tongtientt}</td>
-                        <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy"/>
+                        <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>
 
                         </td>
                         <td>${i.trangthai == 1 ? 'Đã Thanh toán':'Chưa Thanh Toán'}</td>
@@ -266,7 +271,7 @@
                     <th>So Luong</th>
                     <th>Mau</th>
                     <th>Chat Lieu</th>
-                    <th>Mo Ta </th>
+                    <th>Mo Ta</th>
 
                 </tr>
                 </thead>
@@ -280,9 +285,6 @@
                         <td>${d.mausac.ten}</td>
                         <td>${d.chatlieu.ten}</td>
                         <td>${d.mota}</td>
-
-
-
 
 
                     </tr>
@@ -310,42 +312,60 @@
             <button class="tablinks" onclick="openCity(event, 'viewhoadon')" id="defaultOpen">Hoa Don</button>
             <button class="tablinks" onclick="openCity(event, 'viewkhachhang')">Khach Hang</button>
         </div>
-<%--            PHAN TẠO HÓA ĐƠN --%>
+        <%--            PHAN TẠO HÓA ĐƠN --%>
         <div id="viewhoadon" class="tabcontent">
-            <form action="">
-            <div class="form-group">
-                <label>Ma HD</label><input class="form-control-range" name="ma">
+            <form action="/taohoadon" method="post"  id="hoaDonForm">
+                <div class="form-group">
+                    <label>Ma HD</label><input type="hidden" class="form-control-range" name="ma">
 
-            </div>
+                </div>
+                <div class="form-group">
+                    <label>Ngay Tao</label><input type="datetime-local" id="ngaytao" class="form-control" name="ngaytao">
 
-            <div class="form-group">
-                <label>Ngay Tao</label><input class="form-control" name="ngaytao">
+                </div>
+                <div class="form-group">
+                    <label>NV TT </label>
+                    <select name="nhanvien" class="form-control">
+                        <c:forEach items="${nhanvien}" var="v">
+                    <option value="${v.id}">${v.ten}</option>
+                        </c:forEach>
+                </select>
 
-            </div>
-            <div class="form-group">
-                <label>NV TT </label><input class="form-control" name="nhanvien.ten">
+                </div>
+                <div class="form-group">
+                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten">
 
-            </div>
-            <div class="form-group">
-                <label>Ten Khach Hang</label><input class="form-control">
+                </div>
+                <div class="form-group">
+                  <label>Trạng Thái :</label> <input type="radio" name="trangthai" value="1" >Đã Thanh Toán
+                    <input type="radio" name="trangthai" value="0" checked>Chưa Thanh Toán
 
-            </div>
-            <div class="form-group">
-                <label>Tien Khach Dua</label><input class="form-control-range">
+                </div>
 
-            </div>
-            <div class="form-group">
-                <label>Tien Thua</label><input class="form-control">
+                <div class="form-group">
+                    <label>Tong Tien Hang </label><input class="form-control" name="tongtien">
 
-            </div>
-            <div class="form-group">
-                <label>Tong Tien</label><input class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Tien khuyen mai</label><input class="form-control" name="tongtienkm">
 
-            </div>
+                </div>
+
+                <div class="form-group">
+                    <label> Tong Tien Thanh Toan</label><input class="form-control-range" name="tongtientt">
+
+                </div>
+                <div class="form-group">
+                    <label>Khach Thanh Toan</label><input class="form-control-range" name="tienkhachhangtra">
+
+                </div>
+
+<%--                <button type="submit"> add</button>--%>
+
             </form>
         </div>
 
-<%--     END  TẠO HÓA ĐƠN --%>
+        <%--     END  TẠO HÓA ĐƠN --%>
         <div id="viewkhachhang" class="tabcontent">
             <div class="form-group">
                 <label>Tim KH</label><input class="form-control-range">&#160&#160&#160<a
@@ -374,27 +394,11 @@
 
             </div>
         </div>
-
-        <%--        <div class="col-md-2" >--%>
-        <%--            &#160&#160--%>
-        <%--                <a class="btn btn-primary">Tao Hoa Don</a>--%>
-        <%--            &#160&#160--%>
-        <%--             <a class="btn btn-danger">Huy Don</a>--%>
-        <%--            &#160&#160--%>
-        <%--            <a class="btn btn-success">Thanh Toan</a>--%>
-        <%--        </div>--%>
-        <%--        <div class="col-md-2 " style="padding-left: 100px">--%>
-        <%--            MaKM--%>
-        <%--            <select name="" id="">--%>
-        <%--            <option value=""></option>--%>
-        <%--            </select>--%>
-
-        <%--        </div>--%>
         <div class="row" style="padding-top: 10px">
             <div class="col-custom" style="padding-top: 10px">
                 <div class="col-4">
 
-                    <a href="#" class="btn btn-primary">Tao Hoa Don</a>
+                    <button class="btn btn-primary"  id="btnThemHoaDon" >Tao Hoa Don</button>
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
@@ -443,6 +447,33 @@
 
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
+    //lấy ngày và giờ hiện tại
+    // document.getElementById("ngaytao").value = new Date().toISOString().slice(0,10);
+    // Đặt múi giờ mặc định là "Asia/Ho_Chi_Minh" (múi giờ Việt Nam - GMT+7)
+    moment.tz.setDefault("Asia/Ho_Chi_Minh");
+
+    // Lấy ngày và giờ hiện tại theo múi giờ đã đặt
+    let nowInVietnam = moment().format("YYYY-MM-DDTHH:mm");
+
+    // Gán giá trị vào trường input "ngaytao"
+    document.getElementById("ngaytao").value = nowInVietnam;
+
+    // nút button
+    document.getElementById('btnThemHoaDon').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        var formData = new FormData(document.getElementById('hoaDonForm'));
+        axios.post("/taohoadon",formData)
+            .then(function (reponse) {
+                alert("tạo hóa đơn thành công!");
+        }).catch(function (error) {
+            
+        });
+
+    });
+
 </script>
+
+
 </body>
 </html>
