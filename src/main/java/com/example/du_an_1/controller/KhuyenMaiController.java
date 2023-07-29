@@ -2,6 +2,7 @@ package com.example.du_an_1.controller;
 
 
 import com.example.du_an_1.Service.KhuyenMaiService;
+import com.example.du_an_1.entity.KhachHang;
 import com.example.du_an_1.entity.KhuyenMai;
 import com.example.du_an_1.repository.KhuyenMaiRepository;
 import lombok.Data;
@@ -14,6 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,13 +95,13 @@ public class KhuyenMaiController {
 
     //Tạo mã khuyến mãi
 
-//    @GetMapping("/khuyen-mai/view-add")
-//    public String viewAdd(Model model){
-//
-//        model.addAttribute("khuyenmai",);
-//
-//        return "KhuyenMai/_add";
-//    }
+    @GetMapping("/khuyen-mai/view-add")
+    public String viewAdd(Model model, @Validated @ModelAttribute("khuyenmai") KhuyenMai khuyenMai, BindingResult bindingResult){
+
+        model.addAttribute("khuyenmai",new KhuyenMai());
+
+        return "KhuyenMai/_add";
+    }
 
     @PostMapping("/khuyen-mai/add")
     public String createKhuyenMai(Model model,

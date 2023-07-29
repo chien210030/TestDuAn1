@@ -1,29 +1,13 @@
 <%@ page pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khuyến Mãi</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <style>
 
-    </style>
-</head>
-<body>
-<div class="container">
     <div class="row">
         <div class="col-md-12">
             <h1 class="page-header">Danh sách Khuyến Mãi</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a href="/khuyen-mai/view-add" class="btn btn-primary">Add</a> <!-- Thêm nút "Add" -->
-        </div>
-    </div>
+
     <table class="table table-bordered table-striped">
         <thead>
         <tr>
@@ -61,9 +45,16 @@
             </tr>
         </c:if>
         </tbody>
+
     </table>
+<div class="row text-center">
+    <div class="col-md-12">
+        <a href="/khuyen-mai/view-add" class="btn btn-primary">Add</a>
+    </div>
+</div>
+<br>
 <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-8">
+    <div class="col-md-12 text-right">
         <div class="btn-group" role="group" aria-label="Pagination">
             <a href="/khuyen-mai/index?p=0&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}" class="btn btn-default">First</a>
             <a href="/khuyen-mai/index?p=${page.number-1}&fromDate=${param.fromDate}&toDate=${param.toDate}&id=${param.id}" class="btn btn-default">Prev</a>
@@ -79,7 +70,6 @@
         </div>
     </div>
 </div>
-</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -90,6 +80,4 @@
         }
     }
 </script>
-</body>
-</html>
 

@@ -73,7 +73,7 @@
 
 <body>
 <jsp:include page="Templates/navbar.jsp"/>
-<div class="container-fluid">
+<%--<div class="container-fluid">--%>
     <jsp:include page="Templates/aside.jsp"/>
     <div class="col-md-9 animated bounce">
         <h1 class="page-header">Khuyến Mãi</h1>
@@ -85,6 +85,7 @@
         <jsp:include page="_search.jsp"/>
         <jsp:include page="_table.jsp"/>
     </div>
-</div>
+<%--</div>--%>
+
 </body>
 </html>
