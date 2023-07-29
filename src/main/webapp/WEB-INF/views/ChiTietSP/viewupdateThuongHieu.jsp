@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <%@ page contentType="text/html; charset=UTF-8" %>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -77,11 +78,11 @@
                 <input type="hidden" class="form-control"   placeholder="Enter mota" name="id" value="${updateThuongHieu.id}">
             </div>
             <div class="mb-3 mt-3">
-                <label >ma:</label>
+                <label >Mã:</label>
                 <input type="text" class="form-control"   placeholder="Enter mota" name="ma" value="${updateThuongHieu.ma}">
             </div>
             <div class="mb-3 mt-3">
-                <label >ten:</label>
+                <label >Tên:</label>
                 <input type="text" class="form-control"   placeholder="Enter mota" name="ten" value="${updateThuongHieu.ten}">
             </div>
             <button type="submit">update</button>

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <%@ page contentType="text/html; charset=UTF-8" %>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -73,11 +74,11 @@
         <h1 class="page-header">Trademark</h1>
         <form action="${pageContext.request.contextPath}/addThuongHieu" method="post">
             <div class="mb-3 mt-3">
-                <label>ma:</label>
+                <label>Mã:</label>
                 <input type="text" class="form-control" placeholder="Enter ma" name="ma">
             </div>
             <div class="mb-3 mt-3">
-                <label>ten:</label>
+                <label>Tên:</label>
                 <input type="text" class="form-control" placeholder="Enter ten" name="ten">
             </div>
             <button type="submit">add</button>

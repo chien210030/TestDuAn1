@@ -2,6 +2,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <%@ page contentType="text/html; charset=UTF-8" %>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -77,7 +78,7 @@
         <h1 class="page-header">Update</h1>
         <form action="${pageContext.request.contextPath}/add" method="post">
             <div class="mb-3 mt-3">
-                <label>san pham </label>  <select name="sanpham">
+                <label>Sản Phẩm </label>  <select name="sanpham">
                 <c:forEach items="${sanphams}" var="cb">
                     <option value="${loadupdate.sanpham.id}" >${loadupdate.sanpham.ten}</option>
                 </c:forEach>
@@ -85,7 +86,7 @@
 
             </div>
             <div class="mb-3 mt-3">
-                <label>dong san pham </label>  <select name="dongsp">
+                <label>Dòng Sản Phẩm </label>  <select name="dongsp">
                 <c:forEach items="${dongsps}" var="cb">
                     <option value="${loadupdate.dongsp.id}">${loadupdate.dongsp.ten}</option>
                 </c:forEach>
@@ -93,7 +94,7 @@
 
             </div>
             <div class="mb-3 mt-3">
-                <label>chat lieu</label>  <select name="chatlieu">
+                <label>Chất Liệu</label>  <select name="chatlieu">
                 <c:forEach items="${chatlieus}" var="cb">
                     <option value="${loadupdate.chatlieu.id}">${loadupdate.chatlieu.ten}</option>
                 </c:forEach>
@@ -101,7 +102,7 @@
 
             </div>
             <div class="mb-3 mt-3">
-                <label>thuong hieu </label> <select name="thuonghieu">
+                <label>Thương Hiệu </label> <select name="thuonghieu">
                 <c:forEach items="${thuonghieus}" >
                     <option value="${loadupdate.thuonghieu.id}">${loadupdate.thuonghieu.ten}</option>
                 </c:forEach>
@@ -109,14 +110,14 @@
 
             </div>
             <div class="mb-3 mt-3">
-                <label>kich co</label> <select name="kichco">
+                <label>Kích Cỡ</label> <select name="kichco">
                 <c:forEach items="${kichcos}" var="cb">
                     <option value="${loadupdate.kichco.id}">${loadupdate.kichco.ten}</option>
                 </c:forEach>
             </select>
             </div>
             <div class="mb-3 mt-3">
-                <label>mau sac</label>  <select name="mausac">
+                <label>Màu Sắc</label>  <select name="mausac">
                 <c:forEach items="${mausacs}" var="cb">
                     <option value="${loadupdate.mausac.id}">${loadupdate.mausac.ten}</option>
                 </c:forEach>
@@ -124,7 +125,7 @@
 
             </div>
             <div class="mb-3 mt-3">
-                <label>Nha san xuat</label>  <select name="nsx">
+                <label>Nhà Sản Xuất</label>  <select name="nsx">
                 <c:forEach items="${nsxs}" var="cb">
                     <option value="${loadupdate.nsx.id}">${loadupdate.nsx.ten}</option>
                 </c:forEach>
@@ -136,7 +137,7 @@
                 <input type="hidden" class="form-control"   placeholder="Enter mota" name="id" value="${loadupdate.id}">
             </div>
             <div class="mb-3 mt-3">
-                <label >Mo Ta:</label>
+                <label >Mô Tả:</label>
                 <input type="text" class="form-control"  placeholder="Enter mota" name="mota" value="${loadupdate.mota}">
             </div>
 <%--            <div class="mb-3">--%>
@@ -144,14 +145,14 @@
 <%--                <input type="number" class="form-control"   placeholder="Enter gianhap" name="gianhap" value="${loadupdate.gianhap}">--%>
 <%--            </div>--%>
             <div class="mb-3">
-                <label>Gia ban:</label>
+                <label>Giá Bán:</label>
                 <input type="number" class="form-control"   placeholder="Enter giaban" name="giaban" value="${loadupdate.giaban}">
             </div>
             <div class="mb-3">
-                <label>So Luong Ton:</label>
+                <label>Số Lượng Tồn:</label>
                 <input type="number" class="form-control"   placeholder="Enter soluongton" name="soluongton" value="${loadupdate.soluongton}">
             </div>
-            <button type="submit">add</button>
+            <button type="submit">Thêm</button>
 
 
         </form>

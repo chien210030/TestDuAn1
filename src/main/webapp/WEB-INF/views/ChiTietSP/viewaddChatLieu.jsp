@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <%@ page contentType="text/html; charset=UTF-8" %>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -78,7 +79,7 @@
                 <input type="text" class="form-control" placeholder="Enter ma" name="ma">
             </div>
             <div class="mb-3 mt-3">
-                <label>ten:</label>
+                <label>Tên Chất Liệu:</label>
                 <input type="text" class="form-control" placeholder="Enter ten" name="ten">
             </div>
             <button type="submit">add</button>
