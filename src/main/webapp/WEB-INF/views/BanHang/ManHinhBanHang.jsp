@@ -170,7 +170,7 @@
                     <tr>
                         <td>${i.ma}</td>
                         <td>
-                            <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm"/></td>
+                            <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
                         <td>${i.nhanVien.ten}</td>
                         <td>${i.khachhang.ten}</td>
                         <td>${i.tongtien}</td>
@@ -416,6 +416,7 @@
 
             <div class="col-custom">
                 <label>Nhap MaKH</label><input class="">
+                <a class="btn btn-primary" href="">Check</a>
             </div>
             <div class="col-custom">
                 <label>MaKM</label>
@@ -467,7 +468,7 @@
             .then(function (reponse) {
                 alert("tạo hóa đơn thành công!");
         }).catch(function (error) {
-            
+            alert("ko tao duoc hoa don");
         });
 
     });

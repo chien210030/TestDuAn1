@@ -20,6 +20,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @SessionAttributes("loadchitietsp")
@@ -41,7 +42,7 @@ public class BanHangController {
     private KichCoRepository kichCoRepository;
 
     @Autowired
-   private NhanVienChucVuRepository nhanVienChucVuRepository;
+    private NhanVienChucVuRepository nhanVienChucVuRepository;
 
     @ModelAttribute("loadchitietsp")
     public List<ChiTietSP> getallchitietsp() {
@@ -67,7 +68,7 @@ public class BanHangController {
         model.addAttribute("dongsp", dongSPRepository.findAll());
         model.addAttribute("kichco", kichCoRepository.findAll());
         model.addAttribute("thuonghieu", thuongHieuRepository.findAll());
-        model.addAttribute("nhanvien",nhanVienChucVuRepository.findAll());
+        model.addAttribute("nhanvien", nhanVienChucVuRepository.findAll());
 //        model.addAttribute("dongsp",page1.getContent());
 
         return "BanHang/ManHinhBanHang";
@@ -78,6 +79,7 @@ public class BanHangController {
     public String taohoadon(@RequestParam("ma") String ma,
                             @RequestParam("ngaytao") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaytao,
 //                            @RequestParam("ngaythanhtoan") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaythanhtoan,
+                            @RequestParam("nhanvien") UUID idnhanvien,
                             @RequestParam("trangthai") int trangthai
 
 
@@ -85,17 +87,14 @@ public class BanHangController {
 
         HoaDon hoaDon = new HoaDon();
         hoaDon.setMa(ma);
-
-//       LocalDateTime ngaytaohientai = LocalDateTime.now();
-//        LocalDate ngaytaohientai = LocalDate.now();
-//        long millis = System.currentTimeMillis();
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-
         hoaDon.setNgaytao(new Date());
-
-//        hoaDon.setNgaythanhtoan(new Date());
         hoaDon.setTrangthai(0);
+        NhanVien nhanVien = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
+        if (nhanVien != null) {
+            hoaDon.setNhanVien(nhanVien);
 
+
+        }
         hoaDonRepository.save(hoaDon);
         return "redirect:/banhang-hoadon";
     }
