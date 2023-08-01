@@ -285,8 +285,6 @@
                         <td>${d.mausac.ten}</td>
                         <td>${d.chatlieu.ten}</td>
                         <td>${d.mota}</td>
-
-
                     </tr>
 
                     </tbody>
@@ -296,10 +294,10 @@
             </table>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="?pageNum=${1}">Previous</a></li>
-                <c:forEach begin="1" end="${totalPages}" varStatus="status">
+                <c:forEach begin="1" end="${chitietPages}" varStatus="status">
                     <li class="page-item"><a class="page-link" href="?pageNum=${status.index}">${status.index}</a></li>
                 </c:forEach>
-                <li class="page-item"><a class="page-link" href="?pageNum=${totalPages}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?pageNum=${chitietPages}">Next</a></li>
             </ul>
 
         </div>

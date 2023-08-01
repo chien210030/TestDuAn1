@@ -62,7 +62,11 @@ public class BanHangController {
         Page<KichCo> page2 = kichCoRepository.findAll(pageable);
         Page<ThuongHieu> page3 = thuongHieuRepository.findAll(pageable);
 
+        Page<ChiTietSP> page4 = chiTietSPRepository.findAll(pageable);
+
         model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("chitietPages",page4.getTotalPages());
+
         model.addAttribute("HoaDon", page.getContent());
 
         model.addAttribute("dongsp", dongSPRepository.findAll());
@@ -81,8 +85,6 @@ public class BanHangController {
 //                            @RequestParam("ngaythanhtoan") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaythanhtoan,
                             @RequestParam("nhanvien") UUID idnhanvien,
                             @RequestParam("trangthai") int trangthai
-
-
     ) {
 
         HoaDon hoaDon = new HoaDon();
