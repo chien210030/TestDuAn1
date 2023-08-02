@@ -50,7 +50,7 @@ public class BanHangController {
         return chiTietSPRepository.findAll();
     }
 
-    @GetMapping("/banhang-hoadon")
+    @RequestMapping ("/banhang-hoadon")
     public String hienThiHoaDon(Model model,
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "ten", required = false) String keyword) {
