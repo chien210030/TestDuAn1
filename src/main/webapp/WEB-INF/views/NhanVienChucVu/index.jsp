@@ -90,7 +90,7 @@
 <div class="container-fluid">
     <jsp:include page="Templates/aside.jsp"/>
 
-    <div class="col-md-9 animated bounce">
+    <div class="container">
         <h1 class="page-header">Nhân Viên</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
@@ -106,25 +106,29 @@
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
             </div>
-            <div class="col-4"></div>
         </div>
-        <table border="1" class="table table-hover">
-            <a class="btn btn-primary " href="/nhan-vien-chuc-vu/view-add">THÊM</a>
-            <tr>
-            <tr>
-                <th>Mã NV</th>
-                <th>Tên NV</th>
-                <th>Ngày Sinh</th>
-                <th>Giới Tính</th>
-                <th>Số Điện</th>
-                <th>Tài Khoản</th>
-                <th>Mật Khẩu</th>
-                <th>Email</th>
-                <th>Trạng Thái</th>
-                <th>Mã Chức Vụ</th>
-                <th>Tên Chức Vụ</th>
-                <th colspan="2">Action</th>
-            </tr>
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn btn-primary " href="/nhan-vien-chuc-vu/view-add">THÊM</a>
+            </div>
+        </div>
+        <table class="table table-bordered table-striped">
+           <thead>
+           <tr>
+               <th>Mã NV</th>
+               <th>Tên NV</th>
+               <th>Ngày Sinh</th>
+               <th>Giới Tính</th>
+               <th>Số Điện</th>
+               <th>Tài Khoản</th>
+               <th>Mật Khẩu</th>
+               <th>Email</th>
+               <th>Trạng Thái</th>
+               <th>Mã Chức Vụ</th>
+               <th>Tên Chức Vụ</th>
+               <th colspan="2">Action</th>
+           </tr>
+           </thead>
             <c:if test="${not empty NVCV.content}">
                 <tbody>
                 <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
@@ -141,9 +145,9 @@
                         <td>${ds.chucVu.ma}</td>
                         <td>${ds.chucVu.ten}</td>
                         <td>
-                            <a class="btn btn-outline-danger" href="javascript:remove('${ds.id}')">XÓA</a>
-                            <a class="btn btn-outline-danger" href="/nhan-vien-chuc-vu/view-update/${ds.id}">SỬA</a>
-                            <a class="btn btn-outline-danger" href="/nhan-vien-chuc-vu/detail/${ds.id}">DETAIL</a>
+                            <a class="btn btn-danger" href="javascript:remove('${ds.id}')">XÓA</a>
+                            <a class="btn btn-danger" href="/nhan-vien-chuc-vu/view-update/${ds.id}">SỬA</a>
+                            <a class="btn btn-danger" href="/nhan-vien-chuc-vu/detail/${ds.id}">DETAIL</a>
                         </td>
                     </tr>
                 </c:forEach>
