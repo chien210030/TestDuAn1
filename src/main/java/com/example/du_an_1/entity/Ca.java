@@ -27,7 +27,7 @@ public class Ca {
     private LocalDate ngay;
     @Column(name = "batdau")
     private LocalDate batdau;
-    @Column(name = "keythuc")
+    @Column(name = "ketthuc")
     private LocalDate ketthuc;
     @Column(name = "soluong")
     private  Integer soluong;
