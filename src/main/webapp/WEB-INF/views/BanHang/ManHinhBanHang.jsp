@@ -151,6 +151,7 @@
         <%--        --HOA DON  ----%>
         <div class="col-6 bmarin groove">
             <h4><b>Hóa Đơn </b></h4>
+            <form action="/banhang-hoadon">
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -185,6 +186,7 @@
                     </tbody>
                 </c:forEach>
             </table>
+            </form>
             <ul class="pagination">
 
 
@@ -285,6 +287,7 @@
                         <td>${d.mausac.ten}</td>
                         <td>${d.chatlieu.ten}</td>
                         <td>${d.mota}</td>
+                        <td><li href="" class="btn btn-primary glyphicon glyphicon-shopping-cart"> </li> </td>
                     </tr>
 
                     </tbody>
@@ -465,6 +468,8 @@
         axios.post("/taohoadon",formData)
             .then(function (reponse) {
                 alert("tạo hóa đơn thành công!");
+                    window.location.reload();
+
         }).catch(function (error) {
             alert("ko tao duoc hoa don");
         });
