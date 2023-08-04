@@ -90,78 +90,87 @@
 <div class="container-fluid">
     <jsp:include page="Templates/aside.jsp"/>
 
-    <div class="container">
+    <div class="col-md-9 animated bounce">
         <h1 class="page-header">Nhân Viên</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>
         </ul>
-        <div >
-            <div>
-                <form action="/nhan-vien-chuc-vu/search" method="get">
-                    Mã : <input type="text" name="ma" class="form-control">
-
-                    Tên : <input type="text" name="ten" class="form-control">
-                    <br>
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </form>
-            </div>
-        </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <br>
+                <br>
+                <div>
+                    <div >
+                        <form action="/nhan-vien-chuc-vu/search" method="get">
+                            Mã : <input type="text" name="ma" class="form-control">
+
+                            Tên : <input type="text" name="ten" class="form-control">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Tìm</button>
+
+                        </form>
+                    </div>
+                    <div class="col-4"></div>
+                    <div class="col-4"></div>
+                </div>
+                <br>
                 <a class="btn btn-primary " href="/nhan-vien-chuc-vu/view-add">THÊM</a>
-            </div>
-        </div>
-        <table class="table table-bordered table-striped">
-           <thead>
-           <tr>
-               <th>Mã NV</th>
-               <th>Tên NV</th>
-               <th>Ngày Sinh</th>
-               <th>Giới Tính</th>
-               <th>Số Điện</th>
-               <th>Tài Khoản</th>
-               <th>Mật Khẩu</th>
-               <th>Email</th>
-               <th>Trạng Thái</th>
-               <th>Mã Chức Vụ</th>
-               <th>Tên Chức Vụ</th>
-               <th colspan="2">Action</th>
-           </tr>
-           </thead>
-            <c:if test="${not empty NVCV.content}">
-                <tbody>
-                <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
+                <br>
+                <br>
+                <table class="table table-bordered table-striped">
+                    <thead>
                     <tr>
-                        <td>${ds.ma}</td>
-                        <td>${ds.ten}</td>
-                        <td>${ds.ngaysinh}</td>
-                        <td>${ds.gioitinh == 1? "Nam" : "Nữ"}</td>
-                        <td>${ds.sdt}</td>
-                        <td>${ds.taikhoan}</td>
-                        <td>${ds.matkhau}</td>
-                        <td>${ds.email}</td>
-                        <td>${ds.trangthai == 1 ?"Hoạt Động" :"Không Hoạt Động"}</td>
-                        <td>${ds.chucVu.ma}</td>
-                        <td>${ds.chucVu.ten}</td>
-                        <td>
-                            <a class="btn btn-danger" href="javascript:remove('${ds.id}')">XÓA</a>
-                            <a class="btn btn-danger" href="/nhan-vien-chuc-vu/view-update/${ds.id}">SỬA</a>
-                            <a class="btn btn-danger" href="/nhan-vien-chuc-vu/detail/${ds.id}">DETAIL</a>
-                        </td>
+                        <th>Mã NV</th>
+                        <th>Tên NV</th>
+                        <th>Ngày Sinh</th>
+                        <th>Giới Tính</th>
+                        <th>Số Điện</th>
+                        <th>Tài Khoản</th>
+                        <th>Mật Khẩu</th>
+                        <th>Email</th>
+                        <th>Trạng Thái</th>
+                        <th>Mã Chức Vụ</th>
+                        <th>Tên Chức Vụ</th>
+                        <th colspan="2">Action</th>
                     </tr>
-                </c:forEach>
-                </tbody>
-            </c:if>
-            <c:if test="${ empty NVCV.content}"><h2 style="color: red">No data</h2></c:if>
-        </table>
-        <p>Số Trang : ${NVCV.number + 1} / ${NVCV.totalPages}</p>
-        <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi?p=0"> << </a>
-        <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.number - 1}"> < </a>
-        <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.number + 1}"> > </a>
-        <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.totalPages - 1}"> >> </a>
+                    </thead>
+                    <c:if test="${not empty NVCV.content}">
+                        <tbody>
+                        <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
+                            <tr>
+                                <td>${ds.ma}</td>
+                                <td>${ds.ten}</td>
+                                <td>${ds.ngaysinh}</td>
+                                <td>${ds.gioitinh == 1? "Nam" : "Nữ"}</td>
+                                <td>${ds.sdt}</td>
+                                <td>${ds.taikhoan}</td>
+                                <td>${ds.matkhau}</td>
+                                <td>${ds.email}</td>
+                                <td>${ds.trangthai == 1 ?"Hoạt Động" :"Không Hoạt Động"}</td>
+                                <td>${ds.chucVu.ma}</td>
+                                <td>${ds.chucVu.ten}</td>
+                                <td>
+                                    <a class="btn btn-danger" href="javascript:remove('${ds.id}')">XÓA</a>
+                                    <a class="btn btn-danger" href="/nhan-vien-chuc-vu/view-update/${ds.id}">SỬA</a>
+                                    <a class="btn btn-danger" href="/nhan-vien-chuc-vu/detail/${ds.id}">DETAIL</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </c:if>
+                    <c:if test="${ empty NVCV.content}"><h2 style="color: red">No data</h2></c:if>
+                </table>
+                <p>Số Trang : ${NVCV.number + 1} / ${NVCV.totalPages}</p>
+                <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi?p=0"> << </a>
+                <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.number - 1}"> < </a>
+                <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.number + 1}"> > </a>
+                <a class="btn btn-outline-primary" href="/nhan-vien-chuc-vu/hien-thi?p=${NVCV.totalPages - 1}"> >> </a>
 
-
+            </div>
+            <div class="col-1"></div>
+        </div>
     </div>
 </div>
 
@@ -170,7 +179,7 @@
 <script>
     function remove(id) {
         if (window.confirm("Bạn Có Muốn Xóa Không ?")) {
-            location.href = "/nhan-vien-chuc-vu/delete/" + id;
+            location.href = "/nhan-vien-chuc-vu/remove/" + id;
         } else {
             alert("Đã Hủy")
         }

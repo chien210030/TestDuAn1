@@ -4,7 +4,6 @@ package com.example.du_an_1.controller;
 import com.example.du_an_1.Service.KhuyenMaiService;
 import com.example.du_an_1.entity.KhachHang;
 import com.example.du_an_1.entity.KhuyenMai;
-import com.example.du_an_1.repository.KhuyenMaiRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
