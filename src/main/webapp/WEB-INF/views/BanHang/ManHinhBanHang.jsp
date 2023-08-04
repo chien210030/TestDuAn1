@@ -232,7 +232,7 @@
         <%--    SAN PHAM--%>
         <div class="col-6 bmarin groove">
             <h4><b>Sản Phẩm</b></h4>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-hover">
                 <span>Tim Kiem <input class="form-control-range"/>&#160&#160&#160<a
                         class="btn btn-primary">Search</a></span>
 

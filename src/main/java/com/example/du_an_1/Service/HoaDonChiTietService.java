@@ -11,13 +11,13 @@ public interface HoaDonChiTietService {
 
 
 
-    List<HoaDonChiTiet> getAll();
-
-    void save(HoaDonChiTiet value);
-
-    void deleteById(UUID id);
-
-    Optional<HoaDonChiTiet> findById(UUID id);
+//    List<HoaDonChiTiet> getAll();
+//
+//    void save(HoaDonChiTiet value);
+//
+//    void deleteById(UUID id);
+//
+//    Optional<HoaDonChiTiet> findById(UUID id);
 
     //List<Object[]> getListThongKeSP(int month,int year,int trangthai);
 

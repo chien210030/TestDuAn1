@@ -21,6 +21,6 @@ public interface NhanVienChucVuRepository extends JpaRepository<NhanVien, UUID> 
 
     Page<NhanVien> findNhanVienByTenEquals(String ten,Pageable page);
 
-    Page<NhanVien> findNhanVienBySdtEquals(String sdt, Pageable page);
+   Page<NhanVien> findNhanVienBySdtEquals(String sdt, Pageable page);
 
 }

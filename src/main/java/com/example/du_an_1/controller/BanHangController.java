@@ -72,7 +72,7 @@ public class BanHangController {
         model.addAttribute("dongsp", dongSPRepository.findAll());
         model.addAttribute("kichco", kichCoRepository.findAll());
         model.addAttribute("thuonghieu", thuongHieuRepository.findAll());
-        model.addAttribute("nhanvien", nhanVienChucVuRepository.findAll());
+//        model.addAttribute("nhanvien", nhanVienChucVuRepository.findAll());
 //        model.addAttribute("dongsp",page1.getContent());
 
         return "BanHang/ManHinhBanHang";

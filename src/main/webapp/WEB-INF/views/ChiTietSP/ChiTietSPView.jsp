@@ -77,10 +77,10 @@
 </head>
 <body>
 <jsp:include page="Templates/navbar.jsp"/>
-<div class="container-fluid">
+<div class="container-fluid" >
     <jsp:include page="Templates/aside.jsp"/>
 
-    <div class="col-md-9 animated bounce">
+    <div class="col-md-9 animated bounce" >
 <%--        <a class="btn btn-success"  onclick="window.history.back()">Back</a>--%>
         <h1 class="page-header">Products Result</h1>
         <ul class="breadcrumb">
@@ -89,8 +89,8 @@
         </ul>
         <a class="btn btn-primary" href="${pageContext.request.contextPath}/showcreate">add</a>
 
-        <form action="${pageContext.request.contextPath}/loadsp">
-            <table class="table table-hover">
+        <form action="${pageContext.request.contextPath}/loadsp" >
+            <table class="table table-hover" border="1">
                 <thead>
                 <th>ma</th>
                 <th class="text-center">Ten</th>
