@@ -1,24 +1,34 @@
 package com.example.du_an_1.entity;
 
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
- @NoArgsConstructor
- @AllArgsConstructor
- @Getter
- @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @ToString
 @Entity
 @Table(name = "chitietsp")
 public class ChiTietSP {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-     private UUID  id ;
-//    private String ma;
+    private UUID id;
+    //    private String ma;
 //    private String ten;
     @JoinColumn(name = "mota")
     private String mota;
@@ -27,10 +37,10 @@ public class ChiTietSP {
 
     @JoinColumn(name = "giaban")
     private BigDecimal giaban;
+
     @ManyToOne
     @JoinColumn(name = "idchatlieu")
     private ChatLieu chatlieu;
-
 
     @ManyToOne
     @JoinColumn(name = "idthuonghieu")
@@ -47,7 +57,7 @@ public class ChiTietSP {
     private NSX nsx;
     @ManyToOne
     @JoinColumn(name = "idsanpham")
-    private  SanPham sanpham;
+    private SanPham sanpham;
 //    @ManyToOne
 //    @JoinColumn(name = "ma")
 //    private  SanPham ma;
@@ -58,15 +68,7 @@ public class ChiTietSP {
 
     @ManyToOne
     @JoinColumn(name = "iddongsp")
-    private  DongSP dongsp;
-
-
-
-
-
-
-
-
+    private DongSP dongsp;
 
 
 }

@@ -25,12 +25,15 @@ public class HoaDonChiTiet {
 
     @ManyToOne
     @JoinColumn(name = "idhoadon")
-    private HoaDon hoaDon;
+    private HoaDon hoadon;
 
     @ManyToOne
     @JoinColumn(name = "idchitietsanpham")
     private ChiTietSP chiTietSP;
 
-    private int soLuong;
-    private BigDecimal donGia;
+    @JoinColumn(name = "soluong")
+    private int soluong;
+
+    @JoinColumn(name = "dongia")
+    private BigDecimal dongia;
 }
