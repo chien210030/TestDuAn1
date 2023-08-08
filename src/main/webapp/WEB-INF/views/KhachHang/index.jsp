@@ -92,7 +92,7 @@
     <jsp:include page="Templates/aside.jsp"/>
 
     <div class="col-md-9 animated bounce">
-        <h1 class="page-header">Nhân Viên</h1>
+        <h1 class="page-header">Khách Hàng</h1>
         <ul class="breadcrumb">
             <li><span class="glyphicon glyphicon-home">&nbsp;</span>Home</li>
             <li><a href="#">Dashboard</a></li>

@@ -97,6 +97,7 @@ public class BanHangController {
 
 
         }
+
         hoaDonRepository.save(hoaDon);
         return "redirect:/banhang-hoadon";
     }
