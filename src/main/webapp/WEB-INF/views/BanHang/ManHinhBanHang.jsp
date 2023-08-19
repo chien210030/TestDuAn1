@@ -151,41 +151,43 @@
         <%--        --HOA DON  ----%>
         <div class="col-6 bmarin groove">
             <h4><b>Hóa Đơn </b></h4>
-            <form action="/banhang-hoadon">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Ma HD</th>
-                    <th>Ngay Tao</th>
-                    <th>Ten NV</th>
-                    <th>Ten KH</th>
-                    <th>Tong tien</th>
-                    <th>Tien km</th>
-                    <th>Tien Thanh Toan</th>
-                    <th>Ngay Thanh Toan</th>
-                    <th>Trang Thai</th>
-                </tr>
-                </thead>
-                <c:forEach items="${HoaDon}" var="i">
-                    <tbody>
+            <form action="/banhang-hoadon" method="get">
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <td>${i.ma}</td>
-                        <td>
-                            <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
-                        <td>${i.nhanVien.ten}</td>
-                        <td>${i.khachhang.ten}</td>
-                        <td>${i.tongtien}</td>
-                        <td>${i.tongtienkm}</td>
-                        <td>${i.tongtientt}</td>
-                        <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>
+                        <th>Ma HD</th>
+                        <th>Ngay Tao</th>
+                        <th>Ten NV</th>
+                        <th>Ten KH</th>
+                        <th>Tong tien</th>
+                        <th>Tien km</th>
+                        <th>Tien Thanh Toan</th>
+                        <th>Ngay Thanh Toan</th>
+                        <th>Trang Thai</th>
 
-                        </td>
-                        <td>${i.trangthai == 1 ? 'Đã Thanh toán':'Chưa Thanh Toán'}</td>
                     </tr>
+                    </thead>
+                    <c:forEach items="${HoaDon}" var="i">
+                        <tbody>
+                        <tr>
+                            <td>${i.ma}</td>
+                            <td>
+                                <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
+                            <td>${i.nhanVien.ten}</td>
+                            <td>${i.khachhang.ten}</td>
+                            <td>${i.tongtien}</td>
+                            <td>${i.tongtienkm}</td>
+                            <td>${i.tongtientt}</td>
+                            <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>
+                            </td>
+                            <td>${i.trangthai == 1 ? 'Đã Thanh toán':'Chưa Thanh Toán'}</td>
+                            <td><a class="btn btn-primary glyphicon glyphicon-pencil"
+                                   href="/banhang-hoadon/gethoadon/${i.id}"></a></td>
+                        </tr>
 
-                    </tbody>
-                </c:forEach>
-            </table>
+                        </tbody>
+                    </c:forEach>
+                </table>
             </form>
             <ul class="pagination">
 
@@ -203,19 +205,22 @@
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
+                    <th>Id Hoa Don CT</th>
+                    <th>id Hoa Don</th>
+                    <th>id ct sp</th>
+                    <th>So luong</th>
+                    <th>Don Gia</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr>
-
-                </tbody>
+                <c:forEach items="${CTHoaDon.hoaDonChiTiets}" var="chitiet">
+                    <tbody>
+                    <tr>
+                          <td> ${chitiet.id}</td>
+                          <td> ${chitiet.soluong}</td>
+                          <td>${chitiet.dongia}</td>
+                    </tr>
+                    </tbody>
+                </c:forEach>
             </table>
             <div class="row">
                 <div class="col-custom">
@@ -225,8 +230,6 @@
                     <a class="btn btn-primary">Update quantity</a>
                 </div>
             </div>
-
-
         </div>
 
         <%--    SAN PHAM--%>
@@ -265,35 +268,44 @@
                         </select>
                     </div>
                 </div>
-                <thead>
-                <tr>
-                    <th>Ma SP</th>
-                    <th>Ten SP</th>
-                    <th>Gia</th>
-                    <th>So Luong</th>
-                    <th>Mau</th>
-                    <th>Chat Lieu</th>
-                    <th>Mo Ta</th>
+                <form action="/banhang-hoadon/banhang" method="get">
 
-                </tr>
-                </thead>
-                <c:forEach items="${loadchitietsp}" var="d">
-                    <tbody>
+                    <thead>
                     <tr>
-                        <td>${d.sanpham.ma}</td>
-                        <td>${d.sanpham.ten}</td>
-                        <td>${d.giaban}</td>
-                        <td>${d.soluongton}</td>
-                        <td>${d.mausac.ten}</td>
-                        <td>${d.chatlieu.ten}</td>
-                        <td>${d.mota}</td>
-                        <td><li href="" class="btn btn-primary glyphicon glyphicon-shopping-cart"> </li> </td>
+                        <th>Ma SP</th>
+                        <th>Ten SP</th>
+                        <th>Gia</th>
+                        <th>So Luong</th>
+                        <th>Mau</th>
+                        <th>Chat Lieu</th>
+                        <th>Mo Ta</th>
+                        <th>So luong them</th>
                     </tr>
+                    </thead>
 
-                    </tbody>
+                    <c:forEach items="${loadchitietsp}" var="d">
+                        <tbody>
+                        <tr>
+                            <td>${d.sanpham.ma}</td>
+                            <td>${d.sanpham.ten}</td>
+                            <td>${d.giaban}</td>
+                            <td>${d.soluongton}</td>
+                            <td>${d.mausac.ten}</td>
+                            <td>${d.chatlieu.ten}</td>
+                            <td>${d.mota}</td>
+                            <td><input type="number" name="soluong" value="1" min="1" class="form-control"></td>
+                            <td>
+                                <button onclick="reloadpage();" formmethod="post"
+                                        formaction="/banhang-hoadon/add/${d.id}"
+                                        class="btn btn-primary glyphicon glyphicon-shopping-cart"
+                                        type="submit"></button>
+                            </td>
+                        </tr>
 
-                </c:forEach>
+                        </tbody>
 
+                    </c:forEach>
+                </form>
             </table>
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="?pageNum=${1}">Previous</a></li>
@@ -315,22 +327,23 @@
         </div>
         <%--            PHAN TẠO HÓA ĐƠN --%>
         <div id="viewhoadon" class="tabcontent">
-            <form action="/taohoadon" method="post"  id="hoaDonForm">
+            <form action="/taohoadon" method="post" id="hoaDonForm">
                 <div class="form-group">
                     <label>Ma HD</label><input type="hidden" class="form-control-range" name="ma">
 
                 </div>
                 <div class="form-group">
-                    <label>Ngay Tao</label><input type="datetime-local" id="ngaytao" class="form-control" name="ngaytao">
+                    <label>Ngay Tao</label><input type="datetime-local" id="ngaytao" class="form-control"
+                                                  name="ngaytao">
 
                 </div>
                 <div class="form-group">
                     <label>NV TT </label>
                     <select name="nhanvien" class="form-control">
                         <c:forEach items="${nhanvien}" var="v">
-                    <option value="${v.id}">${v.ten}</option>
+                            <option value="${v.id}">${v.ten}</option>
                         </c:forEach>
-                </select>
+                    </select>
 
                 </div>
                 <div class="form-group">
@@ -338,7 +351,7 @@
 
                 </div>
                 <div class="form-group">
-                  <label>Trạng Thái :</label> <input type="radio" name="trangthai" value="1" >Đã Thanh Toán
+                    <label>Trạng Thái :</label> <input type="radio" name="trangthai" value="1">Đã Thanh Toán
                     <input type="radio" name="trangthai" value="0" checked>Chưa Thanh Toán
 
                 </div>
@@ -361,7 +374,7 @@
 
                 </div>
 
-<%--                <button type="submit"> add</button>--%>
+                <%--                <button type="submit"> add</button>--%>
 
             </form>
         </div>
@@ -399,7 +412,7 @@
             <div class="col-custom" style="padding-top: 10px">
                 <div class="col-4">
 
-                    <button class="btn btn-primary"  id="btnThemHoaDon" >Tao Hoa Don</button>
+                    <button class="btn btn-primary" id="btnThemHoaDon">Tao Hoa Don</button>
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
@@ -461,20 +474,26 @@
     document.getElementById("ngaytao").value = nowInVietnam;
 
     // nút button
-    document.getElementById('btnThemHoaDon').addEventListener('click', function(event) {
+    document.getElementById('btnThemHoaDon').addEventListener('click', function (event) {
         event.preventDefault();
 
         var formData = new FormData(document.getElementById('hoaDonForm'));
-        axios.post("/taohoadon",formData)
+        axios.post("/banhang-hoadon/taohoadon", formData)
             .then(function (reponse) {
                 alert("tạo hóa đơn thành công!");
-                    window.location.reload();
+                window.location.reload();
 
-        }).catch(function (error) {
+            }).catch(function (error) {
             alert("ko tao duoc hoa don");
         });
 
     });
+
+    function reloadpage() {
+
+        location.reload();
+    }
+
 
 </script>
 

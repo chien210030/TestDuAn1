@@ -2,11 +2,7 @@ package com.example.du_an_1.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
@@ -19,8 +15,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
+//@ToString
 @Entity
+@Builder
 @Table(name = "hoadon")
 
 public class HoaDon {
@@ -66,10 +63,29 @@ public class HoaDon {
     private  NhanVien nhanVien ;
 
     @OneToMany(mappedBy = "hoadon")
-    private List<HoaDonChiTiet> hoaDonChiTiets = new ArrayList<>();
+    private List<HoaDonChiTiet> hoaDonChiTiets ;
     @PrePersist
-    private  void generateMa(){
+    public   void generateMa(){
         this.ma = "HD" + UUID.randomUUID().toString().substring(0,6).toUpperCase();
 
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDon{" +
+                "id=" + id +
+                ", ma='" + ma + '\'' +
+                ", ngaytao=" + ngaytao +
+                ", ngaythanhtoan=" + ngaythanhtoan +
+                ", trangthai=" + trangthai +
+                ", ghichu='" + ghichu + '\'' +
+                ", tongtien=" + tongtien +
+                ", tongtienkm=" + tongtienkm +
+                ", tongtientt=" + tongtientt +
+                ", tienkhachhangtra=" + tienkhachhangtra +
+                ", khachhang=" + khachhang +
+                ", nhanVien=" + nhanVien +
+                ", hoaDonChiTiets=" + hoaDonChiTiets +
+                '}';
     }
 }

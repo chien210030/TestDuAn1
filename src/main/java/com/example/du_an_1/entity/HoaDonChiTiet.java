@@ -1,11 +1,7 @@
 package com.example.du_an_1.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -14,8 +10,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
+//@ToString
 @Entity
+@Builder
 @Table(name = "hoadonchitiet")
 
 public class HoaDonChiTiet {
@@ -36,4 +33,15 @@ public class HoaDonChiTiet {
 
     @JoinColumn(name = "dongia")
     private BigDecimal dongia;
+
+    @Override
+    public String toString() {
+        return "HoaDonChiTiet{" +
+                "id=" + id +
+                ", hoadon=" + hoadon +
+                ", chiTietSP=" + chiTietSP +
+                ", soluong=" + soluong +
+                ", dongia=" + dongia +
+                '}';
+    }
 }
