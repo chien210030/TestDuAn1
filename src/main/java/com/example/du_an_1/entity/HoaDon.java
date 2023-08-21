@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-//@ToString
+@ToString
 @Entity
 @Builder
 @Table(name = "hoadon")
@@ -70,22 +70,22 @@ public class HoaDon {
 
     }
 
-    @Override
-    public String toString() {
-        return "HoaDon{" +
-                "id=" + id +
-                ", ma='" + ma + '\'' +
-                ", ngaytao=" + ngaytao +
-                ", ngaythanhtoan=" + ngaythanhtoan +
-                ", trangthai=" + trangthai +
-                ", ghichu='" + ghichu + '\'' +
-                ", tongtien=" + tongtien +
-                ", tongtienkm=" + tongtienkm +
-                ", tongtientt=" + tongtientt +
-                ", tienkhachhangtra=" + tienkhachhangtra +
-                ", khachhang=" + khachhang +
-                ", nhanVien=" + nhanVien +
-                ", hoaDonChiTiets=" + hoaDonChiTiets +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "HoaDon{" +
+//                "id=" + id +
+//                ", ma='" + ma + '\'' +
+//                ", ngaytao=" + ngaytao +
+//                ", ngaythanhtoan=" + ngaythanhtoan +
+//                ", trangthai=" + trangthai +
+//                ", ghichu='" + ghichu + '\'' +
+//                ", tongtien=" + tongtien +
+//                ", tongtienkm=" + tongtienkm +
+//                ", tongtientt=" + tongtientt +
+//                ", tienkhachhangtra=" + tienkhachhangtra +
+//                ", khachhang=" + khachhang +
+//                ", nhanVien=" + nhanVien +
+//                ", hoaDonChiTiets=" + hoaDonChiTiets +
+//                '}';
+//    }
 }

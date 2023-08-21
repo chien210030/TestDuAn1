@@ -38,7 +38,7 @@ public class HoaDonChiTiet {
     public String toString() {
         return "HoaDonChiTiet{" +
                 "id=" + id +
-                ", hoadon=" + hoadon +
+//                ", hoadon=" + hoadon +
                 ", chiTietSP=" + chiTietSP +
                 ", soluong=" + soluong +
                 ", dongia=" + dongia +

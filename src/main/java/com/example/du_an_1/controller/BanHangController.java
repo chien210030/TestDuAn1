@@ -94,39 +94,103 @@ public class BanHangController {
             hoaDon.setNhanVien(nhanVien);
 
         }
-
         hoaDonRepository.save(hoaDon);
 
         return "redirect:/banhang-hoadon/banhang";
     }
 
 
-
-    public boolean checkspthd(UUID idct) {
-        return false;
-    }
+    HoaDon hoadonngoai;
+    List<HoaDonChiTiet> hdct;
 
     @GetMapping("/gethoadon/{id}")
     public String ReadHD(@PathVariable("id") UUID idhd, Model model) {
-        HoaDon cthoadon = hoaDonRepository.findById(idhd).orElse(null);
+        hoadonngoai = hoaDonRepository.findById(idhd).orElse(null);
+        System.out.println("hoa don " + hoadonngoai);
 
-        List<HoaDonChiTiet> hdct = cthoadon.getHoaDonChiTiets();
+        hdct = hoadonngoai.getHoaDonChiTiets();
+        System.out.println("HD CT NE " + hdct);
 
-        model.addAttribute("CTHoaDon", cthoadon);
-        return "redirect:/banhang-hoadon/banhang";
+        model.addAttribute("CTHoaDon", hdct);
+
+
+        return "forward:/banhang-hoadon/banhang";
     }
+
+    public boolean checkspthd(UUID idct) {
+        return true;
+    }
+
 
     @PostMapping("/add/{id}")
     public String addSanPhamvaoHDCT(@PathVariable("id") UUID idctsp, @RequestParam("soluong") int soluongthem) {
         ChiTietSP ctsp1 = chiTietSPRepository.findById(idctsp).orElse(null);
-
         System.out.println("id ct" + idctsp);
-
         System.out.println("so " + soluongthem);
-        if (checkspthd(idctsp)) {
+
+        if (hoadonngoai.getId() != null) {
             //truong hop da co hoa don, và có idctsp phải check xem nó là hóa đơn chờ hay không(check cả xem ctsp đó có trong hdct hay ko)
             // rồi nếu có hóa đơn thì tăng lên 1 số lượng hoặc mk điều chỉnh số lượng tùy ý (hard)
 
+            // 1 check xem idctsp co trong hdct nay chua
+            System.out.println("hdct o them" + hdct);
+//            System.out.println("id chi tiet " + ctsp1.getId());
+            System.out.println("chi tiet san pham" + ctsp1);
+            int check = 0;
+            for (HoaDonChiTiet xhdct : hdct) {
+
+                System.out.println("id cua hdct khi chưa trong dk IF" + xhdct.getId());
+
+                if (xhdct.getChiTietSP().getId().equals(ctsp1.getId()) ) {
+                    // check trung id thi them so luong vao
+                    System.out.println(("b2"));
+                    System.out.println("hdct trong if" + xhdct);
+                    int soluongOfHDCTcongthem = xhdct.getSoluong() + soluongthem;
+                    System.out.println("so hdct" + xhdct.getSoluong());
+                    System.out.println("so them " + soluongthem);
+                    xhdct.setSoluong(soluongOfHDCTcongthem);
+
+                    BigDecimal giatienOfHDCTkhicongThem = ctsp1.getGiaban().multiply(new BigDecimal(soluongthem));// ctsp1.getGiaBan() * soluongthem
+                    BigDecimal giatienHDCT = xhdct.getDongia();
+                    BigDecimal dongiamoi = giatienHDCT.add(giatienOfHDCTkhicongThem);
+                    xhdct.setDongia(dongiamoi);
+
+                    int soluongUpadteOfSanPham = ctsp1.getSoluongton() - soluongthem;
+                    ctsp1.setSoluongton(soluongUpadteOfSanPham);
+                    chiTietSPRepository.save(ctsp1);
+                    System.out.println("so luong cua SanPham sau khi cap nhat " + ctsp1.getSoluongton());
+                    hoaDonChiTietRepository.save(xhdct);
+
+                    System.out.println("so luong cua HDCt sau khi cap nhat" + xhdct.getSoluong());
+                    check = 1;
+
+
+                }
+            }
+            if (check == 0){
+                System.out.println(" else if chay vao");
+                System.out.println("hdct khi chua them moi" + hdct);
+
+                HoaDonChiTiet newhdct = new HoaDonChiTiet();
+                newhdct.setChiTietSP(ctsp1);
+                newhdct.setSoluong(soluongthem);
+                BigDecimal dongiaOFCTSPMoi = ctsp1.getGiaban().multiply(new BigDecimal(soluongthem));
+                newhdct.setDongia(dongiaOFCTSPMoi);
+
+
+                newhdct.setHoadon(hoadonngoai);
+                System.out.println("hdct mới mà ta thêm vào" + newhdct);
+
+
+                hoaDonChiTietRepository.save(newhdct);
+
+
+                // ket luan : ở TH1: xhdct vẫn chưa xuất hiện của newhdct mà ta Save ở trên(nghĩa là chưa có trong for ,
+                // mặc dù đã lưu vào trong db
+
+//                System.out.println("hdct sau khi them id moi " + xhdct.getId());
+            }
+            System.out.println("hoa don  to " + hoadonngoai.getMa());
 
         } else {
             // trường hợp chưa  có hoa don và chưa có idctsp, thì khi thêm sản phẩm(đồng thời tạo hd ) thì mặc định là thêm 1 sản phẩm vào hdct
@@ -154,8 +218,6 @@ public class BanHangController {
                 hdctt.setDongia(ctsp1.getGiaban());
             }
             hdctt.setChiTietSP(ctsp1);
-
-
             hdctt.setHoadon(hd1);
             hoaDonChiTietRepository.save(hdctt);
 

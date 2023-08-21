@@ -2,6 +2,7 @@
          pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!doctype html>
 <html lang="en">
@@ -202,26 +203,32 @@
         <%--    GIO HANG--%>
         <div class="col-6 bmarin groove">
             <h4><b>Giỏ Hàng</b></h4>
+            <%--            <c:if test="${CTHoaDon != null && not empty CTHoaDon}">--%>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Id Hoa Don CT</th>
-                    <th>id Hoa Don</th>
-                    <th>id ct sp</th>
+                    <%--                    <th>Id Hoa Don CT</th>--%>
+                    <th>Ma Hoa Don</th>
+                    <th>san pham</th>
                     <th>So luong</th>
                     <th>Don Gia</th>
                 </tr>
                 </thead>
-                <c:forEach items="${CTHoaDon.hoaDonChiTiets}" var="chitiet">
+                <c:forEach items="${CTHoaDon}" var="chitiet">
                     <tbody>
                     <tr>
-                          <td> ${chitiet.id}</td>
-                          <td> ${chitiet.soluong}</td>
-                          <td>${chitiet.dongia}</td>
+                        <td>${chitiet.hoadon.ma}</td>
+                        <td> ${chitiet.chiTietSP.sanpham.ten}</td>
+                        <td> ${chitiet.soluong}</td>
+                        <td>${chitiet.dongia}</td>
                     </tr>
                     </tbody>
                 </c:forEach>
             </table>
+            <%--            </c:if>--%>
+            <c:if test="${empty CTHoaDon}">
+                <p>No Chi Tiet Hoa Don found.</p>
+            </c:if>
             <div class="row">
                 <div class="col-custom">
                     <a class="btn btn-primary">Remove</a>
@@ -283,7 +290,7 @@
                     </tr>
                     </thead>
 
-                    <c:forEach items="${loadchitietsp}" var="d">
+                    <c:forEach items="${loadchitietsp}" var="d" varStatus="c">
                         <tbody>
                         <tr>
                             <td>${d.sanpham.ma}</td>
@@ -293,7 +300,7 @@
                             <td>${d.mausac.ten}</td>
                             <td>${d.chatlieu.ten}</td>
                             <td>${d.mota}</td>
-                            <td><input type="number" name="soluong" value="1" min="1" class="form-control"></td>
+                            <td><input type="number" name="soluong"  value="1" min="1" class="form-control"></td>
                             <td>
                                 <button onclick="reloadpage();" formmethod="post"
                                         formaction="/banhang-hoadon/add/${d.id}"

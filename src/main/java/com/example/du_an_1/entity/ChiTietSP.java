@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
+//@ToString
 @Entity
 @Table(name = "chitietsp")
 public class ChiTietSP {
@@ -68,4 +68,21 @@ public class ChiTietSP {
     @OneToMany(mappedBy = "chiTietSP")
     private List<HoaDonChiTiet>  hoadonchitiet;
 
+    @Override
+    public String toString() {
+        return "ChiTietSP{" +
+                "id=" + id +
+                ", mota='" + mota + '\'' +
+                ", soluongton=" + soluongton +
+                ", giaban=" + giaban +
+                ", chatlieu=" + chatlieu +
+                ", thuonghieu=" + thuonghieu +
+                ", kichco=" + kichco +
+                ", mausac=" + mausac +
+                ", nsx=" + nsx +
+                ", sanpham=" + sanpham +
+                ", dongsp=" + dongsp +
+//                ", hoadonchitiet=" + hoadonchitiet +
+                '}';
+    }
 }
