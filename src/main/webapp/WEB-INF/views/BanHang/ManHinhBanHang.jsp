@@ -300,7 +300,7 @@
                             <td>${d.mausac.ten}</td>
                             <td>${d.chatlieu.ten}</td>
                             <td>${d.mota}</td>
-                            <td><input type="number" name="soluong"  value="1" min="1" class="form-control"></td>
+                            <td><input type="number" name="soluong" value="1" min="1" class="form-control"></td>
                             <td>
                                 <button onclick="reloadpage();" formmethod="post"
                                         formaction="/banhang-hoadon/add/${d.id}"
@@ -312,6 +312,7 @@
                         </tbody>
 
                     </c:forEach>
+
                 </form>
             </table>
             <ul class="pagination">
@@ -495,6 +496,18 @@
         });
 
     });
+
+    window.addEventListener('load', function () {
+        var inputElements = document.querySelectorAll('input[data-soluongton]');
+
+        inputElements.forEach(function (input) {
+            var soluongton = parent(input.getAttribute('data-soluongton'));
+            input.max = soluongton.toString();
+
+        });
+
+    });
+
 
     function reloadpage() {
 

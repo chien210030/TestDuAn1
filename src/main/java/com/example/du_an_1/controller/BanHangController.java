@@ -112,8 +112,6 @@ public class BanHangController {
         System.out.println("HD CT NE " + hdct);
 
         model.addAttribute("CTHoaDon", hdct);
-
-
         return "forward:/banhang-hoadon/banhang";
     }
 
@@ -128,7 +126,7 @@ public class BanHangController {
         System.out.println("id ct" + idctsp);
         System.out.println("so " + soluongthem);
 
-        if (hoadonngoai.getId() != null) {
+        if (hoadonngoai != null && hoadonngoai.getId() != null) {
             //truong hop da co hoa don, và có idctsp phải check xem nó là hóa đơn chờ hay không(check cả xem ctsp đó có trong hdct hay ko)
             // rồi nếu có hóa đơn thì tăng lên 1 số lượng hoặc mk điều chỉnh số lượng tùy ý (hard)
 
@@ -176,14 +174,14 @@ public class BanHangController {
                 newhdct.setSoluong(soluongthem);
                 BigDecimal dongiaOFCTSPMoi = ctsp1.getGiaban().multiply(new BigDecimal(soluongthem));
                 newhdct.setDongia(dongiaOFCTSPMoi);
-
-
                 newhdct.setHoadon(hoadonngoai);
+
                 System.out.println("hdct mới mà ta thêm vào" + newhdct);
 
-
                 hoaDonChiTietRepository.save(newhdct);
-
+                int soluongtonofctsp  = ctsp1.getSoluongton() - soluongthem;
+                ctsp1.setSoluongton(soluongtonofctsp);
+                chiTietSPRepository.save(ctsp1);
 
                 // ket luan : ở TH1: xhdct vẫn chưa xuất hiện của newhdct mà ta Save ở trên(nghĩa là chưa có trong for ,
                 // mặc dù đã lưu vào trong db
@@ -192,7 +190,8 @@ public class BanHangController {
             }
             System.out.println("hoa don  to " + hoadonngoai.getMa());
 
-        } else {
+
+        } else  if(hoadonngoai==null ){
             // trường hợp chưa  có hoa don và chưa có idctsp, thì khi thêm sản phẩm(đồng thời tạo hd ) thì mặc định là thêm 1 sản phẩm vào hdct
 
             // tao hoa don
