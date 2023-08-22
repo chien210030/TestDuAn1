@@ -9,15 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.*;
 
 @Controller
@@ -60,10 +58,6 @@ public class BanHangController {
         Pageable pageable = PageRequest.of(pageNum - 1, 5);
         Page<HoaDon> page = hoaDonRepository.findAll(pageable);
 
-//        Page<DongSP> page1 = dongSPRepository.findAll(pageable);
-//        Page<KichCo> page2 = kichCoRepository.findAll(pageable);
-//        Page<ThuongHieu> page3 = thuongHieuRepository.findAll(pageable);
-
         Page<ChiTietSP> page4 = chiTietSPRepository.findAll(pageable);
 
         model.addAttribute("totalPages", page.getTotalPages());
@@ -98,18 +92,16 @@ public class BanHangController {
 
         return "redirect:/banhang-hoadon/banhang";
     }
-
-
     HoaDon hoadonngoai;
     List<HoaDonChiTiet> hdct;
 
     @GetMapping("/gethoadon/{id}")
     public String ReadHD(@PathVariable("id") UUID idhd, Model model) {
         hoadonngoai = hoaDonRepository.findById(idhd).orElse(null);
-        System.out.println("hoa don " + hoadonngoai);
+        System.out.println("hoa don" + hoadonngoai);
 
         hdct = hoadonngoai.getHoaDonChiTiets();
-        System.out.println("HD CT NE " + hdct);
+        System.out.println("HD CT NE" + hdct);
 
         model.addAttribute("CTHoaDon", hdct);
         return "forward:/banhang-hoadon/banhang";
@@ -118,7 +110,6 @@ public class BanHangController {
     public boolean checkspthd(UUID idct) {
         return true;
     }
-
 
     @PostMapping("/add/{id}")
     public String addSanPhamvaoHDCT(@PathVariable("id") UUID idctsp, @RequestParam("soluong") int soluongthem) {
@@ -139,7 +130,7 @@ public class BanHangController {
 
                 System.out.println("id cua hdct khi chưa trong dk IF" + xhdct.getId());
 
-                if (xhdct.getChiTietSP().getId().equals(ctsp1.getId()) ) {
+                if (xhdct.getChiTietSP().getId().equals(ctsp1.getId())) {
                     // check trung id thi them so luong vao
                     System.out.println(("b2"));
                     System.out.println("hdct trong if" + xhdct);
@@ -162,10 +153,9 @@ public class BanHangController {
                     System.out.println("so luong cua HDCt sau khi cap nhat" + xhdct.getSoluong());
                     check = 1;
 
-
                 }
             }
-            if (check == 0){
+            if (check == 0) {
                 System.out.println(" else if chay vao");
                 System.out.println("hdct khi chua them moi" + hdct);
 
@@ -179,7 +169,7 @@ public class BanHangController {
                 System.out.println("hdct mới mà ta thêm vào" + newhdct);
 
                 hoaDonChiTietRepository.save(newhdct);
-                int soluongtonofctsp  = ctsp1.getSoluongton() - soluongthem;
+                int soluongtonofctsp = ctsp1.getSoluongton() - soluongthem;
                 ctsp1.setSoluongton(soluongtonofctsp);
                 chiTietSPRepository.save(ctsp1);
 
@@ -191,7 +181,7 @@ public class BanHangController {
             System.out.println("hoa don  to " + hoadonngoai.getMa());
 
 
-        } else  if(hoadonngoai==null ){
+        } else if (hoadonngoai == null) {
             // trường hợp chưa  có hoa don và chưa có idctsp, thì khi thêm sản phẩm(đồng thời tạo hd ) thì mặc định là thêm 1 sản phẩm vào hdct
 
             // tao hoa don
@@ -219,10 +209,34 @@ public class BanHangController {
             hdctt.setChiTietSP(ctsp1);
             hdctt.setHoadon(hd1);
             hoaDonChiTietRepository.save(hdctt);
-
-
         }
+        return "redirect:/banhang-hoadon/banhang";
 
+    }
+
+    @PostMapping("/deleteSoLuong/{id}")
+    public String GiamSoLuong(@PathVariable("id") UUID idhdct) {
+             HoaDonChiTiet hdchitiet  = hoaDonChiTietRepository.findById(idhdct).orElse(null);
+
+        UUID idCTSP = hdchitiet.getChiTietSP().getId();
+        ChiTietSP chiTietSP = chiTietSPRepository.findById(idCTSP).orElse(null);
+
+
+             if(hdchitiet.getSoluong() >1){
+                 hdchitiet.setSoluong(hdchitiet.getSoluong() - 1);
+
+                 BigDecimal dongiamoi = chiTietSP.getGiaban().multiply(new BigDecimal(hdchitiet.getSoluong()));
+               hdchitiet.setDongia(dongiamoi);
+                 hoaDonChiTietRepository.save(hdchitiet);
+                 chiTietSP.setSoluongton(chiTietSP.getSoluongton() + 1);
+                 chiTietSPRepository.save(chiTietSP);
+             }else if(hdchitiet.getSoluong() ==1 ){
+                 System.out.println("chay vao ko ");
+                 chiTietSP.setSoluongton(chiTietSP.getSoluongton() + 1);
+                 chiTietSPRepository.save(chiTietSP);
+                 hoaDonChiTietRepository.deleteById(idhdct);
+
+             }
 
         return "redirect:/banhang-hoadon/banhang";
     }

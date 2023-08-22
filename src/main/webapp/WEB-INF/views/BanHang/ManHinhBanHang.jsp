@@ -11,7 +11,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Ban Hang</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"></script>
@@ -204,27 +204,34 @@
         <div class="col-6 bmarin groove">
             <h4><b>Giỏ Hàng</b></h4>
             <%--            <c:if test="${CTHoaDon != null && not empty CTHoaDon}">--%>
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <%--                    <th>Id Hoa Don CT</th>--%>
-                    <th>Ma Hoa Don</th>
-                    <th>san pham</th>
-                    <th>So luong</th>
-                    <th>Don Gia</th>
-                </tr>
-                </thead>
-                <c:forEach items="${CTHoaDon}" var="chitiet">
-                    <tbody>
+            <form action="//banhang-hoadon/banhang" method="get">
+                <table class="table table-bordered">
+                    <thead>
                     <tr>
-                        <td>${chitiet.hoadon.ma}</td>
-                        <td> ${chitiet.chiTietSP.sanpham.ten}</td>
-                        <td> ${chitiet.soluong}</td>
-                        <td>${chitiet.dongia}</td>
+                        <%--                    <th>Id Hoa Don CT</th>--%>
+                        <th>Ma Hoa Don</th>
+                        <th>san pham</th>
+                        <th>So luong</th>
+                        <th>Don Gia</th>
                     </tr>
-                    </tbody>
-                </c:forEach>
-            </table>
+                    </thead>
+                    <c:forEach items="${CTHoaDon}" var="chitiet">
+                        <tbody>
+                        <tr>
+
+                            <td>${chitiet.hoadon.ma}</td>
+                            <td> ${chitiet.chiTietSP.sanpham.ten}</td>
+                            <td> ${chitiet.soluong}</td>
+                            <td>${chitiet.dongia}</td>
+                            <td>
+                                <button type="submit" formaction="/banhang-hoadon/deleteSoLuong/${chitiet.id}"
+                                        formmethod="post" class="btn btn-primary glyphicon glyphicon-trash"></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </c:forEach>
+                </table>
+            </form>
             <%--            </c:if>--%>
             <c:if test="${empty CTHoaDon}">
                 <p>No Chi Tiet Hoa Don found.</p>
@@ -290,7 +297,7 @@
                     </tr>
                     </thead>
 
-                    <c:forEach items="${loadchitietsp}" var="d" varStatus="c">
+                    <c:forEach items="${loadchitietsp}" var="d" varStatus="loop">
                         <tbody>
                         <tr>
                             <td>${d.sanpham.ma}</td>
