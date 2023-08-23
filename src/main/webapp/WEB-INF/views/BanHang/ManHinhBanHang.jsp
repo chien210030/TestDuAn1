@@ -16,6 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"crossorigin=""></script>
 
     <style>
         body {
@@ -204,34 +205,43 @@
         <div class="col-6 bmarin groove">
             <h4><b>Giỏ Hàng</b></h4>
             <%--            <c:if test="${CTHoaDon != null && not empty CTHoaDon}">--%>
-            <form action="//banhang-hoadon/banhang" method="get">
-                <table class="table table-bordered">
-                    <thead>
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <%--                    <th>Id Hoa Don CT</th>--%>
+                    <th>Ma Hoa Don</th>
+                    <th>san pham</th>
+                    <th>So luong</th>
+                    <th>Don Gia</th>
+
+                </tr>
+                </thead>
+                <c:forEach items="${CTHoaDon}" var="chitiet">
+
+                    <tbody>
                     <tr>
-                        <%--                    <th>Id Hoa Don CT</th>--%>
-                        <th>Ma Hoa Don</th>
-                        <th>san pham</th>
-                        <th>So luong</th>
-                        <th>Don Gia</th>
-                    </tr>
-                    </thead>
-                    <c:forEach items="${CTHoaDon}" var="chitiet">
-                        <tbody>
-                        <tr>
+                        <form method="post" id="idform" action="">
 
                             <td>${chitiet.hoadon.ma}</td>
                             <td> ${chitiet.chiTietSP.sanpham.ten}</td>
-                            <td> ${chitiet.soluong}</td>
+                                <%--                            <td> ${chitiet.soluong}</td>--%>
+                            <td><input type="number" id="idsoluong" min="1" max="100" name="soluong"
+                                       class="form-control-range" value="${chitiet.soluong}"></td>
                             <td>${chitiet.dongia}</td>
+
                             <td>
-                                <button type="submit" formaction="/banhang-hoadon/deleteSoLuong/${chitiet.id}"
-                                        formmethod="post" class="btn btn-primary glyphicon glyphicon-trash"></button>
+                                <button type="submit" id="idbutton" onclick="getsoluongupdate(${chitiet.id})" class="btn btn-primary glyphicon glyphicon-ok-circle"
+                                        formaction="/banhang-hoadon/updateSoLuong?idhct=" +  ${chitiet.id} + &soluong=99"
+                                ></button>
                             </td>
-                        </tr>
-                        </tbody>
-                    </c:forEach>
-                </table>
-            </form>
+                        </form>
+                    </tr>
+                    </tbody>
+
+                </c:forEach>
+            </table>
+
             <%--            </c:if>--%>
             <c:if test="${empty CTHoaDon}">
                 <p>No Chi Tiet Hoa Don found.</p>
@@ -293,7 +303,7 @@
                         <th>Mau</th>
                         <th>Chat Lieu</th>
                         <th>Mo Ta</th>
-                        <th>So luong them</th>
+                        <%--                        <th>So luong them</th>--%>
                     </tr>
                     </thead>
 
@@ -307,7 +317,7 @@
                             <td>${d.mausac.ten}</td>
                             <td>${d.chatlieu.ten}</td>
                             <td>${d.mota}</td>
-                            <td><input type="number" name="soluong" value="1" min="1" class="form-control"></td>
+                                <%--                            <td><input type="number" name="soluong" value="1" min="1" class="form-control"></td>--%>
                             <td>
                                 <button onclick="reloadpage();" formmethod="post"
                                         formaction="/banhang-hoadon/add/${d.id}"
@@ -515,11 +525,22 @@
 
     });
 
-
     function reloadpage() {
 
         location.reload();
     }
+
+    function getsoluongupdate(idhdct) {
+            let id = idhdct.toString();
+
+        let soluong = document.getElementById("idsoluong").value;
+        let sl = soluong.toString();
+        document.getElementById("idbutton").formaction = "/banhang-hoadon/updateSoLuong?id=" + id + "&soluong=" + sl;
+        // document.getElementById("idform").action= "/banhang-hoadon/updateSoLuong/id=" + idhdct;
+
+
+    }
+
 
 
 </script>
