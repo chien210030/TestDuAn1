@@ -16,7 +16,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"crossorigin=""></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" crossorigin=""></script>
 
     <style>
         body {
@@ -221,7 +221,7 @@
 
                     <tbody>
                     <tr>
-                        <form method="post" id="idform" action="">
+                        <form method="post">
 
                             <td>${chitiet.hoadon.ma}</td>
                             <td> ${chitiet.chiTietSP.sanpham.ten}</td>
@@ -230,9 +230,14 @@
                                        class="form-control-range" value="${chitiet.soluong}"></td>
                             <td>${chitiet.dongia}</td>
 
+                                <%--                            <td><button type="submit" id="idbutton" onclick="getsoluongupdate(${chitiet.id})" class="btn btn-primary glyphicon glyphicon-ok-circle"--%>
+                                <%--                                        action="/banhang-hoadon/updateSoLuong?idhdct=" +${chitiet.id} + &soluong=99"--%>
+                                <%--                                ></button>--%>
+                                <%--                            </td>--%>
                             <td>
-                                <button type="submit" id="idbutton" onclick="getsoluongupdate(${chitiet.id})" class="btn btn-primary glyphicon glyphicon-ok-circle"
-                                        formaction="/banhang-hoadon/updateSoLuong?idhct=" +  ${chitiet.id} + &soluong=99"
+                                <button type="submit" id="idbutton"
+                                        class="btn btn-primary glyphicon glyphicon-ok-circle"
+                                        formaction="/banhang-hoadon/updateSoLuong/${chitiet.id }"
                                 ></button>
                             </td>
                         </form>
@@ -530,17 +535,16 @@
         location.reload();
     }
 
-    function getsoluongupdate(idhdct) {
-            let id = idhdct.toString();
-
-        let soluong = document.getElementById("idsoluong").value;
-        let sl = soluong.toString();
-        document.getElementById("idbutton").formaction = "/banhang-hoadon/updateSoLuong?id=" + id + "&soluong=" + sl;
-        // document.getElementById("idform").action= "/banhang-hoadon/updateSoLuong/id=" + idhdct;
-
-
-    }
-
+    // function getsoluongupdate(idhdct) {
+    //     let id = idhdct.toString();
+    //
+    //     let soluong = document.getElementById("idsoluong").value;
+    //     let sl = soluong.toString();
+    //     document.getElementById("idbutton").formaction = "/banhang-hoadon/updateSoLuong?id=" + id + "&soluong=" + sl;
+    //     // document.getElementById("idform").action= "/banhang-hoadon/updateSoLuong/id=" + idhdct;
+    //
+    //
+    // }
 
 
 </script>
