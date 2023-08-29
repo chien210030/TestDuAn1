@@ -228,8 +228,10 @@ public class BanHangController {
             hdctt.setChiTietSP(ctsp1);
             hdctt.setHoadon(hd1);
             hoaDonChiTietRepository.save(hdctt);
+
+
         }
-        return "redirect:/banhang-hoadon/banhang";
+        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
 
     @PostMapping("/updateSoLuong/{id}")
@@ -282,7 +284,7 @@ public class BanHangController {
         System.out.println("chay ra ngoai " + chiTietSP.getSoluongton());
 //                chiTietSPRepository.save(chiTietSP);
 //        loadlai();
-        return "redirect:/banhang-hoadon/banhang";
+        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
 
     public String ThanhToan() {
