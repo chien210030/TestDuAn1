@@ -85,11 +85,7 @@ public class BanHangController {
         hoaDon.setMa(ma);
         hoaDon.setNgaytao(new Date());
         hoaDon.setTrangthai(0);
-        NhanVien nhanVien = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
-        if (nhanVien != null) {
-            hoaDon.setNhanVien(nhanVien);
 
-        }
         hoaDonRepository.save(hoaDon);
 
         return "redirect:/banhang-hoadon/banhang";

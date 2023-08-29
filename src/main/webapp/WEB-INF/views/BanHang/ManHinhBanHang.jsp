@@ -192,6 +192,10 @@
                         </tbody>
                     </c:forEach>
                 </table>
+            <div class="col-4">
+                <button type="submit" formaction="/banhang-hoadon/taohoadon" formmethod="post "
+                        class="btn btn-primary" id="btnThemHoaDon">Tao Hoa Don</button>
+            </div>
 
             <ul class="pagination">
 
@@ -442,10 +446,7 @@
         </div>
         <div class="row" style="padding-top: 10px">
             <div class="col-custom" style="padding-top: 10px">
-                <div class="col-4">
-                    <button type="submit" formaction="/banhang-hoadon/taohoadon" formmethod="post "
-                            class="btn btn-primary" id="btnThemHoaDon">Tao Hoa Don</button>
-                </div>
+
                 &#160&#160&#160
                 <div class="col-4">
 
