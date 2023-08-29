@@ -153,7 +153,7 @@
         <%--        --HOA DON  ----%>
         <div class="col-6 bmarin groove">
             <h4><b>Hóa Đơn </b></h4>
-            <form action="/banhang-hoadon" method="get">
+
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -172,6 +172,7 @@
                     <c:forEach items="${HoaDon}" var="i">
                         <tbody>
                         <tr>
+                            <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
                             <td>${i.ma}</td>
                             <td>
                                 <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
@@ -185,12 +186,13 @@
                             <td>${i.trangthai == 1 ? 'Đã Thanh toán':'Chưa Thanh Toán'}</td>
                             <td><a class="btn btn-primary glyphicon glyphicon-pencil"
                                    href="/banhang-hoadon/gethoadon/${i.id}"></a></td>
+                            </form>
                         </tr>
 
                         </tbody>
                     </c:forEach>
                 </table>
-            </form>
+
             <ul class="pagination">
 
 
@@ -221,7 +223,7 @@
 
                     <tbody>
                     <tr>
-                        <form method="post">
+                        <form action="/banhang-hoadon/gethoadon/${chitiet.id}" method="get">
 
                             <td>${chitiet.hoadon.ma}</td>
                             <td> ${chitiet.chiTietSP.sanpham.ten}</td>
@@ -230,12 +232,9 @@
                                        class="form-control-range" value="${chitiet.soluong}"></td>
                             <td>${chitiet.dongia}</td>
 
-                                <%--                            <td><button type="submit" id="idbutton" onclick="getsoluongupdate(${chitiet.id})" class="btn btn-primary glyphicon glyphicon-ok-circle"--%>
-                                <%--                                        action="/banhang-hoadon/updateSoLuong?idhdct=" +${chitiet.id} + &soluong=99"--%>
-                                <%--                                ></button>--%>
-                                <%--                            </td>--%>
                             <td>
                                 <button type="submit" id="idbutton"
+                                        formmethod="post"
                                         class="btn btn-primary glyphicon glyphicon-ok-circle"
                                         formaction="/banhang-hoadon/updateSoLuong/${chitiet.id }"
                                 ></button>
@@ -357,16 +356,19 @@
         </div>
         <%--            PHAN TẠO HÓA ĐƠN --%>
         <div id="viewhoadon" class="tabcontent">
-            <form action="/taohoadon" method="post" id="hoaDonForm">
+            <form action="#" method="post" id="hoaDonForm" >
                 <div class="form-group">
-                    <label>Ma HD</label><input type="hidden" class="form-control-range" name="ma">
+                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma" value="${HoaDonTo.ma}" readonly>
 
                 </div>
                 <div class="form-group">
-                    <label>Ngay Tao</label><input type="datetime-local" id="ngaytao" class="form-control"
-                                                  name="ngaytao">
-
+                    <label>Ngay Tao</label>
+<%--                    <input type="text"   class="form-control"--%>
+<%--                                                  name="ngaytao" value="${HoaDonTo.ngaytao}">--%>
+            <fmt:formatDate value="${HoaDonTo.ngaytao}" pattern="dd/MM/yyyy hh:mm:ss" var="formattedNgayTao"/>
+                    <input class="readonly-input form-control" type="text"  value="${formattedNgayTao}" readonly/>
                 </div>
+
                 <div class="form-group">
                     <label>NV TT </label>
                     <select name="nhanvien" class="form-control">
@@ -377,7 +379,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten">
+                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten" value=" ">
 
                 </div>
                 <div class="form-group">
@@ -387,20 +389,20 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Tong Tien Hang </label><input class="form-control" name="tongtien">
+                    <label>Tong Tien Hang </label><input class="form-control" name="tongtien" value="${HoaDonTo.tongtien}">
 
                 </div>
                 <div class="form-group">
-                    <label>Tien khuyen mai</label><input class="form-control" name="tongtienkm">
+                    <label>Tien khuyen mai</label><input class="form-control" name="tongtienkm" value="${HoaDonTo.tongtienkm}">
 
                 </div>
 
                 <div class="form-group">
-                    <label> Tong Tien Thanh Toan</label><input class="form-control-range" name="tongtientt">
+                    <label> Tong Tien Thanh Toan</label><input class="form-control-range" name="tongtientt" value="${HoaDonTo.tongtientt}">
 
                 </div>
                 <div class="form-group">
-                    <label>Khach Thanh Toan</label><input class="form-control-range" name="tienkhachhangtra">
+                    <label>Khach Thanh Toan</label><input class="form-control-range" name="tienkhachhangtra" value="${HoaDonTo.tienkhachhangtra}">
 
                 </div>
 
@@ -441,8 +443,8 @@
         <div class="row" style="padding-top: 10px">
             <div class="col-custom" style="padding-top: 10px">
                 <div class="col-4">
-
-                    <button class="btn btn-primary" id="btnThemHoaDon">Tao Hoa Don</button>
+                    <button type="submit" formaction="/banhang-hoadon/taohoadon" formmethod="post "
+                            class="btn btn-primary" id="btnThemHoaDon">Tao Hoa Don</button>
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
@@ -492,16 +494,16 @@
 
     // Get the element with id="defaultOpen" and click on it
     document.getElementById("defaultOpen").click();
-    //lấy ngày và giờ hiện tại
-    // document.getElementById("ngaytao").value = new Date().toISOString().slice(0,10);
-    // Đặt múi giờ mặc định là "Asia/Ho_Chi_Minh" (múi giờ Việt Nam - GMT+7)
-    moment.tz.setDefault("Asia/Ho_Chi_Minh");
-
-    // Lấy ngày và giờ hiện tại theo múi giờ đã đặt
-    let nowInVietnam = moment().format("YYYY-MM-DDTHH:mm");
-
-    // Gán giá trị vào trường input "ngaytao"
-    document.getElementById("ngaytao").value = nowInVietnam;
+    // //lấy ngày và giờ hiện tại
+    // // document.getElementById("ngaytao").value = new Date().toISOString().slice(0,10);
+    // // Đặt múi giờ mặc định là "Asia/Ho_Chi_Minh" (múi giờ Việt Nam - GMT+7)
+    // moment.tz.setDefault("Asia/Ho_Chi_Minh");
+    //
+    // // Lấy ngày và giờ hiện tại theo múi giờ đã đặt
+    // let nowInVietnam = moment().format("YYYY-MM-DDTHH:mm");
+    //
+    // // Gán giá trị vào trường input "ngaytao"
+    // document.getElementById("ngaytao").value = nowInVietnam;
 
     // nút button
     document.getElementById('btnThemHoaDon').addEventListener('click', function (event) {

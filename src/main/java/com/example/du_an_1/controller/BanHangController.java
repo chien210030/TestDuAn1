@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
-@SessionAttributes("loadchitietsp")
+//@SessionAttributes("loadchitietsp")
 @RequestMapping("/banhang-hoadon")
 public class BanHangController {
 
@@ -77,6 +78,7 @@ public class BanHangController {
 
     @PostMapping("/taohoadon")
     public String taohoadon(@RequestParam("ma") String ma,
+
                             @RequestParam("nhanvien") UUID idnhanvien
     ) {
         HoaDon hoaDon = new HoaDon();
@@ -92,6 +94,7 @@ public class BanHangController {
 
         return "redirect:/banhang-hoadon/banhang";
     }
+
     HoaDon hoadonngoai;
     List<HoaDonChiTiet> hdct;
 
@@ -102,17 +105,26 @@ public class BanHangController {
 
         hdct = hoadonngoai.getHoaDonChiTiets();
         System.out.println("HD CT NE" + hdct);
+        BigDecimal tongtienhang = hdct
+                .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        hoadonngoai.setTongtien(tongtienhang);
 
+        model.addAttribute("HoaDonTo", hoadonngoai);
         model.addAttribute("CTHoaDon", hdct);
+
+
         return "forward:/banhang-hoadon/banhang";
     }
 
-    public boolean checkspthd(UUID idct) {
-        return true;
+    public String xoaSanPham() {
+
+        return "forward:/banhang-hoadon/banhang";
     }
 
+
     @PostMapping("/add/{id}")
-    public String addSanPhamvaoHDCT(@PathVariable("id") UUID idctsp ) {
+    public String addSanPhamvaoHDCT(@PathVariable("id") UUID idctsp) {
         ChiTietSP ctsp1 = chiTietSPRepository.findById(idctsp).orElse(null);
         System.out.println("id ct" + idctsp);
 //        System.out.println("so " + soluongthem);
@@ -147,14 +159,11 @@ public class BanHangController {
                     BigDecimal dongiamoi = giatienHDCT.add(giatienOfHDCTkhicongThem);
                     xhdct.setDongia(dongiamoi);
 
-
-
                     int soluongUpadteOfSanPham = ctsp1.getSoluongton() - 1;
                     ctsp1.setSoluongton(soluongUpadteOfSanPham);
                     chiTietSPRepository.save(ctsp1);
                     System.out.println("so luong cua SanPham sau khi cap nhat " + ctsp1.getSoluongton());
                     hoaDonChiTietRepository.save(xhdct);
-
                     System.out.println("so luong cua HDCt sau khi cap nhat" + xhdct.getSoluong());
                     check = 1;
 
@@ -197,11 +206,12 @@ public class BanHangController {
             hd1.generateMa();
             hd1.setNgaytao(new Date());
             hd1.setTrangthai(0);
+//            hd1.setNhanVien(new NhanVien());
             hoaDonRepository.save(hd1);
             //tao hdct
             HoaDonChiTiet hdctt = new HoaDonChiTiet();
 
-            if (ctsp1.getSoluongton() > 0  ) {
+            if (ctsp1.getSoluongton() > 0) {
                 int soluongtonmoi = ctsp1.getSoluongton() - 1;
                 ctsp1.setSoluongton(soluongtonmoi);
 
@@ -220,64 +230,65 @@ public class BanHangController {
             hoaDonChiTietRepository.save(hdctt);
         }
         return "redirect:/banhang-hoadon/banhang";
-
     }
 
     @PostMapping("/updateSoLuong/{id}")
-    public String GiamSoLuong(@PathVariable("id") UUID idhdct,@RequestParam("soluong") int soluongcapnhat) {
-             HoaDonChiTiet hdchitiet  = hoaDonChiTietRepository.findById(idhdct).orElse(null);
+    public String GiamSoLuong(@PathVariable("id") UUID idhdct, @RequestParam("soluong") int soluongcapnhat) {
+        HoaDonChiTiet hdchitiet = hoaDonChiTietRepository.findById(idhdct).orElse(null);
         System.out.println("id hdcr" + idhdct);
 
         UUID idCTSP = hdchitiet.getChiTietSP().getId();
         ChiTietSP chiTietSP = chiTietSPRepository.findById(idCTSP).orElse(null);
-        System.out.println("ct sp "  +chiTietSP);
+        System.out.println("ct sp " + chiTietSP);
         System.out.println("so luong cap nhat " + soluongcapnhat);
-        BigDecimal giatienmoi ;
-        System.out.println("so luong hdct hien tai " +hdchitiet.getSoluong());
-                if ( hdchitiet.getSoluong() > soluongcapnhat && soluongcapnhat < chiTietSP.getSoluongton()){
-                    System.out.println("so cap nhat nho hon:" + soluongcapnhat);
-                    int   soluongcongvao =   hdchitiet.getSoluong() - soluongcapnhat;
-                    System.out.println("so luong cong vao :" + soluongcongvao);
-                    int soluongtonmoi1 = chiTietSP.getSoluongton() +  soluongcongvao;
-                    System.out.println("so luong ton moi1 :" + soluongtonmoi1);
-                    chiTietSP.setSoluongton(soluongtonmoi1);
-                    chiTietSPRepository.save(chiTietSP);
+        BigDecimal giatienmoi;
+        System.out.println("so luong hdct hien tai " + hdchitiet.getSoluong());
+        if (hdchitiet.getSoluong() > soluongcapnhat && soluongcapnhat < chiTietSP.getSoluongton()) {
+            System.out.println("so cap nhat nho hon:" + soluongcapnhat);
+            int soluongcongvao = hdchitiet.getSoluong() - soluongcapnhat;
+            System.out.println("so luong cong vao :" + soluongcongvao);
+            int soluongtonmoi1 = chiTietSP.getSoluongton() + soluongcongvao;
+            System.out.println("so luong ton moi1 :" + soluongtonmoi1);
+            chiTietSP.setSoluongton(soluongtonmoi1);
+            chiTietSPRepository.save(chiTietSP);
 
 
-                    hdchitiet.setSoluong(soluongcapnhat);
-                    giatienmoi = chiTietSP.getGiaban().multiply(new BigDecimal(soluongcapnhat));
-                    hdchitiet.setDongia(giatienmoi);
-                    hoaDonChiTietRepository.save(hdchitiet);
+            hdchitiet.setSoluong(soluongcapnhat);
+            giatienmoi = chiTietSP.getGiaban().multiply(new BigDecimal(soluongcapnhat));
+            hdchitiet.setDongia(giatienmoi);
+            hoaDonChiTietRepository.save(hdchitiet);
+
+            System.out.println("so luong ton moi  trong IF 1:" + soluongtonmoi1);
 
 
+            System.out.println("so luong ton sau khi sava IN IF 1 " + chiTietSP.getSoluongton());
+        } else if (hdchitiet.getSoluong() < soluongcapnhat && soluongcapnhat < chiTietSP.getSoluongton()) {
+            System.out.println("so cap nhat lon hon" + soluongcapnhat);
+            // so luong ctsp
 
-                    System.out.println("so luong ton moi  trong IF 1:" + soluongtonmoi1);
+            int soluongcongvao = soluongcapnhat - hdchitiet.getSoluong();
+            int soluongtonmoi2 = chiTietSP.getSoluongton() - soluongcongvao;
+            System.out.println("so luong ton moi  trong IF 2:" + soluongtonmoi2);
+            chiTietSP.setSoluongton(soluongtonmoi2);
+            chiTietSPRepository.save(chiTietSP);
 
-
-                    System.out.println("so luong ton sau khi sava IN IF 1 " + chiTietSP.getSoluongton());
-                }
-                else  if( hdchitiet.getSoluong() < soluongcapnhat && soluongcapnhat < chiTietSP.getSoluongton()){
-                    System.out.println("so cap nhat lon hon" + soluongcapnhat);
-                    // so luong ctsp
-
-                    int soluongcongvao = soluongcapnhat - hdchitiet.getSoluong();
-                    int soluongtonmoi2 = chiTietSP.getSoluongton() - soluongcongvao;
-                    System.out.println("so luong ton moi  trong IF 2:" + soluongtonmoi2);
-                    chiTietSP.setSoluongton(soluongtonmoi2);
-                    chiTietSPRepository.save(chiTietSP);
-
-                    hdchitiet.setSoluong(soluongcapnhat);
-                    giatienmoi = chiTietSP.getGiaban().multiply(new BigDecimal(soluongcapnhat));
-                    hdchitiet.setDongia(giatienmoi);
-                    hoaDonChiTietRepository.save(hdchitiet);
-                    System.out.println("so luong ton sau khi save in IF 2 " +chiTietSP.getSoluongton());
-                }
+            hdchitiet.setSoluong(soluongcapnhat);
+            giatienmoi = chiTietSP.getGiaban().multiply(new BigDecimal(soluongcapnhat));
+            hdchitiet.setDongia(giatienmoi);
+            hoaDonChiTietRepository.save(hdchitiet);
+            System.out.println("so luong ton sau khi save in IF 2 " + chiTietSP.getSoluongton());
+        }
 
         System.out.println("chay ra ngoai " + chiTietSP.getSoluongton());
 //                chiTietSPRepository.save(chiTietSP);
+//        loadlai();
         return "redirect:/banhang-hoadon/banhang";
     }
 
+    public String ThanhToan() {
+
+        return "";
+    }
 
     @GetMapping("/ban-hang")
     public String testgiaodien() {
