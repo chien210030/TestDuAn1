@@ -341,11 +341,11 @@
                 </form>
             </table>
             <ul class="pagination">
-                <li class="page-item"><a class="page-link" href="?pageNum=${1}">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="?pageNumCT=${1}">Previous</a></li>
                 <c:forEach begin="1" end="${chitietPages}" varStatus="status">
-                    <li class="page-item"><a class="page-link" href="?pageNum=${status.index}">${status.index}</a></li>
+                    <li class="page-item"><a class="page-link" href="?pageNumCT=${status.index}">${status.index}</a></li>
                 </c:forEach>
-                <li class="page-item"><a class="page-link" href="?pageNum=${chitietPages}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?pageNumCT=${chitietPages}">Next</a></li>
             </ul>
 
         </div>

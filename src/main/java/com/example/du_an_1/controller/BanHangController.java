@@ -1,6 +1,8 @@
 package com.example.du_an_1.controller;
 
 
+import com.example.du_an_1.Service.ChiTIetService;
+import com.example.du_an_1.Service.impl.ChiTietSPServiceImpl;
 import com.example.du_an_1.entity.*;
 import com.example.du_an_1.repository.*;
 import com.example.du_an_1.repository.impl.NhanVienChucVuRepository;
@@ -10,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -44,10 +47,16 @@ public class BanHangController {
     @Autowired
     private HoaDonChiTietRepository hoaDonChiTietRepository;
 
-    @ModelAttribute("loadchitietsp")
-    public List<ChiTietSP> getallchitietsp() {
+    @Autowired
+    private ChiTietSPServiceImpl ctspService;
 
-        return chiTietSPRepository.findAll();
+    @ModelAttribute("loadchitietsp")
+    public List<ChiTietSP> getallchitietsp(Model model,
+                                           @RequestParam(name = "pageNumCT", required = false, defaultValue = "1") Integer pageNum) {
+      Pageable pageable = PageRequest.of(pageNum - 1 , 3);
+      Page<ChiTietSP> pageCT = ctspService.getall(pageable);
+      model.addAttribute("chitietPages", pageCT.getTotalPages());
+        return pageCT.getContent();
     }
 
 
@@ -59,10 +68,11 @@ public class BanHangController {
         Pageable pageable = PageRequest.of(pageNum - 1, 5);
         Page<HoaDon> page = hoaDonRepository.findAll(pageable);
 
-        Page<ChiTietSP> page4 = chiTietSPRepository.findAll(pageable);
+//        Pageable pageable1 = PageRequest.of(pageNum - 1,2) ;
+//        Page<ChiTietSP> page4 = ctspService.getall(pageable1);
 
         model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("chitietPages", page4.getTotalPages());
+//        model.addAttribute("chitietPages", page4.getTotalPages());
 
         model.addAttribute("HoaDon", page.getContent());
 
