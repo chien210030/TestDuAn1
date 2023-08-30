@@ -50,8 +50,7 @@
             <li class="side-bar">
                 <a href="/ca/hien-thi"><span class="glyphicon glyphicon-certificate">&nbsp;</span>GiaoCa</a></li>
 
-            <li class="side-bar"><a href="/thongke/dashboard"><span class="glyphicon glyphicon-signal">&nbsp;</span>Thống Kê</a>
-            </li>
+            <li class="side-bar"><a href="/thongke/dashboard"><span class="glyphicon glyphicon-signal">&nbsp;</span>ThongKe</a></li>
             <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>
 
         </ul>

@@ -26,7 +26,7 @@ public class HoaDon {
     private UUID id ;
 
     @Column(name="ma")
-    private  String ma ;
+    private  String ma;
 
     @Column(name = "ngaytao")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -61,6 +61,12 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "idnhanvien")
     private  NhanVien nhanVien ;
+
+
+    @ManyToOne
+    @JoinColumn(name = "idnhanca")
+    private NhanCa nhanCa;
+
 
     @OneToMany(mappedBy = "hoadon")
     private List<HoaDonChiTiet> hoaDonChiTiets ;

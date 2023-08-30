@@ -10,15 +10,16 @@ import java.util.UUID;
 public interface HoaDonChiTietService {
 
 
+   // List<HoaDonChiTiet> findByHoaDonMa(String maHD);
 
-//    List<HoaDonChiTiet> getAll();
-//
-//    void save(HoaDonChiTiet value);
-//
-//    void deleteById(UUID id);
-//
-//    Optional<HoaDonChiTiet> findById(UUID id);
+    List<HoaDonChiTiet> getAll();
 
-    //List<Object[]> getListThongKeSP(int month,int year,int trangthai);
+    void save(HoaDonChiTiet value);
+
+    void deleteById(UUID id);
+
+    Optional<HoaDonChiTiet> findById(UUID id);
+
+    List<Object[]> getListThongKeSP(int month,int year,int trangthai);
 
 }
