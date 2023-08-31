@@ -23,7 +23,8 @@ import java.util.UUID;
 public class HoaDon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id ;
+    @Column(name = "id")
+    private UUID id;
 
     @Column(name="ma")
     private  String ma;
@@ -62,10 +63,10 @@ public class HoaDon {
     @JoinColumn(name = "idnhanvien")
     private  NhanVien nhanVien ;
 
-
-    @ManyToOne
-    @JoinColumn(name = "idnhanca")
-    private NhanCa nhanCa;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "idnhanca")
+//    private NhanCa nhanCa;
 
 
     @OneToMany(mappedBy = "hoadon")

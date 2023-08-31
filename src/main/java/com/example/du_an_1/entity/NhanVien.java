@@ -77,7 +77,7 @@ public class NhanVien {
     @JoinColumn(name = "idchucvu")
     ChucVu chucVu;
 
-    @ManyToOne
-    @JoinColumn(name = "idca")
-    Ca ca;
+//    @ManyToOne
+//    @JoinColumn(name = "idca")
+//    Ca ca;
 }
