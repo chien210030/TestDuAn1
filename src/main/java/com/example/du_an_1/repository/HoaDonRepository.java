@@ -1,7 +1,9 @@
 package com.example.du_an_1.repository;
 
 import com.example.du_an_1.entity.HoaDon;
+import com.example.du_an_1.entity.KhachHang;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -9,6 +11,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface HoaDonRepository extends JpaRepository<HoaDon , UUID> {
+    @Modifying
+    @Query("update HoaDon h set h.khachhang.id =:newkh where h.id =:hoaDonId")
+    void  updatekhachhang(@Param("newkh") UUID kh,@Param("hoaDonId") UUID hoadonid );
+
     //thong ke
     @Query("SELECT FUNCTION('MONTH', hd.ngaythanhtoan) as month, COUNT(hd) as totalDonHang " +
             "FROM HoaDon hd " +

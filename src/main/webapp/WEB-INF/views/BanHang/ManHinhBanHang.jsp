@@ -154,25 +154,25 @@
         <div class="col-6 bmarin groove">
             <h4><b>Hóa Đơn </b></h4>
 
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Ma HD</th>
-                        <th>Ngay Tao</th>
-                        <th>Ten NV</th>
-                        <th>Ten KH</th>
-                        <th>Tong tien</th>
-                        <th>Tien km</th>
-                        <th>Tien Thanh Toan</th>
-                        <th>Ngay Thanh Toan</th>
-                        <th>Trang Thai</th>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Ma HD</th>
+                    <th>Ngay Tao</th>
+                    <th>Ten NV</th>
+                    <th>Ten KH</th>
+                    <th>Tong tien</th>
+                    <th>Tien km</th>
+                    <th>Tien Thanh Toan</th>
+                    <th>Ngay Thanh Toan</th>
+                    <th>Trang Thai</th>
 
-                    </tr>
-                    </thead>
-                    <c:forEach items="${HoaDon}" var="i">
-                        <tbody>
-                        <tr>
-                            <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
+                </tr>
+                </thead>
+                <c:forEach items="${HoaDon}" var="i">
+                    <tbody>
+                    <tr>
+                        <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
                             <td>${i.ma}</td>
                             <td>
                                 <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
@@ -186,15 +186,16 @@
                             <td>${i.trangthai == 1 ? 'Đã Thanh toán':'Chưa Thanh Toán'}</td>
                             <td><a class="btn btn-primary glyphicon glyphicon-pencil"
                                    href="/banhang-hoadon/gethoadon/${i.id}"></a></td>
-                            </form>
-                        </tr>
+                        </form>
+                    </tr>
 
-                        </tbody>
-                    </c:forEach>
-                </table>
+                    </tbody>
+                </c:forEach>
+            </table>
             <div class="col-4">
                 <button type="submit" formaction="/banhang-hoadon/taohoadon" formmethod="post "
-                        class="btn btn-primary" id="btnThemHoaDon">Tao Hoa Don</button>
+                        class="btn btn-primary" id="btnThemHoaDon">Tao Hoa Don
+                </button>
             </div>
 
             <ul class="pagination">
@@ -343,7 +344,8 @@
             <ul class="pagination">
                 <li class="page-item"><a class="page-link" href="?pageNumCT=${1}">Previous</a></li>
                 <c:forEach begin="1" end="${chitietPages}" varStatus="status">
-                    <li class="page-item"><a class="page-link" href="?pageNumCT=${status.index}">${status.index}</a></li>
+                    <li class="page-item"><a class="page-link" href="?pageNumCT=${status.index}">${status.index}</a>
+                    </li>
                 </c:forEach>
                 <li class="page-item"><a class="page-link" href="?pageNumCT=${chitietPages}">Next</a></li>
             </ul>
@@ -360,17 +362,18 @@
         </div>
         <%--            PHAN TẠO HÓA ĐƠN --%>
         <div id="viewhoadon" class="tabcontent">
-            <form action="#" method="post" id="hoaDonForm" >
+            <form action="#" method="post" id="hoaDonForm">
                 <div class="form-group">
-                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma" value="${HoaDonTo.ma}" readonly>
+                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma"
+                                               value="${HoaDonTo.ma}" readonly>
 
                 </div>
                 <div class="form-group">
                     <label>Ngay Tao</label>
-<%--                    <input type="text"   class="form-control"--%>
-<%--                                                  name="ngaytao" value="${HoaDonTo.ngaytao}">--%>
-            <fmt:formatDate value="${HoaDonTo.ngaytao}" pattern="dd/MM/yyyy hh:mm:ss" var="formattedNgayTao"/>
-                    <input class="readonly-input form-control" type="text"  value="${formattedNgayTao}" readonly/>
+                    <%--                    <input type="text"   class="form-control"--%>
+                    <%--                                                  name="ngaytao" value="${HoaDonTo.ngaytao}">--%>
+                    <fmt:formatDate value="${HoaDonTo.ngaytao}" pattern="dd/MM/yyyy hh:mm:ss" var="formattedNgayTao"/>
+                    <input class="readonly-input form-control" type="text" value="${formattedNgayTao}" readonly/>
                 </div>
 
                 <div class="form-group">
@@ -383,7 +386,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten" value=" ">
+                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten" value="${HoaDonTo.khachhang.tendem} ${HoaDonTo.khachhang.ten}">
 
                 </div>
                 <div class="form-group">
@@ -393,20 +396,24 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Tong Tien Hang </label><input class="form-control" name="tongtien" value="${HoaDonTo.tongtien}">
+                    <label>Tong Tien Hang </label><input class="form-control" name="tongtien"
+                                                         value="${HoaDonTo.tongtien}">
 
                 </div>
                 <div class="form-group">
-                    <label>Tien khuyen mai</label><input class="form-control" name="tongtienkm" value="${HoaDonTo.tongtienkm}">
+                    <label>Tien khuyen mai</label><input class="form-control" name="tongtienkm"
+                                                         value="${HoaDonTo.tongtienkm}">
 
                 </div>
 
                 <div class="form-group">
-                    <label> Tong Tien Thanh Toan</label><input class="form-control-range" name="tongtientt" value="${HoaDonTo.tongtientt}">
+                    <label> Tong Tien Thanh Toan</label><input class="form-control-range" name="tongtientt"
+                                                               value="${HoaDonTo.tongtientt}">
 
                 </div>
                 <div class="form-group">
-                    <label>Khach Thanh Toan</label><input class="form-control-range" name="tienkhachhangtra" value="${HoaDonTo.tienkhachhangtra}">
+                    <label>Khach Thanh Toan</label><input class="form-control-range" name="tienkhachhangtra"
+                                                          value="${HoaDonTo.tienkhachhangtra}">
 
                 </div>
 
@@ -417,32 +424,40 @@
 
         <%--     END  TẠO HÓA ĐƠN --%>
         <div id="viewkhachhang" class="tabcontent">
+            <form method="post">
             <div class="form-group">
                 <label>Tim KH</label><input class="form-control-range">&#160&#160&#160<a
                     class="btn btn-warning">Search</a>
 
             </div>
             <div class="form-group">
-                <label>Ma KH</label><input class="form-control-range">&#160&#160&#160<a class="btn btn-warning">Add</a>
+                <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}"  class="readonly-input form-control-range" readonly>&#160&#160&#160
 
             </div>
 
             <div class="form-group">
-                <label>Ten KH</label><input class="form-control">
+                <label>Ten KH</label><input name="ten" class="form-control" value="${HoaDonTo.khachhang.ten}">
 
             </div>
             <div class="form-group">
-                <label>Dia Chi </label><input class="form-control">
+                <label>Ten dem</label><input name="tendem" class="form-control" value="${HoaDonTo.khachhang.tendem}">
 
             </div>
+
             <div class="form-group">
-                <label>SDT </label><input class="form-control">
+                <label>SDT </label><input type="number" name="sdt" class="form-control" value="${HoaDonTo.khachhang.sdt}">
 
-            </div>
+            </div>`
             <div class="form-group">
-                <label>Ngay Sinh</label><input class="form-control">
-
+                <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy" var="formattedNgaySinh"/>
+                <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"
+                                               value="${formattedNgaySinh}">
             </div>
+          <div class="form-group">
+              <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning" >them</button>
+
+          </div>
+            </form>
         </div>
         <div class="row" style="padding-top: 10px">
             <div class="col-custom" style="padding-top: 10px">
@@ -454,7 +469,7 @@
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
-                    <a href="#" class="btn btn-success">Thanh Toan</a>
+                    <button   class="btn btn-success">Thanh Toan</button>
 
                 </div>
 

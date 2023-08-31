@@ -3,17 +3,21 @@ package com.example.du_an_1.controller;
 
 import com.example.du_an_1.Service.ChiTIetService;
 import com.example.du_an_1.Service.impl.ChiTietSPServiceImpl;
+import com.example.du_an_1.Service.impl.KhachHangServiceImpl;
 import com.example.du_an_1.entity.*;
 import com.example.du_an_1.repository.*;
 import com.example.du_an_1.repository.impl.NhanVienChucVuRepository;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,12 +54,15 @@ public class BanHangController {
     @Autowired
     private ChiTietSPServiceImpl ctspService;
 
+    @Autowired
+    private KhachHangServiceImpl khservice;
+
     @ModelAttribute("loadchitietsp")
     public List<ChiTietSP> getallchitietsp(Model model,
                                            @RequestParam(name = "pageNumCT", required = false, defaultValue = "1") Integer pageNum) {
-      Pageable pageable = PageRequest.of(pageNum - 1 , 3);
-      Page<ChiTietSP> pageCT = ctspService.getall(pageable);
-      model.addAttribute("chitietPages", pageCT.getTotalPages());
+        Pageable pageable = PageRequest.of(pageNum - 1, 3);
+        Page<ChiTietSP> pageCT = ctspService.getall(pageable);
+        model.addAttribute("chitietPages", pageCT.getTotalPages());
         return pageCT.getContent();
     }
 
@@ -293,7 +300,42 @@ public class BanHangController {
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
 
-    public String ThanhToan() {
+    @Transactional
+    @PostMapping("/themkhachhang")
+    public String ThemTTKhachHang(
+            @RequestParam("ten") String ten,
+            @RequestParam("tendem") String tendem,
+            @RequestParam("sdt") String sdt,
+            @RequestParam("ngaysinh") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaysinh
+    ) {
+        if (hoadonngoai != null && hoadonngoai.getKhachhang() == null) {
+            List<KhachHang> listkh = khservice.getall();
+            for (KhachHang xkh : listkh) {
+                if (sdt.equals(xkh.getSdt()) == true) {
+                    KhachHang khdaco = khservice.getsdt(sdt);
+                    System.out.println("khach hang" + khdaco);
+                    hoadonngoai.setKhachhang(khdaco);
+                    break;
+                } else if (sdt.equals(xkh.getSdt()) != true) {
+                    KhachHang kh = new KhachHang();
+                    kh.genmakh();
+                    kh.setTen(ten);
+                    kh.setTendem(tendem);
+                    kh.setSdt(sdt);
+                    kh.setNgaysinh(ngaysinh);
+                    khservice.add(kh);
+                    hoadonngoai.setKhachhang(kh);
+                    hoaDonRepository.save(hoadonngoai);
+
+                }
+  }
+        }
+
+
+        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+    }
+        @PostMapping
+    public String ThanhToan(@RequestParam("nhanvien") UUID idnhanvien) {
 
         return "";
     }
