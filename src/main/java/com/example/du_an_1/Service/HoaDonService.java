@@ -16,5 +16,6 @@ public interface HoaDonService {
     void deleteById(UUID id);
 
     Optional<HoaDon> findById(UUID id);
-
+    int getCompletedOrdersCount();
+    int getProcessingOrdersCount();
 }

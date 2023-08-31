@@ -12,6 +12,16 @@ import java.util.UUID;
 @Repository
 public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, UUID> {
 
+   // List<HoaDonChiTiet> findByHoaDonMa(String maHD);
+    @Query("SELECT hdct.id, " +
+            "SUM(hdct.soluong), SUM(hdct.dongia * hdct.soluong), SUM(hdct.chiTietSP.giaban * hdct.soluong)" +
+            "FROM HoaDonChiTiet hdct " +
+            "JOIN hdct.hoadon hd " +
+            "WHERE FUNCTION('MONTH', hd.ngaythanhtoan) = :month AND FUNCTION('YEAR', hd.ngaythanhtoan) = :year AND hd.trangthai = :trangthai " +
+            "GROUP BY hdct.id")
+    List<Object[]> getListThongKeSP(@Param("trangthai") int trangthai, @Param("year") int year, @Param("month") int month);
+
+
     //thong ke
 
     @Query("SELECT FUNCTION('MONTH',hd.ngaythanhtoan) as month, SUM(h.soluong) as totalSoLuong " +

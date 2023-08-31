@@ -81,6 +81,11 @@
 </style>
 <body>
 
+<p>Tổng số lượng sản phẩm: ${totalProductQuantity}</p>
+<p>Tổng số lượng đơn hàng: ${totalOrderCount}</p>
+<p>Tổng doanh thu: ${totalProfit}</p>
+
+
 <div class="row">
     <h1>Dashboard</h1>
 
@@ -174,16 +179,16 @@
 
 </script>
 <script>
-        document.querySelector("form").addEventListener("submit", function (event) {
-            var selectedYear = document.getElementById("selectedYear").value;
-            localStorage.setItem("selectedYear", selectedYear);
-        });
-        document.addEventListener("DOMContentLoaded", function () {
-            var selectedYear = localStorage.getItem("selectedYear");
-            if (selectedYear) {
-                document.getElementById("selectedYear").value = selectedYear;
-            }
-        });
+    document.querySelector("form").addEventListener("submit", function (event) {
+        var selectedYear = document.getElementById("selectedYear").value;
+        localStorage.setItem("selectedYear", selectedYear);
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        var selectedYear = localStorage.getItem("selectedYear");
+        if (selectedYear) {
+            document.getElementById("selectedYear").value = selectedYear;
+        }
+    });
 </script>
 
 </body>
