@@ -63,9 +63,9 @@ public class HoaDon {
     private  NhanVien nhanVien ;
 
 
-    @ManyToOne
-    @JoinColumn(name = "idnhanca")
-    private NhanCa nhanCa;
+//    @ManyToOne
+//    @JoinColumn(name = "idnhanca")
+//    private NhanCa nhanCa;
 
 
     @OneToMany(mappedBy = "hoadon")

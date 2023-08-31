@@ -336,7 +336,7 @@ public class BanHangController {
     }
         @PostMapping
     public String ThanhToan(@RequestParam("nhanvien") UUID idnhanvien) {
-
+            hoadonngoai.setTrangthai(1);
         return "";
     }
 
