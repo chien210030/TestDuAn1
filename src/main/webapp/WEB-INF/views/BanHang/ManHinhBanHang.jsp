@@ -466,11 +466,22 @@
                 <a class="btn btn-primary" href="">Check</a>
             </div>
             <div class="col-custom">
-                <label>MaKM</label>
-                <select name="">
-                    <option value=""></option>
+                <label>Chọn MaKM</label>
+                <select class="form-control" name="">
+                    <c:forEach items="${khuyenmai}" var="khuyenmai">
+                        <option value="${khuyenmai.id}">${khuyenmai.giatrigiam}</option>
+                    </c:forEach>
                 </select>
             </div>
+<%--            <div class="col-custom">--%>
+
+<%--                <label>Loai SP:</label>--%>
+<%--                <select name="">--%>
+<%--                    <c:forEach items="${dongsp}" var="h">--%>
+<%--                        <option value="${h.id}">${h.ten}</option>--%>
+<%--                    </c:forEach>--%>
+<%--                </select>--%>
+<%--            </div>--%>
         </div>
 
 
@@ -491,6 +502,22 @@
         }
         document.getElementById(cityName).style.display = "block";
         evt.currentTarget.className += " active";
+
+        //khuyenmai Mạnh
+        if (cityName === 'viewhoadon') {
+            // Xử lý sự kiện thay đổi Combobox Mã Khuyến Mãi
+            document.getElementById('khuyenmai').addEventListener('change', function() {
+                var selectedOption = this.options[this.selectedIndex];
+                var discountPercentage = parseFloat(selectedOption.value);
+                var originalPrice = 100000; // Thay bằng giá trị thực tế
+
+                var discountAmount = (discountPercentage / 100) * originalPrice;
+                var finalPrice = originalPrice - discountAmount;
+
+                document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                document.getElementById('tongTienThanhToan').textContent = finalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            });
+        }
     }
 
     // Get the element with id="defaultOpen" and click on it

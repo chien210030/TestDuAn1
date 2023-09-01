@@ -2,9 +2,11 @@ package com.example.du_an_1.controller;
 
 import com.example.du_an_1.entity.HoaDon;
 import com.example.du_an_1.entity.KhachHang;
+import com.example.du_an_1.entity.KhuyenMai;
 import com.example.du_an_1.entity.NhanVien;
 import com.example.du_an_1.repository.HoaDonRepository;
 import com.example.du_an_1.repository.KhachHangRepository;
+import com.example.du_an_1.repository.KhuyenMaiRepository;
 import com.example.du_an_1.repository.impl.NhanVienChucVuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -35,6 +38,9 @@ public class HoaDonController {
 
     @Autowired
     private KhachHangRepository khachHangRepository;
+
+    @Autowired
+    private KhuyenMaiRepository khuyenMaiRepository;
 
     @GetMapping("/hien-thi")
     public String hienThiHoaDon(Model model,
@@ -77,7 +83,8 @@ public class HoaDonController {
                                   @RequestParam("ghichu") String ghichu,
                                   @RequestParam("tongtien") BigDecimal tongtien,
                                   @RequestParam("tongtienkm") BigDecimal tongtienKM,
-                                  @RequestParam("tongtientt") BigDecimal tongtienTT) {
+                                  @RequestParam("tongtientt") BigDecimal tongtienTT,
+                                  KhuyenMai khuyenMai) {
 
         HoaDon hoaDon = new HoaDon();
         hoaDon.setMa(ma);
@@ -89,9 +96,18 @@ public class HoaDonController {
         hoaDon.setTongtienkm(tongtienKM);
         hoaDon.setTongtientt(tongtienTT);
 
+        hoaDon.setKhuyenMai(khuyenMai);
 
         hoaDonRepository.save(hoaDon);
 
         return "redirect:/hoa-don/hien-thi";
     }
+
+    @GetMapping("/get-khuyen-mai")
+    @ResponseBody
+    public List<KhuyenMai> getAllKhuyenMai() {
+        List<KhuyenMai> khuyenMaiList = khuyenMaiRepository.findAll();
+        return khuyenMaiList;
+    }
+
 }

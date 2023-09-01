@@ -92,6 +92,8 @@ public class KhuyenMaiController {
         return "KhuyenMai/index";
     }
 
+
+
     //Tạo mã khuyến mãi
 
     @GetMapping("/khuyen-mai/view-add")

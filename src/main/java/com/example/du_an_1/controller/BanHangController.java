@@ -44,6 +44,7 @@ public class BanHangController {
 
     @Autowired
     private NhanVienChucVuRepository nhanVienChucVuRepository;
+
     @Autowired
     private HoaDonChiTietRepository hoaDonChiTietRepository;
 
@@ -80,6 +81,7 @@ public class BanHangController {
         model.addAttribute("kichco", kichCoRepository.findAll());
         model.addAttribute("thuonghieu", thuongHieuRepository.findAll());
         model.addAttribute("nhanvien", nhanVienChucVuRepository.findAll());
+        model.addAttribute("khuyenmai", khuyenMaiRepository.findAll());
 //        model.addAttribute("dongsp",page1.getContent());
 
         return "BanHang/ManHinhBanHang";
@@ -103,6 +105,8 @@ public class BanHangController {
 
     HoaDon hoadonngoai;
     List<HoaDonChiTiet> hdct;
+    @Autowired
+    private KhuyenMaiRepository khuyenMaiRepository;
 
     @GetMapping("/gethoadon/{id}")
     public String ReadHD(@PathVariable("id") UUID idhd, Model model) {
