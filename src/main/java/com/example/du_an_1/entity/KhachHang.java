@@ -22,8 +22,6 @@ public class KhachHang {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-
-
     @Column(name = "id")
     private UUID id;
 
@@ -39,17 +37,17 @@ public class KhachHang {
     private String ma;
 
     @Column(name = "ho")
-    @NotBlank(message = "Không được để trống họ !")
+//    @NotBlank(message = "Không được để trống họ !")
     private String ho;
 
     @Column(name = "gioitinh")
-    @NotNull(message = "Chọn giới tính !")
+//    @NotNull(message = "Chọn giới tính !")
     private Boolean gioitinh;
 
 
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "ngaysinh")
-    Date ngaysinh = new Date();
+    Date ngaysinh;
 
     @Column(name = "email")
     private String email;
@@ -60,6 +58,10 @@ public class KhachHang {
     @Column(name = "diemthuong")
     private Integer diemthuong;
 
+    @PrePersist
+    public void genmakh() {
+        this.ma = "KH" + UUID.randomUUID().toString().substring(0, 2);
+    }
 //    @OneToMany(mappedBy = "Khachhang")
 //  private   List<HoaDon> hoadon;
 }

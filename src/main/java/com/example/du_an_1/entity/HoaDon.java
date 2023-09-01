@@ -23,7 +23,8 @@ import java.util.UUID;
 public class HoaDon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id ;
+    @Column(name = "id")
+    private UUID id;
 
     @Column(name="ma")
     private  String ma;
@@ -66,9 +67,9 @@ public class HoaDon {
     @JoinColumn(name = "idkhuyenmai")
     private KhuyenMai khuyenMai;
 
-    @ManyToOne
-    @JoinColumn(name = "idnhanca")
-    private NhanCa nhanCa;
+//    @ManyToOne
+//    @JoinColumn(name = "idnhanca")
+//    private NhanCa nhanCa;
 
 
     @OneToMany(mappedBy = "hoadon")
@@ -79,22 +80,5 @@ public class HoaDon {
 
     }
 
-//    @Override
-//    public String toString() {
-//        return "HoaDon{" +
-//                "id=" + id +
-//                ", ma='" + ma + '\'' +
-//                ", ngaytao=" + ngaytao +
-//                ", ngaythanhtoan=" + ngaythanhtoan +
-//                ", trangthai=" + trangthai +
-//                ", ghichu='" + ghichu + '\'' +
-//                ", tongtien=" + tongtien +
-//                ", tongtienkm=" + tongtienkm +
-//                ", tongtientt=" + tongtientt +
-//                ", tienkhachhangtra=" + tienkhachhangtra +
-//                ", khachhang=" + khachhang +
-//                ", nhanVien=" + nhanVien +
-//                ", hoaDonChiTiets=" + hoaDonChiTiets +
-//                '}';
-//    }
+
 }
