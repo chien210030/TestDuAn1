@@ -256,15 +256,15 @@
 
             <%--            </c:if>--%>
             <c:if test="${empty CTHoaDon}">
-                <p>No Chi Tiet Hoa Don found.</p>
+                <p style="font-family:'Arial Black'">No Chi Tiet Hoa Don found.</p>
             </c:if>
             <div class="row">
                 <div class="col-custom">
                     <button formmethod="post" type="submit" formaction="/banhang-hoadon/removeall" id="RemoveAll" class="btn btn-primary">Remove</button>
                 </div>
-                <div class="col-custom">
-                    <a class="btn btn-primary">Update quantity</a>
-                </div>
+<%--                <div class="col-custom">--%>
+<%--                    <a class="btn btn-primary">Update quantity</a>--%>
+<%--                </div>--%>
             </div>
         </div>
 
@@ -367,7 +367,7 @@
         <div id="viewhoadon" class="tabcontent">
             <form action="#" method="post" id="hoaDonForm">
                 <div class="form-group">
-                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma"
+                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma" style="color: red"
                                                value="${HoaDonTo.ma}" readonly>
 
                 </div>
