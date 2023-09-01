@@ -122,6 +122,7 @@ public class BanHangController {
                 .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         hoadonngoai.setTongtien(tongtienhang);
+        hoadonngoai.setTongtientt(tongtienhang);
 
         model.addAttribute("HoaDonTo", hoadonngoai);
         model.addAttribute("CTHoaDon", hdct);
@@ -233,11 +234,7 @@ public class BanHangController {
                 hdctt.setDongia(dongiaTVaohdct);
 
             }
-//            else if (soluongthem == 1) {
-//                ctsp1.setSoluongton(ctsp1.getSoluongton() - 1);
-//                hdctt.setSoluong(1);
-//                hdctt.setDongia(ctsp1.getGiaban());
-//            }
+
             hdctt.setChiTietSP(ctsp1);
             hdctt.setHoadon(hd1);
             hoaDonChiTietRepository.save(hdctt);
@@ -328,16 +325,48 @@ public class BanHangController {
                     hoaDonRepository.save(hoadonngoai);
 
                 }
-  }
+            }
         }
 
 
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
-        @PostMapping
-    public String ThanhToan(@RequestParam("nhanvien") UUID idnhanvien) {
-            hoadonngoai.setTrangthai(1);
-        return "";
+
+
+    @PostMapping("/removeall")
+    public String RemoveALl() {
+        for (HoaDonChiTiet rhdct : hdct) {
+
+                UUID idsp = rhdct.getChiTietSP().getId();
+                ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
+                if (rhdct.getChiTietSP().getId().equals(ctsp.getId())) {
+                    System.out.println("vao if");
+                    int soluongthemvao = ctsp.getSoluongton() + rhdct.getSoluong();
+                    ctsp.setSoluongton(soluongthemvao);
+                    hoaDonChiTietRepository.deleteById(rhdct.getId());
+                }
+
+                System.out.println("in ra chi tiet sp:" + ctsp);
+
+        }
+
+        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+    }
+
+    @PostMapping("/thanhtoan")
+    public String ThanhToan(@RequestParam("nhanvien") UUID idnhanvien
+    ) {
+        NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
+        BigDecimal tienhang = hdct
+                .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        hoadonngoai.setTongtientt(tienhang);
+        hoadonngoai.setNgaythanhtoan(new Date());
+        hoadonngoai.setTrangthai(1);
+        hoadonngoai.setNhanVien(nv);
+        hoaDonRepository.save(hoadonngoai);
+
+        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
 
     @GetMapping("/ban-hang")

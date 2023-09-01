@@ -34,7 +34,7 @@ public class HoaDon {
     private Date ngaytao;
 
     @Column(name = "ngaythanhtoan")
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private  Date ngaythanhtoan;
 
     @Column(name = "trangthai")
@@ -63,11 +63,7 @@ public class HoaDon {
     @JoinColumn(name = "idnhanvien")
     private  NhanVien nhanVien ;
 
-<<<<<<< HEAD
 
-=======
-//
->>>>>>> d409ae6ae206312a711af38ce014976eb54d1ee8
 //    @ManyToOne
 //    @JoinColumn(name = "idnhanca")
 //    private NhanCa nhanCa;
