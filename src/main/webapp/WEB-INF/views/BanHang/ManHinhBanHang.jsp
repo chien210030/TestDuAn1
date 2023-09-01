@@ -170,9 +170,11 @@
                 </tr>
                 </thead>
                 <c:forEach items="${HoaDon}" var="i">
+                    <c:if test="${i.trangthai==0}" >
                     <tbody>
                     <tr>
                         <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
+
                             <td>${i.ma}</td>
                             <td>
                                 <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
@@ -183,13 +185,14 @@
                             <td>${i.tongtientt}</td>
                             <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>
                             </td>
-                            <td>${i.trangthai == 1 ? 'Đã Thanh toán':'Chưa Thanh Toán'}</td>
+                            <td>${i.trangthai == 0 ? 'Chưa Thanh toán':''}</td>
                             <td><a class="btn btn-primary glyphicon glyphicon-pencil"
                                    href="/banhang-hoadon/gethoadon/${i.id}"></a></td>
                         </form>
                     </tr>
 
                     </tbody>
+                    </c:if>
                 </c:forEach>
             </table>
             <div class="col-4">
@@ -228,7 +231,7 @@
 
                     <tbody>
                     <tr>
-                        <form action="/banhang-hoadon/gethoadon/${chitiet.id}" method="get">
+                        <form action="#" method="post" id="ChiTietHoaDonForm">
 
                             <td>${chitiet.hoadon.ma}</td>
                             <td> ${chitiet.chiTietSP.sanpham.ten}</td>
@@ -253,15 +256,15 @@
 
             <%--            </c:if>--%>
             <c:if test="${empty CTHoaDon}">
-                <p>No Chi Tiet Hoa Don found.</p>
+                <p style="font-family:'Arial Black'">No Chi Tiet Hoa Don found.</p>
             </c:if>
             <div class="row">
                 <div class="col-custom">
-                    <a class="btn btn-primary">Remove</a>
+                    <button formmethod="post" type="submit" formaction="/banhang-hoadon/removeall" id="RemoveAll" class="btn btn-primary">Remove</button>
                 </div>
-                <div class="col-custom">
-                    <a class="btn btn-primary">Update quantity</a>
-                </div>
+<%--                <div class="col-custom">--%>
+<%--                    <a class="btn btn-primary">Update quantity</a>--%>
+<%--                </div>--%>
             </div>
         </div>
 
@@ -364,7 +367,7 @@
         <div id="viewhoadon" class="tabcontent">
             <form action="#" method="post" id="hoaDonForm">
                 <div class="form-group">
-                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma"
+                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma" style="color: red"
                                                value="${HoaDonTo.ma}" readonly>
 
                 </div>
@@ -389,11 +392,11 @@
                     <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten" value="${HoaDonTo.khachhang.tendem} ${HoaDonTo.khachhang.ten}">
 
                 </div>
-                <div class="form-group">
-                    <label>Trạng Thái :</label> <input type="radio" name="trangthai" value="1">Đã Thanh Toán
-                    <input type="radio" name="trangthai" value="0" checked>Chưa Thanh Toán
+<%--                <div class="form-group">--%>
+<%--                    <label>Trạng Thái :</label> <input type="radio" name="trangthai" value="1">Đã Thanh Toán--%>
+<%--                    <input type="radio" name="trangthai" value="0" checked>Chưa Thanh Toán--%>
 
-                </div>
+<%--                </div>--%>
 
                 <div class="form-group">
                     <label>Tong Tien Hang </label><input class="form-control" name="tongtien"
@@ -469,7 +472,7 @@
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
-                    <button   class="btn btn-success">Thanh Toan</button>
+                    <button formmethod="post" formaction="/banhang-hoadon/thanhtoan" id="btnThanhToanHoaDon"  class="btn btn-success">Thanh Toan</button>
 
                 </div>
 
@@ -560,6 +563,36 @@
 
             }).catch(function (error) {
             alert("ko tao duoc hoa don");
+        });
+
+    });
+    //thanh toan
+    document.getElementById('btnThanhToanHoaDon').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var formData = new FormData(document.getElementById('hoaDonForm'));
+        axios.post("/banhang-hoadon/thanhtoan", formData)
+            .then(function (reponse) {
+                alert("thanh toan thành công!");
+                window.location.reload();
+
+            }).catch(function (error) {
+            alert("thanh toan that bai");
+        });
+
+    });
+        // RemoveALL
+    document.getElementById('RemoveAll').addEventListener('click', function (event) {
+        event.preventDefault();
+
+        var formData = new FormData(document.getElementById('ChiTietHoaDonForm'));
+        axios.post("/banhang-hoadon/removeall ", formData)
+            .then(function (reponse) {
+                alert(" Đã xóa sản phẩm!");
+                window.location.reload();
+
+            }).catch(function (error) {
+            alert("xóa sản phẩm thất bại");
         });
 
     });
