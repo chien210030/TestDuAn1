@@ -62,13 +62,11 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "idnhanvien")
     private  NhanVien nhanVien ;
-
-<<<<<<< HEAD
+    
     @ManyToOne
     @JoinColumn(name = "idkhuyenmai")
     private KhuyenMai khuyenMai;
-=======
->>>>>>> 6c30ec16a70188ab669d8506e98859b7b8aa6e79
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "idnhanca")
