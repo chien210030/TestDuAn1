@@ -170,7 +170,11 @@
                 </tr>
                 </thead>
                 <c:forEach items="${HoaDon}" var="i">
+<<<<<<< HEAD
                     <c:if test="${i.trangthai==0}" >
+=======
+                    <c:if test="${i.trangthai==0}">
+>>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
                         <tbody>
                         <tr>
                             <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
@@ -236,8 +240,11 @@
                             <td>${chitiet.hoadon.ma}</td>
                             <td> ${chitiet.chiTietSP.sanpham.ten}</td>
                                 <%--                            <td> ${chitiet.soluong}</td>--%>
-                            <td><input type="number" id="idsoluong" min="1" max="100" name="soluong"
-                                       class="form-control-range" value="${chitiet.soluong}"></td>
+                            <td><input type="number" min="1" max="${chitiet.chiTietSP.soluongton}" name="soluong"
+                                       class="form-control-range" value="${chitiet.soluong}">
+
+
+                            </td>
                             <td>${chitiet.dongia}</td>
 
                             <td>
@@ -246,21 +253,27 @@
                                         class="btn btn-primary glyphicon glyphicon-ok-circle"
                                         formaction="/banhang-hoadon/updateSoLuong/${chitiet.id }"
                                 ></button>
+
+
                             </td>
                         </form>
                     </tr>
                     </tbody>
 
+
                 </c:forEach>
+
             </table>
 
             <%--            </c:if>--%>
             <c:if test="${empty CTHoaDon}">
-                <p style="font-family:'Arial Black'">No Chi Tiet Hoa Don found.</p>
+                <p style="font-family:'Segoe UI Black'">Không có sản phẩm trong giỏ.</p>
             </c:if>
             <div class="row">
                 <div class="col-custom">
-                    <button formmethod="post" type="submit" formaction="/banhang-hoadon/removeall" id="RemoveAll" class="btn btn-primary">Remove</button>
+                    <button formmethod="post" type="submit" formaction="/banhang-hoadon/removeall" id="RemoveAll"
+                            class="btn btn-primary">Remove
+                    </button>
                 </div>
                 <%--                <div class="col-custom">--%>
                 <%--                    <a class="btn btn-primary">Update quantity</a>--%>
@@ -367,7 +380,8 @@
         <div id="viewhoadon" class="tabcontent">
             <form action="#" method="post" id="hoaDonForm">
                 <div class="form-group">
-                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma" style="color: red"
+                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma"
+                                               style="color: red"
                                                value="${HoaDonTo.ma}" readonly>
 
                 </div>
@@ -389,7 +403,8 @@
 
                 </div>
                 <div class="form-group">
-                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten" value="${HoaDonTo.khachhang.tendem} ${HoaDonTo.khachhang.ten}">
+                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten"
+                                                        value="${HoaDonTo.khachhang.tendem} ${HoaDonTo.khachhang.ten}">
 
                 </div>
                 <%--                <div class="form-group">--%>
@@ -434,7 +449,12 @@
 
                 </div>
                 <div class="form-group">
+<<<<<<< HEAD
                     <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}"  class="readonly-input form-control-range" readonly>&#160&#160&#160
+=======
+                    <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}" class="readonly-input form-control-range"
+                                               readonly>&#160&#160&#160
+>>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
 
                 </div>
 
@@ -443,21 +463,42 @@
 
                 </div>
                 <div class="form-group">
+<<<<<<< HEAD
                     <label>Ten dem</label><input name="tendem" class="form-control" value="${HoaDonTo.khachhang.tendem}">
+=======
+                    <label>Ten dem</label><input name="tendem" class="form-control"
+                                                 value="${HoaDonTo.khachhang.tendem}">
+>>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
 
                 </div>
 
                 <div class="form-group">
+<<<<<<< HEAD
                     <label>SDT </label><input type="number" name="sdt" class="form-control" value="${HoaDonTo.khachhang.sdt}">
 
                 </div>`
                 <div class="form-group">
                     <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy" var="formattedNgaySinh"/>
+=======
+                    <label>SDT </label><input type="number" name="sdt" class="form-control"
+                                              value="${HoaDonTo.khachhang.sdt}">
+
+                </div>
+                `
+                <div class="form-group">
+                    <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"
+                                    var="formattedNgaySinh"/>
+>>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
                     <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"
                                                    value="${formattedNgaySinh}">
                 </div>
                 <div class="form-group">
+<<<<<<< HEAD
                     <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning" >them</button>
+=======
+                    <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning">them
+                    </button>
+>>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
 
                 </div>
             </form>
@@ -472,7 +513,9 @@
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
-                    <button formmethod="post" formaction="/banhang-hoadon/thanhtoan" id="btnThanhToanHoaDon"  class="btn btn-success">Thanh Toan</button>
+                    <button formmethod="post" formaction="/banhang-hoadon/thanhtoan" id="btnThanhToanHoaDon"
+                            class="btn btn-success">Thanh Toan
+                    </button>
 
                 </div>
 
@@ -524,7 +567,7 @@
         //khuyenmai Mạnh
         if (cityName === 'viewhoadon') {
             // Xử lý sự kiện thay đổi Combobox Mã Khuyến Mãi
-            document.getElementById('khuyenmai').addEventListener('change', function() {
+            document.getElementById('khuyenmai').addEventListener('change', function () {
                 var selectedOption = this.options[this.selectedIndex];
                 var discountPercentage = parseFloat(selectedOption.value); // Phần trăm giảm giá
                 console.log("Giá trị phần trăm khuyến mãi: " + discountPercentage);
@@ -534,12 +577,24 @@
                 var discountAmount = (discountPercentage / 100) * originalPrice;
                 var finalPrice = originalPrice - discountAmount;
 
+<<<<<<< HEAD
                 // Sử dụng lớp CSS để xác định các phần tử cần cập nhật
                 var tienKhuyenMaiInput = document.querySelector('.tienkhuyenmai');
                 var tongTienThanhToanInput = document.querySelector('.tongtientt');
 
                 tienKhuyenMaiInput.value = discountAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                 tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }); });
+=======
+                document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                });
+                document.getElementById('tongTienThanhToan').textContent = finalPrice.toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                });
+            });
+>>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
         }
     }
 
@@ -612,6 +667,11 @@
         });
 
     });
+
+    // validate
+
+
+
 
     function reloadpage() {
 

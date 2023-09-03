@@ -249,7 +249,7 @@ public class BanHangController {
     }
 
     @PostMapping("/updateSoLuong/{id}")
-    public String GiamSoLuong(@PathVariable("id") UUID idhdct, @RequestParam("soluong") int soluongcapnhat) {
+    public String GiamSoLuong(@PathVariable("id") UUID idhdct, @RequestParam("soluong") int soluongcapnhat,Model model) {
         HoaDonChiTiet hdchitiet = hoaDonChiTietRepository.findById(idhdct).orElse(null);
         System.out.println("id hdcr" + idhdct);
 
@@ -293,11 +293,13 @@ public class BanHangController {
             hdchitiet.setDongia(giatienmoi);
             hoaDonChiTietRepository.save(hdchitiet);
             System.out.println("so luong ton sau khi save in IF 2 " + chiTietSP.getSoluongton());
+        } else if (soluongcapnhat > chiTietSP.getSoluongton()) {
+            model.addAttribute("error" ,"so luong ban them vao vuot qua so luong hang hien co");
+            return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString() ;
         }
 
         System.out.println("chay ra ngoai " + chiTietSP.getSoluongton());
-//                chiTietSPRepository.save(chiTietSP);
-//        loadlai();
+
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
 
@@ -341,16 +343,16 @@ public class BanHangController {
     public String RemoveALl() {
         for (HoaDonChiTiet rhdct : hdct) {
 
-                UUID idsp = rhdct.getChiTietSP().getId();
-                ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
-                if (rhdct.getChiTietSP().getId().equals(ctsp.getId())) {
-                    System.out.println("vao if");
-                    int soluongthemvao = ctsp.getSoluongton() + rhdct.getSoluong();
-                    ctsp.setSoluongton(soluongthemvao);
-                    hoaDonChiTietRepository.deleteById(rhdct.getId());
-                }
+            UUID idsp = rhdct.getChiTietSP().getId();
+            ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
+            if (rhdct.getChiTietSP().getId().equals(ctsp.getId())) {
+                System.out.println("vao if");
+                int soluongthemvao = ctsp.getSoluongton() + rhdct.getSoluong();
+                ctsp.setSoluongton(soluongthemvao);
+                hoaDonChiTietRepository.deleteById(rhdct.getId());
+            }
 
-                System.out.println("in ra chi tiet sp:" + ctsp);
+            System.out.println("in ra chi tiet sp:" + ctsp);
 
         }
 
