@@ -170,11 +170,11 @@
                 </tr>
                 </thead>
                 <c:forEach items="${HoaDon}" var="i">
-<<<<<<< HEAD
+
                     <c:if test="${i.trangthai==0}" >
-=======
-                    <c:if test="${i.trangthai==0}">
->>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
+
+
+
                         <tbody>
                         <tr>
                             <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
@@ -449,12 +449,9 @@
 
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
+
                     <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}"  class="readonly-input form-control-range" readonly>&#160&#160&#160
-=======
-                    <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}" class="readonly-input form-control-range"
-                                               readonly>&#160&#160&#160
->>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
+
 
                 </div>
 
@@ -463,23 +460,22 @@
 
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
+
                     <label>Ten dem</label><input name="tendem" class="form-control" value="${HoaDonTo.khachhang.tendem}">
-=======
-                    <label>Ten dem</label><input name="tendem" class="form-control"
-                                                 value="${HoaDonTo.khachhang.tendem}">
->>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
+
+
+
 
                 </div>
 
                 <div class="form-group">
-<<<<<<< HEAD
+
                     <label>SDT </label><input type="number" name="sdt" class="form-control" value="${HoaDonTo.khachhang.sdt}">
 
                 </div>`
                 <div class="form-group">
                     <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy" var="formattedNgaySinh"/>
-=======
+
                     <label>SDT </label><input type="number" name="sdt" class="form-control"
                                               value="${HoaDonTo.khachhang.sdt}">
 
@@ -488,17 +484,16 @@
                 <div class="form-group">
                     <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"
                                     var="formattedNgaySinh"/>
->>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
+
                     <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"
                                                    value="${formattedNgaySinh}">
                 </div>
                 <div class="form-group">
-<<<<<<< HEAD
+
                     <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning" >them</button>
-=======
-                    <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning">them
-                    </button>
->>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
+
+
+
 
                 </div>
             </form>
@@ -577,14 +572,14 @@
                 var discountAmount = (discountPercentage / 100) * originalPrice;
                 var finalPrice = originalPrice - discountAmount;
 
-<<<<<<< HEAD
+
                 // Sử dụng lớp CSS để xác định các phần tử cần cập nhật
                 var tienKhuyenMaiInput = document.querySelector('.tienkhuyenmai');
                 var tongTienThanhToanInput = document.querySelector('.tongtientt');
 
                 tienKhuyenMaiInput.value = discountAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                 tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }); });
-=======
+
                 document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', {
                     style: 'currency',
                     currency: 'VND'
@@ -593,8 +588,6 @@
                     style: 'currency',
                     currency: 'VND'
                 });
-            });
->>>>>>> d2de8ce2089d98f4a6515c02ca191bd5430062a0
         }
     }
 
