@@ -103,11 +103,4 @@ public class HoaDonController {
         return "redirect:/hoa-don/hien-thi";
     }
 
-    @GetMapping("/get-khuyen-mai")
-    @ResponseBody
-    public List<KhuyenMai> getAllKhuyenMai() {
-        List<KhuyenMai> khuyenMaiList = khuyenMaiRepository.findAll();
-        return khuyenMaiList;
-    }
-
 }
