@@ -170,7 +170,15 @@
                 </tr>
                 </thead>
                 <c:forEach items="${HoaDon}" var="i">
+
+
                     <c:if test="${i.trangthai==0}" >
+
+
+
+
+
+
                         <tbody>
                         <tr>
                             <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
@@ -445,7 +453,11 @@
 
                 </div>
                 <div class="form-group">
-                    <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}"  class="readonly-input form-control-range" readonly>
+
+
+                    <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}"  class="readonly-input form-control-range" readonly>&#160&#160&#160
+
+
 
                 </div>
 
@@ -454,7 +466,15 @@
 
                 </div>
                 <div class="form-group">
+
+
                     <label>Ten dem</label><input name="tendem" class="form-control" value="${HoaDonTo.khachhang.tendem}">
+
+
+
+
+
+
 
                 </div>
 
@@ -463,20 +483,25 @@
                     <label>SDT </label><input type="number" name="sdt" class="form-control" value="${HoaDonTo.khachhang.sdt}">
 
                 </div>
-                <div class="form-group">
-                    <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy" var="formattedNgaySinh"/>
-
-
-                </div>
+              
 
                 <div class="form-group">
                     <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"
                                     var="formattedNgaySinh"/>
+
+
+                    <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"
+                                                   value="${formattedNgaySinh}">
                 </div>
                 <div class="form-group">
+
                     <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning" >them</button>
 
+
+
+
                 </div>
+
             </form>
         </div>
         <div class="row" style="padding-top: 10px">
@@ -549,7 +574,11 @@
                 var tongTienThanhToanInput = document.querySelector('.tongtientt');
 
                 tienKhuyenMaiInput.value = discountAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+                tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }); });
+
                 tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
 
                 document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', {
                     style: 'currency',
@@ -559,7 +588,7 @@
                     style: 'currency',
                     currency: 'VND'
                 });
-            });
+
         }
     }
 
