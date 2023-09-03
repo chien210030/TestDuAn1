@@ -210,7 +210,7 @@
                 </c:forEach>
                 <li class="page-item"><a class="page-link" href="?pageNum=${totalPages}">Next</a></li>
             </ul>
-        </d iv>
+        </div>
         <%--    GIO HANG--%>
         <div class="col-6 bmarin groove">
             <h4><b>Giỏ Hàng</b></h4>
@@ -236,7 +236,7 @@
                             <td>${chitiet.hoadon.ma}</td>
                             <td> ${chitiet.chiTietSP.sanpham.ten}</td>
                                 <%--                            <td> ${chitiet.soluong}</td>--%>
-                            <td><input type="number" min="1" max="100" name="soluong"
+                            <td><input type="number" min="1" max="${chitiet.chiTietSP.soluongton}" name="soluong"
                                        class="form-control-range" value="${chitiet.soluong}">
 
 
@@ -255,18 +255,7 @@
                         </form>
                     </tr>
                     </tbody>
-                    <script>
-                        var soluongCapNhat = ${chitiet.soluong};
-                        var soluongTon = ${chitiet.chiTietSP.soluongton};
-                        var errormessage = "${error}";
-                        console.log("soluongCapNhat: " + soluongCapNhat);
-                        console.log("soluongTon: " + soluongTon);
-                        console.log("errorMessage: " + errormessage);
-                        if (soluongCapNhat > soluongTon) {
-                            alert("loi"+ errormessage);
-                        }
 
-                    </script>
 
                 </c:forEach>
 
@@ -645,6 +634,8 @@
     });
 
     // validate
+
+
 
 
     function reloadpage() {
