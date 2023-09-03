@@ -509,15 +509,6 @@
                     </c:forEach>
                 </select>
             </div>
-            <%--            <div class="col-custom">--%>
-
-            <%--                <label>Loai SP:</label>--%>
-            <%--                <select name="">--%>
-            <%--                    <c:forEach items="${dongsp}" var="h">--%>
-            <%--                        <option value="${h.id}">${h.ten}</option>--%>
-            <%--                    </c:forEach>--%>
-            <%--                </select>--%>
-            <%--            </div>--%>
         </div>
 
 
