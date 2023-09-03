@@ -170,28 +170,28 @@
                 </tr>
                 </thead>
                 <c:forEach items="${HoaDon}" var="i">
-                    <c:if test="${i.trangthai==0}" >
-                    <tbody>
-                    <tr>
-                        <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
+                    <c:if test="${i.trangthai==0}">
+                        <tbody>
+                        <tr>
+                            <form action="/banhang-hoadon/gethoadon/${i.id}" method="get">
 
-                            <td>${i.ma}</td>
-                            <td>
-                                <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
-                            <td>${i.nhanVien.ten}</td>
-                            <td>${i.khachhang.ten}</td>
-                            <td>${i.tongtien}</td>
-                            <td>${i.tongtienkm}</td>
-                            <td>${i.tongtientt}</td>
-                            <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>
-                            </td>
-                            <td>${i.trangthai == 0 ? 'Chưa Thanh toán':''}</td>
-                            <td><a class="btn btn-primary glyphicon glyphicon-pencil"
-                                   href="/banhang-hoadon/gethoadon/${i.id}"></a></td>
-                        </form>
-                    </tr>
+                                <td>${i.ma}</td>
+                                <td>
+                                    <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
+                                <td>${i.nhanVien.ten}</td>
+                                <td>${i.khachhang.ten}</td>
+                                <td>${i.tongtien}</td>
+                                <td>${i.tongtienkm}</td>
+                                <td>${i.tongtientt}</td>
+                                <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>
+                                </td>
+                                <td>${i.trangthai == 0 ? 'Chưa Thanh toán':''}</td>
+                                <td><a class="btn btn-primary glyphicon glyphicon-pencil"
+                                       href="/banhang-hoadon/gethoadon/${i.id}"></a></td>
+                            </form>
+                        </tr>
 
-                    </tbody>
+                        </tbody>
                     </c:if>
                 </c:forEach>
             </table>
@@ -210,7 +210,7 @@
                 </c:forEach>
                 <li class="page-item"><a class="page-link" href="?pageNum=${totalPages}">Next</a></li>
             </ul>
-        </div>
+        </d iv>
         <%--    GIO HANG--%>
         <div class="col-6 bmarin groove">
             <h4><b>Giỏ Hàng</b></h4>
@@ -236,8 +236,11 @@
                             <td>${chitiet.hoadon.ma}</td>
                             <td> ${chitiet.chiTietSP.sanpham.ten}</td>
                                 <%--                            <td> ${chitiet.soluong}</td>--%>
-                            <td><input type="number" id="idsoluong" min="1" max="100" name="soluong"
-                                       class="form-control-range" value="${chitiet.soluong}"></td>
+                            <td><input type="number" min="1" max="100" name="soluong"
+                                       class="form-control-range" value="${chitiet.soluong}">
+
+
+                            </td>
                             <td>${chitiet.dongia}</td>
 
                             <td>
@@ -246,25 +249,42 @@
                                         class="btn btn-primary glyphicon glyphicon-ok-circle"
                                         formaction="/banhang-hoadon/updateSoLuong/${chitiet.id }"
                                 ></button>
+
+
                             </td>
                         </form>
                     </tr>
                     </tbody>
+                    <script>
+                        var soluongCapNhat = ${chitiet.soluong};
+                        var soluongTon = ${chitiet.chiTietSP.soluongton};
+                        var errormessage = "${error}";
+                        console.log("soluongCapNhat: " + soluongCapNhat);
+                        console.log("soluongTon: " + soluongTon);
+                        console.log("errorMessage: " + errormessage);
+                        if (soluongCapNhat > soluongTon) {
+                            alert("loi"+ errormessage);
+                        }
+
+                    </script>
 
                 </c:forEach>
+
             </table>
 
             <%--            </c:if>--%>
             <c:if test="${empty CTHoaDon}">
-                <p style="font-family:'Arial Black'">No Chi Tiet Hoa Don found.</p>
+                <p style="font-family:'Segoe UI Black'">Không có sản phẩm trong giỏ.</p>
             </c:if>
             <div class="row">
                 <div class="col-custom">
-                    <button formmethod="post" type="submit" formaction="/banhang-hoadon/removeall" id="RemoveAll" class="btn btn-primary">Remove</button>
+                    <button formmethod="post" type="submit" formaction="/banhang-hoadon/removeall" id="RemoveAll"
+                            class="btn btn-primary">Remove
+                    </button>
                 </div>
-<%--                <div class="col-custom">--%>
-<%--                    <a class="btn btn-primary">Update quantity</a>--%>
-<%--                </div>--%>
+                <%--                <div class="col-custom">--%>
+                <%--                    <a class="btn btn-primary">Update quantity</a>--%>
+                <%--                </div>--%>
             </div>
         </div>
 
@@ -367,7 +387,8 @@
         <div id="viewhoadon" class="tabcontent">
             <form action="#" method="post" id="hoaDonForm">
                 <div class="form-group">
-                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma" style="color: red"
+                    <label>Ma HD</label><input type="text" class="readonly-input form-control" name="ma"
+                                               style="color: red"
                                                value="${HoaDonTo.ma}" readonly>
 
                 </div>
@@ -389,14 +410,15 @@
 
                 </div>
                 <div class="form-group">
-                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten" value="${HoaDonTo.khachhang.tendem} ${HoaDonTo.khachhang.ten}">
+                    <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten"
+                                                        value="${HoaDonTo.khachhang.tendem} ${HoaDonTo.khachhang.ten}">
 
                 </div>
-<%--                <div class="form-group">--%>
-<%--                    <label>Trạng Thái :</label> <input type="radio" name="trangthai" value="1">Đã Thanh Toán--%>
-<%--                    <input type="radio" name="trangthai" value="0" checked>Chưa Thanh Toán--%>
+                <%--                <div class="form-group">--%>
+                <%--                    <label>Trạng Thái :</label> <input type="radio" name="trangthai" value="1">Đã Thanh Toán--%>
+                <%--                    <input type="radio" name="trangthai" value="0" checked>Chưa Thanh Toán--%>
 
-<%--                </div>--%>
+                <%--                </div>--%>
 
                 <div class="form-group">
                     <label>Tong Tien Hang </label><input class="form-control" name="tongtien"
@@ -428,38 +450,44 @@
         <%--     END  TẠO HÓA ĐƠN --%>
         <div id="viewkhachhang" class="tabcontent">
             <form method="post">
-            <div class="form-group">
-                <label>Tim KH</label><input class="form-control-range">&#160&#160&#160<a
-                    class="btn btn-warning">Search</a>
+                <div class="form-group">
+                    <label>Tim KH</label><input class="form-control-range">&#160&#160&#160<a
+                        class="btn btn-warning">Search</a>
 
-            </div>
-            <div class="form-group">
-                <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}"  class="readonly-input form-control-range" readonly>&#160&#160&#160
+                </div>
+                <div class="form-group">
+                    <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}" class="readonly-input form-control-range"
+                                               readonly>&#160&#160&#160
 
-            </div>
+                </div>
 
-            <div class="form-group">
-                <label>Ten KH</label><input name="ten" class="form-control" value="${HoaDonTo.khachhang.ten}">
+                <div class="form-group">
+                    <label>Ten KH</label><input name="ten" class="form-control" value="${HoaDonTo.khachhang.ten}">
 
-            </div>
-            <div class="form-group">
-                <label>Ten dem</label><input name="tendem" class="form-control" value="${HoaDonTo.khachhang.tendem}">
+                </div>
+                <div class="form-group">
+                    <label>Ten dem</label><input name="tendem" class="form-control"
+                                                 value="${HoaDonTo.khachhang.tendem}">
 
-            </div>
+                </div>
 
-            <div class="form-group">
-                <label>SDT </label><input type="number" name="sdt" class="form-control" value="${HoaDonTo.khachhang.sdt}">
+                <div class="form-group">
+                    <label>SDT </label><input type="number" name="sdt" class="form-control"
+                                              value="${HoaDonTo.khachhang.sdt}">
 
-            </div>`
-            <div class="form-group">
-                <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy" var="formattedNgaySinh"/>
-                <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"
-                                               value="${formattedNgaySinh}">
-            </div>
-          <div class="form-group">
-              <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning" >them</button>
+                </div>
+                `
+                <div class="form-group">
+                    <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"
+                                    var="formattedNgaySinh"/>
+                    <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"
+                                                   value="${formattedNgaySinh}">
+                </div>
+                <div class="form-group">
+                    <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning">them
+                    </button>
 
-          </div>
+                </div>
             </form>
         </div>
         <div class="row" style="padding-top: 10px">
@@ -472,7 +500,9 @@
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
-                    <button formmethod="post" formaction="/banhang-hoadon/thanhtoan" id="btnThanhToanHoaDon"  class="btn btn-success">Thanh Toan</button>
+                    <button formmethod="post" formaction="/banhang-hoadon/thanhtoan" id="btnThanhToanHoaDon"
+                            class="btn btn-success">Thanh Toan
+                    </button>
 
                 </div>
 
@@ -491,15 +521,15 @@
                     </c:forEach>
                 </select>
             </div>
-<%--            <div class="col-custom">--%>
+            <%--            <div class="col-custom">--%>
 
-<%--                <label>Loai SP:</label>--%>
-<%--                <select name="">--%>
-<%--                    <c:forEach items="${dongsp}" var="h">--%>
-<%--                        <option value="${h.id}">${h.ten}</option>--%>
-<%--                    </c:forEach>--%>
-<%--                </select>--%>
-<%--            </div>--%>
+            <%--                <label>Loai SP:</label>--%>
+            <%--                <select name="">--%>
+            <%--                    <c:forEach items="${dongsp}" var="h">--%>
+            <%--                        <option value="${h.id}">${h.ten}</option>--%>
+            <%--                    </c:forEach>--%>
+            <%--                </select>--%>
+            <%--            </div>--%>
         </div>
 
 
@@ -524,7 +554,7 @@
         //khuyenmai Mạnh
         if (cityName === 'viewhoadon') {
             // Xử lý sự kiện thay đổi Combobox Mã Khuyến Mãi
-            document.getElementById('khuyenmai').addEventListener('change', function() {
+            document.getElementById('khuyenmai').addEventListener('change', function () {
                 var selectedOption = this.options[this.selectedIndex];
                 var discountPercentage = parseFloat(selectedOption.value);
                 var originalPrice = 100000; // Thay bằng giá trị thực tế
@@ -532,8 +562,14 @@
                 var discountAmount = (discountPercentage / 100) * originalPrice;
                 var finalPrice = originalPrice - discountAmount;
 
-                document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-                document.getElementById('tongTienThanhToan').textContent = finalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                });
+                document.getElementById('tongTienThanhToan').textContent = finalPrice.toLocaleString('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND'
+                });
             });
         }
     }
@@ -581,7 +617,7 @@
         });
 
     });
-        // RemoveALL
+    // RemoveALL
     document.getElementById('RemoveAll').addEventListener('click', function (event) {
         event.preventDefault();
 
@@ -607,6 +643,9 @@
         });
 
     });
+
+    // validate
+
 
     function reloadpage() {
 
