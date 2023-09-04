@@ -123,7 +123,7 @@ public class BanHangController {
         hdct = hoadonngoai.getHoaDonChiTiets();
         System.out.println("HD CT NE" + hdct);
         BigDecimal tongtienhang = hdct
-                .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
+                .stream().map(sp -> sp.getDongia())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         hoadonngoai.setTongtien(tongtienhang);
 //        hoadonngoai.setTongtientt(tongtienhang);
@@ -370,7 +370,7 @@ public class BanHangController {
             System.out.println("chay vao  if 1  ");
             NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
             BigDecimal tienhang = hdct
-                    .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
+                    .stream().map(sp -> sp.getDongia())
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
             hoadonngoai.setTongtien(tienhang);
             hoadonngoai.setTongtienkm(tongKM);

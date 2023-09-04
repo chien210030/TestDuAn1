@@ -434,7 +434,7 @@
                 <div class="form-group">
                     <label>Khach Thanh Toan</label>
                     <input type="number" class="form-control-range" name="tienkhachhangtra"
-                           value="${HoaDonTo.tienkhachhangtra}">
+                           value="${HoaDonTo.tienkhachhangtra}" required title="vui lòng nhập tiền khách trả">
 
                     <c:if test="${ empty loiTienKhach}">
                         <label>${loiTienKhach}</label>
@@ -512,7 +512,7 @@
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
-                    <button formmethod="post" formaction="/banhang-hoadon/thanhtoan" id="btnThanhToanHoaDon"
+                    <button type="submit" formmethod="post" formaction="/banhang-hoadon/thanhtoan" id="btnThanhToanHoaDon"
                             class="btn btn-success">Thanh Toan
                     </button>
 
