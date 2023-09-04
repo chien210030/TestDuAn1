@@ -572,22 +572,16 @@
                 var tienKhuyenMaiInput = document.querySelector('.tienkhuyenmai');
                 var tongTienThanhToanInput = document.querySelector('.tongtientt');
 
-                tienKhuyenMaiInput.value = discountAmount.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+                tienKhuyenMaiInput.value = discountAmount;
 
-                tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+                tongTienThanhToanInput.value = finalPrice;
             });
 
-            tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+            tongTienThanhToanInput.value = finalPrice;
 
 
-            document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            });
-            document.getElementById('tongTienThanhToan').textContent = finalPrice.toLocaleString('vi-VN', {
-                style: 'currency',
-                currency: 'VND'
-            });
+            document.getElementById('tienKhuyenMai').textContent = discountAmount;
+            document.getElementById('tongTienThanhToan').textContent = finalPrice;
 
         }
     }
