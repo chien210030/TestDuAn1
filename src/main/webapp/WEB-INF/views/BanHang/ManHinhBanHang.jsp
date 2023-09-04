@@ -436,7 +436,7 @@
                     <input type="number" class="form-control-range" name="tienkhachhangtra"
                            value="${HoaDonTo.tienkhachhangtra}" required title="vui lòng nhập tiền khách trả">
 
-                    <c:if test="${ empty loiTienKhach}">
+                    <c:if test="${ empty tienkhachhangtra}">
                         <label>${loiTienKhach}</label>
 
                     </c:if>
@@ -512,7 +512,8 @@
                 </div>
                 &#160&#160&#160
                 <div class="col-4">
-                    <button type="submit" formmethod="post" formaction="/banhang-hoadon/thanhtoan" id="btnThanhToanHoaDon"
+                    <button type="submit" formmethod="post" formaction="/banhang-hoadon/thanhtoan"
+                            id="btnThanhToanHoaDon"
                             class="btn btn-success">Thanh Toan
                     </button>
 
@@ -617,6 +618,11 @@
     //thanh toan
     document.getElementById('btnThanhToanHoaDon').addEventListener('click', function (event) {
         event.preventDefault();
+        var tienKhachTra = document.getElementsByName('tienkhachhangtra')[0].value;
+        if(tienKhachTra ===null || tienKhachTra=== ""){
+            alert("vui long ");
+            return;
+        }
 
         var formData = new FormData(document.getElementById('hoaDonForm'));
         axios.post("/banhang-hoadon/thanhtoan", formData)
