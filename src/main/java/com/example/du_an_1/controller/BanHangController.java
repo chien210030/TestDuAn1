@@ -367,7 +367,7 @@ public class BanHangController {
     ) {
 
         if (khachtra != null) {
-
+            System.out.println("chay vao  if 1  ");
             NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
             BigDecimal tienhang = hdct
                     .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
@@ -379,9 +379,11 @@ public class BanHangController {
             hoadonngoai.setTongtientt(tongtienTT);
 
             if (khachtra.compareTo(tongtienTT) >= 0) {
+                System.out.println("chay vao  if 2 ");
                 hoadonngoai.setNgaythanhtoan(new Date());
                 hoadonngoai.setTrangthai(1);
                 hoadonngoai.setNhanVien(nv);
+                hoadonngoai.setTienkhachhangtra(khachtra);
                 hoaDonRepository.save(hoadonngoai);
             }
         }else if(khachtra == null){
