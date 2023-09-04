@@ -172,11 +172,7 @@
                 <c:forEach items="${HoaDon}" var="i">
 
 
-                    <c:if test="${i.trangthai==0}" >
-
-
-
-
+                    <c:if test="${i.trangthai==0}">
 
 
                         <tbody>
@@ -423,20 +419,27 @@
 
                 </div>
                 <div class="form-group">
-                    <label>Tien khuyen mai</label><input class="readonly-input form-control-range tienkhuyenmai" readonly name="tongtienkm"
+                    <label>Tien khuyen mai</label><input class="readonly-input form-control-range tienkhuyenmai"
+                                                         readonly name="tongtienkm"
                                                          value="${HoaDonTo.tongtienkm}" id="tienkhuyenmai">
 
                 </div>
 
                 <div class="form-group">
-                    <label> Tong Tien Thanh Toan</label><input class="form-control-range tongtientt" readonly name="tongtientt"
+                    <label> Tong Tien Thanh Toan</label><input class="form-control-range tongtientt" readonly
+                                                               name="tongtientt"
                                                                value="${HoaDonTo.tongtientt}" id="tongTienThanhToan">
 
                 </div>
                 <div class="form-group">
-                    <label>Khach Thanh Toan</label><input class="form-control-range" name="tienkhachhangtra"
-                                                          value="${HoaDonTo.tienkhachhangtra}">
+                    <label>Khach Thanh Toan</label>
+                    <input type="number" class="form-control-range" name="tienkhachhangtra"
+                           value="${HoaDonTo.tienkhachhangtra}">
 
+                    <c:if test="${ empty loiTienKhach}">
+                        <label>${loiTienKhach}</label>
+
+                    </c:if>
                 </div>
 
                 <%--                <button type="submit"> add</button>--%>
@@ -455,8 +458,8 @@
                 <div class="form-group">
 
 
-                    <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}"  class="readonly-input form-control-range" readonly>&#160&#160&#160
-
+                    <label>Ma KH</label><input name="${HoaDonTo.khachhang.ma}" class="readonly-input form-control-range"
+                                               readonly>&#160&#160&#160
 
 
                 </div>
@@ -468,22 +471,19 @@
                 <div class="form-group">
 
 
-                    <label>Ten dem</label><input name="tendem" class="form-control" value="${HoaDonTo.khachhang.tendem}">
-
-
-
-
-
+                    <label>Ten dem</label><input name="tendem" class="form-control"
+                                                 value="${HoaDonTo.khachhang.tendem}">
 
 
                 </div>
 
                 <div class="form-group">
 
-                    <label>SDT </label><input type="number" name="sdt" class="form-control" value="${HoaDonTo.khachhang.sdt}">
+                    <label>SDT </label><input type="number" name="sdt" class="form-control"
+                                              value="${HoaDonTo.khachhang.sdt}">
 
                 </div>
-              
+
 
                 <div class="form-group">
                     <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"
@@ -495,9 +495,8 @@
                 </div>
                 <div class="form-group">
 
-                    <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning" >them</button>
-
-
+                    <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning">them
+                    </button>
 
 
                 </div>
@@ -573,21 +572,22 @@
                 var tienKhuyenMaiInput = document.querySelector('.tienkhuyenmai');
                 var tongTienThanhToanInput = document.querySelector('.tongtientt');
 
-                tienKhuyenMaiInput.value = discountAmount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                tienKhuyenMaiInput.value = discountAmount.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
 
-                tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }); });
+                tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
+            });
 
-                tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+            tongTienThanhToanInput.value = finalPrice.toLocaleString('vi-VN', {style: 'currency', currency: 'VND'});
 
 
-                document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND'
-                });
-                document.getElementById('tongTienThanhToan').textContent = finalPrice.toLocaleString('vi-VN', {
-                    style: 'currency',
-                    currency: 'VND'
-                });
+            document.getElementById('tienKhuyenMai').textContent = discountAmount.toLocaleString('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
+            document.getElementById('tongTienThanhToan').textContent = finalPrice.toLocaleString('vi-VN', {
+                style: 'currency',
+                currency: 'VND'
+            });
 
         }
     }
@@ -663,8 +663,6 @@
     });
 
     // validate
-
-
 
 
     function reloadpage() {

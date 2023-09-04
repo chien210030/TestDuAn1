@@ -126,7 +126,7 @@ public class BanHangController {
                 .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         hoadonngoai.setTongtien(tongtienhang);
-        hoadonngoai.setTongtientt(tongtienhang);
+//        hoadonngoai.setTongtientt(tongtienhang);
 
         model.addAttribute("HoaDonTo", hoadonngoai);
         model.addAttribute("CTHoaDon", hdct);
@@ -249,7 +249,7 @@ public class BanHangController {
     }
 
     @PostMapping("/updateSoLuong/{id}")
-    public String GiamSoLuong(@PathVariable("id") UUID idhdct, @RequestParam("soluong") int soluongcapnhat,Model model) {
+    public String GiamSoLuong(@PathVariable("id") UUID idhdct, @RequestParam("soluong") int soluongcapnhat, Model model) {
         HoaDonChiTiet hdchitiet = hoaDonChiTietRepository.findById(idhdct).orElse(null);
         System.out.println("id hdcr" + idhdct);
 
@@ -294,8 +294,8 @@ public class BanHangController {
             hoaDonChiTietRepository.save(hdchitiet);
             System.out.println("so luong ton sau khi save in IF 2 " + chiTietSP.getSoluongton());
         } else if (soluongcapnhat > chiTietSP.getSoluongton()) {
-            model.addAttribute("error" ,"so luong ban them vao vuot qua so luong hang hien co");
-            return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString() ;
+            model.addAttribute("error", "so luong ban them vao vuot qua so luong hang hien co");
+            return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
         }
 
         System.out.println("chay ra ngoai " + chiTietSP.getSoluongton());
@@ -360,18 +360,34 @@ public class BanHangController {
     }
 
     @PostMapping("/thanhtoan")
-    public String ThanhToan(@RequestParam("nhanvien") UUID idnhanvien
+    public String ThanhToan(Model model,
+                            @RequestParam("nhanvien") UUID idnhanvien,
+                            @RequestParam("tienkhachhangtra") BigDecimal khachtra,
+                            @RequestParam("tongtienkm") BigDecimal tongKM
     ) {
-        NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
-        BigDecimal tienhang = hdct
-                .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        hoadonngoai.setTongtientt(tienhang);
-        hoadonngoai.setNgaythanhtoan(new Date());
-        hoadonngoai.setTrangthai(1);
-        hoadonngoai.setNhanVien(nv);
-        hoaDonRepository.save(hoadonngoai);
 
+        if (khachtra != null) {
+
+            NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
+            BigDecimal tienhang = hdct
+                    .stream().map(sp -> BigDecimal.valueOf(sp.getSoluong()).multiply(sp.getDongia()))
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            hoadonngoai.setTongtien(tienhang);
+            hoadonngoai.setTongtienkm(tongKM);
+            // tru tien khuyen mai
+            BigDecimal tongtienTT = tienhang.subtract(tongKM);
+            hoadonngoai.setTongtientt(tongtienTT);
+
+            if (khachtra.compareTo(tongtienTT) >= 0) {
+                hoadonngoai.setNgaythanhtoan(new Date());
+                hoadonngoai.setTrangthai(1);
+                hoadonngoai.setNhanVien(nv);
+                hoaDonRepository.save(hoadonngoai);
+            }
+        }else if(khachtra == null){
+            System.out.println(" loi controller");
+            model.addAttribute("loiTienKhach", "chua co tien khach tra ");
+        }
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
 
