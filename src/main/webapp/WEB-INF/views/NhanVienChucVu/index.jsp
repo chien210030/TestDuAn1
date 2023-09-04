@@ -103,12 +103,12 @@
                 <div>
                     <div >
                         <form action="/nhan-vien-chuc-vu/search" method="get">
+                            <button type="submit" class="btn btn-primary">Tìm</button>
+                            <br>
+                            <br>
                             Mã : <input type="text" name="ma" class="form-control">
 
                             Tên : <input type="text" name="ten" class="form-control">
-                            <br>
-                            <button type="submit" class="btn btn-primary">Tìm</button>
-
                         </form>
                     </div>
                     <div class="col-4"></div>

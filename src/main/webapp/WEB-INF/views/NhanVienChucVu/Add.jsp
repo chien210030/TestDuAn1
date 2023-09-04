@@ -125,7 +125,8 @@
             <input class="form-control" name="taikhoan">
             <span style="color: red">${erro}</span>
             <br>
-            Trạng Thái :<input type="radio" name="trangthai" value="1" checked>Hoạt Động
+            <label>Trạng Thái :</label>
+            <input type="radio" name="trangthai" value="1" checked>Hoạt Động
             <input type="radio" name="trangthai" value="0">Ngừng Hoạt Động
             <br>
             <br>
@@ -137,7 +138,8 @@
             <input class="form-control" name="email">
             <span style="color: red">${erro}</span>
             <br>
-            Giới Tính :<input type="radio" name="gioitinh" value="1" checked>Nam
+            <label>Giới Tính :</label>
+            <input type="radio" name="gioitinh" value="1" checked>Nam
             <input type="radio" name="gioitinh" value="0">Nữ
             <hr>
             <button class="btn btn-outline-primary">THÊM</button>
