@@ -32,9 +32,12 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, UU
     List<Object[]> getTongSoLuongByNam(@Param("year") int year);
 //thong ke
 
-    @Query("SELECT h.chiTietSP, SUM(h.soluong) AS totalSold "
-            + "FROM HoaDonChiTiet h "
-            + "GROUP BY h.chiTietSP "
-            + "ORDER BY totalSold DESC")
-    List<Object[]> findTop5BestSellingProducts();
+ @Query("SELECT h.chiTietSP, SUM(h.soluong) AS totalSold "
+         + "FROM HoaDonChiTiet h "+
+         "INNER JOIN h.hoadon hd "
+         + "WHERE hd.trangthai = 1"
+         + "GROUP BY h.chiTietSP "
+         + "ORDER BY totalSold DESC")
+ List<Object[]> findTop5BestSellingProducts();
+
 }
