@@ -620,7 +620,7 @@
         event.preventDefault();
         var tienKhachTra = document.getElementsByName('tienkhachhangtra')[0].value;
         if(tienKhachTra ===null || tienKhachTra=== ""){
-            alert("vui long ");
+            alert("vui long nhap so tien khach hang ");
             return;
         }
 

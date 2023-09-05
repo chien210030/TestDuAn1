@@ -25,12 +25,12 @@ public class ChiTietSP {
     private UUID id;
     //    private String ma;
 //    private String ten;
-    @JoinColumn(name = "mota")
+    @Column(name = "mota")
     private String mota;
-    @JoinColumn(name = "soluongton")
+    @Column(name = "soluongton")
     private int soluongton;
 
-    @JoinColumn(name = "giaban")
+    @Column(name = "giaban")
     private BigDecimal giaban;
 
     @ManyToOne

@@ -29,10 +29,10 @@ public class HoaDonChiTiet {
     @JoinColumn(name = "idchitietsanpham")
     private ChiTietSP chiTietSP;
 
-    @JoinColumn(name = "soluong")
+    @Column(name = "soluong")
     private int soluong;
 
-    @JoinColumn(name = "dongia")
+    @Column(name = "dongia")
     private BigDecimal dongia;
 
     @Override
