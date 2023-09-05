@@ -574,12 +574,8 @@
                 var tongTienThanhToanInput = document.querySelector('.tongtientt');
 
                 tienKhuyenMaiInput.value = discountAmount;
-
                 tongTienThanhToanInput.value = finalPrice;
             });
-
-            tongTienThanhToanInput.value = finalPrice;
-
 
             document.getElementById('tienKhuyenMai').textContent = discountAmount;
             document.getElementById('tongTienThanhToan').textContent = finalPrice;

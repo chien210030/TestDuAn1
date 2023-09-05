@@ -39,7 +39,20 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
         return null;
     }
 
+    @Override
+    public void capNhatTrangThaiKhuyenMai() {
+        Date currentDate = new Date();
+        List<KhuyenMai> danhSachKhuyenMai = khuyenMaiRepository.findAll();
 
+        if (danhSachKhuyenMai != null) {
+            danhSachKhuyenMai.forEach(km -> {
+                if (currentDate.after(km.getNgayketthuc())) {
+                    km.setTrangthai(0);
+                    khuyenMaiRepository.save(km);
+                }
+            });
+        }
+    }
 
     @Override
     public Page<KhuyenMai> search(Date fromDate, Date toDate, UUID id, Pageable pageable) {
