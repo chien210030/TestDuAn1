@@ -426,7 +426,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label> Tong Tien Thanh Toan</label><input class="form-control-range tongtientt" readonly
+                    <label> Tong Tien Thanh Toan</label><input type="number" class="form-control-range tongtientt"
+                                                               readonly
                                                                name="tongtientt"
                                                                value="${HoaDonTo.tongtientt}" id="tongTienThanhToan">
 
@@ -611,14 +612,37 @@
         });
 
     });
+
+    //validate thanh toan
+    // var tongtientt = document.getElementById('tongTienThanhToan');
+    //
+    // tongtientt.addEventListener('change',function () {
+    // var    tongTienThanhToan =this.value;
+    // if (tongTienThanhToan=== null)
+    //
+    //
+    // })
     //thanh toan
     document.getElementById('btnThanhToanHoaDon').addEventListener('click', function (event) {
         event.preventDefault();
         var tienKhachTra = document.getElementsByName('tienkhachhangtra')[0].value;
-        if(tienKhachTra ===null || tienKhachTra=== ""){
+        var khachtra = tienKhachTra ? parseFloat(tienKhachTra.value) : NaN;
+
+        var tongtienElement = document.getElementById('tongTienThanhToan');
+        var tongtien = tongtienElement ? parseFloat(tongtienElement.value) : NaN;
+        console.log("cons" + tongtien);
+        console.log("khach tra " + tienKhachTra);
+        if (tienKhachTra === null || tienKhachTra === "") {
             alert("vui long nhap so tien khach hang ");
             return;
+        } else if (isNaN(tienKhachTra) || tienKhachTra < 0) {
+            alert("số tiền khách trả phải hợp lệ");
+            return;
+        } else if (isNaN(tongtien) || tienKhachTra <= tongtien ) {
+            alert("tien khach tra phai lon hon tong tien");
+            return;
         }
+
 
         var formData = new FormData(document.getElementById('hoaDonForm'));
         axios.post("/banhang-hoadon/thanhtoan", formData)
