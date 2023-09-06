@@ -664,7 +664,7 @@
         } else if (isNaN(tienKhachTra) || tienKhachTra < 0) {
             alert("số tiền khách trả phải hợp lệ");
             return;
-        } else if (isNaN(tongtien) || tienKhachTra <= tongtien) {
+        } else if (isNaN(tongtien) || tienKhachTra < tongtien) {
             alert("tien khach tra phai lon hon tong tien");
             return;
         }
