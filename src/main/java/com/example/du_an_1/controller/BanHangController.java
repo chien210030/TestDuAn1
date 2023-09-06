@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -73,7 +74,8 @@ public class BanHangController {
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "ten", required = false) String keyword) {
 
-        Pageable pageable = PageRequest.of(pageNum - 1, 5);
+        Sort sort =  Sort.by(Sort.Direction.DESC,"ngaytao");
+        Pageable pageable = PageRequest.of(pageNum - 1, 5,sort);
         Page<HoaDon> page = hoaDonRepository.findAll(pageable);
 
 //        Pageable pageable1 = PageRequest.of(pageNum - 1,2) ;
@@ -242,10 +244,11 @@ public class BanHangController {
             hdctt.setChiTietSP(ctsp1);
             hdctt.setHoadon(hd1);
             hoaDonChiTietRepository.save(hdctt);
-
+            return "redirect:/banhang-hoadon/banhang";
 
         }
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+//        return  "redirect:/banhang-hoadon/banhang";
     }
 
     @PostMapping("/updateSoLuong/{id}")
@@ -308,31 +311,24 @@ public class BanHangController {
     public String ThemTTKhachHang(
             @RequestParam("ten") String ten,
             @RequestParam("tendem") String tendem,
-            @RequestParam("sdt") String sdt,
-            @RequestParam("ngaysinh") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaysinh
+            @RequestParam("sdt") String sdt
+//            ,
+//            @RequestParam("ngaysinh") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaysinh
     ) {
         if (hoadonngoai != null && hoadonngoai.getKhachhang() == null) {
-            List<KhachHang> listkh = khservice.getall();
-            for (KhachHang xkh : listkh) {
-                if (sdt.equals(xkh.getSdt()) == true) {
-                    KhachHang khdaco = khservice.getsdt(sdt);
-                    System.out.println("khach hang" + khdaco);
-                    hoadonngoai.setKhachhang(khdaco);
-                    break;
-                } else if (sdt.equals(xkh.getSdt()) != true) {
                     KhachHang kh = new KhachHang();
                     kh.genmakh();
                     kh.setTen(ten);
                     kh.setTendem(tendem);
                     kh.setSdt(sdt);
-                    kh.setNgaysinh(ngaysinh);
+//                    kh.setNgaysinh(ngaysinh);
                     khservice.add(kh);
                     hoadonngoai.setKhachhang(kh);
                     hoaDonRepository.save(hoadonngoai);
 
-                }
+
             }
-        }
+
 
 
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
@@ -380,17 +376,23 @@ public class BanHangController {
 
             if (khachtra.compareTo(tongtienTT) >= 0) {
                 System.out.println("chay vao  if 2 ");
+//                KhachHang newkh = new KhachHang();
+//                newkh.setTen("khach");
                 hoadonngoai.setNgaythanhtoan(new Date());
                 hoadonngoai.setTrangthai(1);
                 hoadonngoai.setNhanVien(nv);
                 hoadonngoai.setTienkhachhangtra(khachtra);
                 hoaDonRepository.save(hoadonngoai);
+
             }
-        }else if(khachtra == null){
+            model.addAttribute("inHoaDon", hoadonngoai);
+//            return "BanHang/HoaDon";
+        } else if (khachtra == null) {
             System.out.println(" loi controller");
             model.addAttribute("loiTienKhach", "chua co tien khach tra ");
         }
-        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+     return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+//        return "redirect:/BanHang/HoaDon";
     }
 
     @GetMapping("/ban-hang")

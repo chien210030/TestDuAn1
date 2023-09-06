@@ -241,7 +241,7 @@
                             <td> ${chitiet.chiTietSP.sanpham.ten}</td>
                                 <%--                            <td> ${chitiet.soluong}</td>--%>
                             <td><input type="number" min="1" max="${chitiet.chiTietSP.soluongton}" name="soluong"
-                                       class="form-control-range" value="${chitiet.soluong}">
+                                       class="form-control-range" value="${chitiet.soluong}" id="">
 
 
                             </td>
@@ -450,7 +450,7 @@
 
         <%--     END  TẠO HÓA ĐƠN --%>
         <div id="viewkhachhang" class="tabcontent">
-            <form method="post">
+            <form method="post" id="khachHangForm">
                 <div class="form-group">
                     <label>Tim KH</label><input class="form-control-range">&#160&#160&#160<a
                         class="btn btn-warning">Search</a>
@@ -466,14 +466,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Ten KH</label><input name="ten" class="form-control" value="${HoaDonTo.khachhang.ten}">
+                    <label>Ten KH</label><input name="ten" class="form-control" value="${HoaDonTo.khachhang.ten}" required oninvalid="this.setCustomValidity('Vui lòng nhập tên')" >
 
                 </div>
                 <div class="form-group">
 
 
-                    <label>Ten dem</label><input name="tendem" class="form-control"
-                                                 value="${HoaDonTo.khachhang.tendem}">
+                    <label>Ten dem</label><input name="tendem" class=" form-control"
+                                                 value="${HoaDonTo.khachhang.tendem}" required oninvalid="this.setCustomValidity('Vui lòng nhập tên đệm')">
 
 
                 </div>
@@ -486,17 +486,17 @@
                 </div>
 
 
+<%--                <div class="form-group">--%>
+<%--                    <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"--%>
+<%--                                    var="formattedNgaySinh"/>--%>
+
+
+<%--                    <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"--%>
+<%--                                                   value="${formattedNgaySinh}">--%>
+<%--                </div>--%>
                 <div class="form-group">
-                    <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"
-                                    var="formattedNgaySinh"/>
 
-
-                    <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"
-                                                   value="${formattedNgaySinh}">
-                </div>
-                <div class="form-group">
-
-                    <button formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning">them
+                    <button id="btnThemKH" formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning">them
                     </button>
 
 
@@ -510,9 +510,9 @@
                 &#160&#160&#160
                 <div class="col-4">
                     <a href="#" class="btn btn-danger">Huy Don</a>
-                </div>
+<%--                </div>--%>
                 &#160&#160&#160
-                <div class="col-4">
+<%--                <div class="col-4">--%>
                     <button type="submit" formmethod="post" formaction="/banhang-hoadon/thanhtoan"
                             id="btnThanhToanHoaDon"
                             class="btn btn-success">Thanh Toan
@@ -523,10 +523,10 @@
 
             </div>
 
-            <div class="col-custom">
-                <label>Nhap MaKH</label><input class="">
-                <a class="btn btn-primary" href="">Check</a>
-            </div>
+<%--            <div class="col-custom">--%>
+<%--                <label>Nhap MaKH</label><input class="">--%>
+<%--                <a class="btn btn-primary" href="">Check</a>--%>
+<%--            </div>--%>
             <div class="col-custom">
                 <label>Chọn MaKM</label>
                 <select class="form-control" id="khuyenmai" name="">
@@ -612,16 +612,23 @@
         });
 
     });
+    // validate them KH
+    document.getElementById('btnThemKH').addEventListener('click',function () {
+
+        var sdtElement = document.getElementsByName('sdt')[0].value ;
+        var sdt = sdtElement ? parseInt(sdtElement.value) :NaN
+
+            if( sdt< 0 ){
+                alert("nhap so dien thoai hop le");
+                return;
+            }
+        // var KHform = new FormData(document.getElementById('khachHangForm'));
+        //     axios.post("/banhang-hoadon/themkhachhang",KHform)
+
+    });
+
 
     //validate thanh toan
-    // var tongtientt = document.getElementById('tongTienThanhToan');
-    //
-    // tongtientt.addEventListener('change',function () {
-    // var    tongTienThanhToan =this.value;
-    // if (tongTienThanhToan=== null)
-    //
-    //
-    // })
     //thanh toan
     document.getElementById('btnThanhToanHoaDon').addEventListener('click', function (event) {
         event.preventDefault();
@@ -642,7 +649,6 @@
             alert("tien khach tra phai lon hon tong tien");
             return;
         }
-
 
         var formData = new FormData(document.getElementById('hoaDonForm'));
         axios.post("/banhang-hoadon/thanhtoan", formData)
@@ -681,9 +687,6 @@
         });
 
     });
-
-    // validate
-
 
     function reloadpage() {
 
