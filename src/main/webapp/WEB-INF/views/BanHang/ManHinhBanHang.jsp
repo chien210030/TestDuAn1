@@ -182,7 +182,7 @@
                                 <td>${i.ma}</td>
                                 <td>
                                     <fmt:formatDate value="${i.ngaytao}" pattern="dd/MM/yyyy HH:mm:ss"/></td>
-                                <td>${i.nhanVien.ten}</td>
+<%--                                <td>${i.nhanVien.ten}</td>--%>
                                 <td>${i.khachhang.ten}</td>
                                 <td>${i.tongtien}</td>
                                 <td>${i.tongtienkm}</td>
@@ -393,15 +393,15 @@
                     <input class="readonly-input form-control" type="text" value="${formattedNgayTao}" readonly/>
                 </div>
 
-                <div class="form-group">
-                    <label>NV TT </label>
-                    <select name="nhanvien" class="form-control">
-                        <c:forEach items="${nhanvien}" var="v">
-                            <option value="${v.id}">${v.ten}</option>
-                        </c:forEach>
-                    </select>
+<%--                <div class="form-group">--%>
+<%--                    <label>NV TT </label>--%>
+<%--                    <select name="nhanvien" class="form-control">--%>
+<%--                        <c:forEach items="${nhanvien}" var="v">--%>
+<%--                            <option value="${v.id}">${v.ten}</option>--%>
+<%--                        </c:forEach>--%>
+<%--                    </select>--%>
 
-                </div>
+<%--                </div>--%>
                 <div class="form-group">
                     <label>Ten Khach Hang</label><input class="form-control" name="khachhang.ten"
                                                         value="${HoaDonTo.khachhang.tendem} ${HoaDonTo.khachhang.ten}">

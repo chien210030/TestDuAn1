@@ -56,7 +56,7 @@
                 <a href="#"><span class="glyphicon glyphicon-certificate">&nbsp;</span>Officials</a></li>
             <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a>
             </li>
-            <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-cog">&nbsp;</span>Settings</a></li>
+
 
         </ul>
     </div>
