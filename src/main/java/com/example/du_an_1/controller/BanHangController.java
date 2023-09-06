@@ -257,7 +257,7 @@ public class BanHangController {
 
         }
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
-//        return  "redirect:/banhang-hoadon/banhang";
+
     }
 
     @PostMapping("/updateSoLuong/{id}")
@@ -324,17 +324,17 @@ public class BanHangController {
 //            ,
 //            @RequestParam("ngaysinh") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaysinh
     ) {
-                 KhachHang kh = new KhachHang();
+        KhachHang kh = new KhachHang();
         if (hoadonngoai != null && hoadonngoai.getKhachhang() == null) {
-                    kh.genmakh();
-                    kh.setTen(ten);
-                    kh.setTendem(tendem);
-                    kh.setSdt(sdt);
+            kh.genmakh();
+            kh.setTen(ten);
+            kh.setTendem(tendem);
+            kh.setSdt(sdt);
 //                    kh.setNgaysinh(ngaysinh);
-                    khservice.add(kh);
-                    hoadonngoai.setKhachhang(kh);
-                    hoaDonRepository.save(hoadonngoai);
-            }else if (hoadonngoai != null && hoadonngoai.getKhachhang() == null && sdt == null ){
+            khservice.add(kh);
+            hoadonngoai.setKhachhang(kh);
+            hoaDonRepository.save(hoadonngoai);
+        } else if (hoadonngoai != null && hoadonngoai.getKhachhang() == null && sdt == null) {
             KhachHang kh1 = new KhachHang();
             kh1.genmakh();
             kh1.setTen(ten);
@@ -345,9 +345,6 @@ public class BanHangController {
             hoaDonRepository.save(hoadonngoai);
 
         }
-
-
-
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
 

@@ -159,7 +159,6 @@
                 <tr>
                     <th>Ma HD</th>
                     <th>Ngay Tao</th>
-                    <th>Ten NV</th>
                     <th>Ten KH</th>
                     <th>Tong tien</th>
                     <th>Tien km</th>
