@@ -1,31 +1,40 @@
 package com.example.du_an_1.controller;
 
 
-import com.example.du_an_1.Service.ChiTIetService;
 import com.example.du_an_1.Service.impl.ChiTietSPServiceImpl;
 import com.example.du_an_1.Service.impl.KhachHangServiceImpl;
-import com.example.du_an_1.entity.*;
-import com.example.du_an_1.repository.*;
-import com.example.du_an_1.repository.impl.NhanVienChucVuRepository;
-import jakarta.persistence.EntityManager;
+import com.example.du_an_1.entity.ChiTietSP;
+import com.example.du_an_1.entity.HoaDon;
+import com.example.du_an_1.entity.HoaDonChiTiet;
+import com.example.du_an_1.entity.KhachHang;
+import com.example.du_an_1.entity.NhanCa;
+import com.example.du_an_1.repository.ChiTietSPRepository;
+import com.example.du_an_1.repository.DongSPRepository;
+import com.example.du_an_1.repository.HoaDonChiTietRepository;
+import com.example.du_an_1.repository.HoaDonRepository;
+import com.example.du_an_1.repository.KhuyenMaiRepository;
+import com.example.du_an_1.repository.KichCoRepository;
+import com.example.du_an_1.repository.ThuongHieuRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
 import org.springframework.data.domain.Sort;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.math.BigDecimal;
-
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 //@SessionAttributes("loadchitietsp")
@@ -47,8 +56,8 @@ public class BanHangController {
     @Autowired
     private KichCoRepository kichCoRepository;
 
-    @Autowired
-    private NhanVienChucVuRepository nhanVienChucVuRepository;
+//    @Autowired
+//    private NhanVienChucVuRepository nhanVienChucVuRepository;
 
     @Autowired
     private HoaDonChiTietRepository hoaDonChiTietRepository;
@@ -74,8 +83,8 @@ public class BanHangController {
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "ten", required = false) String keyword) {
 
-        Sort sort =  Sort.by(Sort.Direction.DESC,"ngaytao");
-        Pageable pageable = PageRequest.of(pageNum - 1, 5,sort);
+        Sort sort = Sort.by(Sort.Direction.DESC, "ngaytao");
+        Pageable pageable = PageRequest.of(pageNum - 1, 5, sort);
         Page<HoaDon> page = hoaDonRepository.findAll(pageable);
 
 //        Pageable pageable1 = PageRequest.of(pageNum - 1,2) ;
@@ -89,7 +98,7 @@ public class BanHangController {
         model.addAttribute("dongsp", dongSPRepository.findAll());
         model.addAttribute("kichco", kichCoRepository.findAll());
         model.addAttribute("thuonghieu", thuongHieuRepository.findAll());
-        model.addAttribute("nhanvien", nhanVienChucVuRepository.findAll());
+//        model.addAttribute("nhanvien", nhanVienChucVuRepository.findAll());
         model.addAttribute("khuyenmai", khuyenMaiRepository.findAll());
 //        model.addAttribute("dongsp",page1.getContent());
 
@@ -98,9 +107,9 @@ public class BanHangController {
 
 
     @PostMapping("/taohoadon")
-    public String taohoadon(@RequestParam("ma") String ma,
+    public String taohoadon(@RequestParam("ma") String ma
 
-                            @RequestParam("nhanvien") UUID idnhanvien
+//                            @RequestParam("nhanvien") UUID idnhanvien
     ) {
         HoaDon hoaDon = new HoaDon();
         hoaDon.setMa(ma);
@@ -316,19 +325,18 @@ public class BanHangController {
 //            @RequestParam("ngaysinh") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaysinh
     ) {
         if (hoadonngoai != null && hoadonngoai.getKhachhang() == null) {
-                    KhachHang kh = new KhachHang();
-                    kh.genmakh();
-                    kh.setTen(ten);
-                    kh.setTendem(tendem);
-                    kh.setSdt(sdt);
+            KhachHang kh = new KhachHang();
+            kh.genmakh();
+            kh.setTen(ten);
+            kh.setTendem(tendem);
+            kh.setSdt(sdt);
 //                    kh.setNgaysinh(ngaysinh);
-                    khservice.add(kh);
-                    hoadonngoai.setKhachhang(kh);
-                    hoaDonRepository.save(hoadonngoai);
+            khservice.add(kh);
+            hoadonngoai.setKhachhang(kh);
+            hoaDonRepository.save(hoadonngoai);
 
 
-            }
-
+        }
 
 
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
@@ -357,14 +365,14 @@ public class BanHangController {
 
     @PostMapping("/thanhtoan")
     public String ThanhToan(Model model,
-                            @RequestParam("nhanvien") UUID idnhanvien,
+//                            @RequestParam("nhanvien") UUID idnhanvien,
                             @RequestParam("tienkhachhangtra") BigDecimal khachtra,
-                            @RequestParam("tongtienkm") BigDecimal tongKM
+                            @RequestParam("tongtienkm") BigDecimal tongKM, HttpSession session
     ) {
 
         if (khachtra != null) {
             System.out.println("chay vao  if 1  ");
-            NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
+//            NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
             BigDecimal tienhang = hdct
                     .stream().map(sp -> sp.getDongia())
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -380,7 +388,9 @@ public class BanHangController {
 //                newkh.setTen("khach");
                 hoadonngoai.setNgaythanhtoan(new Date());
                 hoadonngoai.setTrangthai(1);
-                hoadonngoai.setNhanVien(nv);
+//Nhan Ca
+                NhanCa nhanCa = (NhanCa) session.getAttribute("currentNhanCa");
+                hoadonngoai.setNhanCa(nhanCa);
                 hoadonngoai.setTienkhachhangtra(khachtra);
                 hoaDonRepository.save(hoadonngoai);
 
@@ -391,7 +401,7 @@ public class BanHangController {
             System.out.println(" loi controller");
             model.addAttribute("loiTienKhach", "chua co tien khach tra ");
         }
-     return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
 //        return "redirect:/BanHang/HoaDon";
     }
 

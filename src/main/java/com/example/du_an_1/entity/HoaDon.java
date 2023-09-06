@@ -59,18 +59,15 @@ public class HoaDon {
     @JoinColumn(name = "idkhachhang")
     private KhachHang khachhang;
 
-    @ManyToOne
-    @JoinColumn(name = "idnhanvien")
-    private  NhanVien nhanVien ;
-    
+
     @ManyToOne
     @JoinColumn(name = "idkhuyenmai")
     private KhuyenMai khuyenMai;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "idnhanca")
-//    private NhanCa nhanCa;
+    @ManyToOne
+    @JoinColumn(name = "idnhanca")
+    private NhanCa nhanCa;
 
 
     @OneToMany(mappedBy = "hoadon")
@@ -80,6 +77,23 @@ public class HoaDon {
         this.ma = "HD" + UUID.randomUUID().toString().substring(0,6).toUpperCase();
 
     }
-
+    @Override
+    public String toString() {
+        return "HoaDon{" +
+                "id=" + id +
+                ", ma='" + ma + '\'' +
+                ", ngaytao=" + ngaytao +
+                ", ngaythanhtoan=" + ngaythanhtoan +
+                ", trangthai=" + trangthai +
+                ", ghichu='" + ghichu + '\'' +
+                ", tongtien=" + tongtien +
+                ", tongtienkm=" + tongtienkm +
+                ", tongtientt=" + tongtientt +
+                ", tienkhachhangtra=" + tienkhachhangtra +
+                ", khachhang=" + khachhang +
+                ", nhanCa=" + nhanCa +
+                ", khuyenMai=" + khuyenMai +
+                '}';
+    }
 
 }
