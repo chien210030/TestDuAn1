@@ -605,15 +605,15 @@
 
         var formData = new FormData(document.getElementById('hoaDonForm'));
         axios.post("/banhang-hoadon/taohoadon", formData)
-            .then(function (reponse) {
-                alert("tạo hóa đơn thành công!");
+            .then(function (response) {
+                alert(response.data); // Display the response message
                 window.location.reload();
 
             }).catch(function (error) {
-            alert("ko tao duoc hoa don");
+            alert("Không tạo được hóa đơn: " + error.response.data); // Display the error message
         });
-
     });
+
     // validate them KH
     document.getElementById('btnThemKH').addEventListener('click', function () {
         event.preventDefault();

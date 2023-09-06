@@ -21,15 +21,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -107,10 +103,16 @@ public class BanHangController {
 
 
     @PostMapping("/taohoadon")
-    public String taohoadon(@RequestParam("ma") String ma
+    @ResponseBody // This annotation indicates that the method returns JSON response
+    public ResponseEntity<String> taohoadon(@RequestParam("ma") String ma, HttpSession session) {
 
-//                            @RequestParam("nhanvien") UUID idnhanvien
-    ) {
+        NhanCa nhanCa = (NhanCa) session.getAttribute("currentNhanCa");
+
+        if (nhanCa == null){
+            // Return an error response
+            return ResponseEntity.badRequest().body("Không thể tạo hóa đơn vì chưa nhận ca.");
+        }
+
         HoaDon hoaDon = new HoaDon();
         hoaDon.setMa(ma);
         hoaDon.setNgaytao(new Date());
@@ -118,8 +120,10 @@ public class BanHangController {
 
         hoaDonRepository.save(hoaDon);
 
-        return "redirect:/banhang-hoadon/banhang";
+        // Return a success response
+        return ResponseEntity.ok("Hóa đơn đã được tạo thành công.");
     }
+
 
     HoaDon hoadonngoai;
     List<HoaDonChiTiet> hdct;
