@@ -315,8 +315,9 @@ public class BanHangController {
 //            ,
 //            @RequestParam("ngaysinh") @DateTimeFormat(pattern = "yyyy-MM-dd") Date ngaysinh
     ) {
+                 KhachHang kh = new KhachHang();
         if (hoadonngoai != null && hoadonngoai.getKhachhang() == null) {
-                    KhachHang kh = new KhachHang();
+
                     kh.genmakh();
                     kh.setTen(ten);
                     kh.setTendem(tendem);
@@ -325,9 +326,18 @@ public class BanHangController {
                     khservice.add(kh);
                     hoadonngoai.setKhachhang(kh);
                     hoaDonRepository.save(hoadonngoai);
+            }else if (hoadonngoai != null && hoadonngoai.getKhachhang() == null && sdt == null ){
+            KhachHang kh1 = new KhachHang();
+            kh1.genmakh();
+            kh1.setTen(ten);
+            kh1.setTendem(tendem);
 
+//          kh.setNgaysinh(ngaysinh);
+            khservice.add(kh1);
+            hoadonngoai.setKhachhang(kh1);
+            hoaDonRepository.save(hoadonngoai);
 
-            }
+        }
 
 
 
@@ -364,7 +374,7 @@ public class BanHangController {
 
         if (khachtra != null) {
             System.out.println("chay vao  if 1  ");
-            NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
+//            NhanVien nv = nhanVienChucVuRepository.findById(idnhanvien).orElse(null);
             BigDecimal tienhang = hdct
                     .stream().map(sp -> sp.getDongia())
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -380,7 +390,7 @@ public class BanHangController {
 //                newkh.setTen("khach");
                 hoadonngoai.setNgaythanhtoan(new Date());
                 hoadonngoai.setTrangthai(1);
-                hoadonngoai.setNhanVien(nv);
+//                hoadonngoai.setNhanVien(nv);
                 hoadonngoai.setTienkhachhangtra(khachtra);
                 hoaDonRepository.save(hoadonngoai);
 

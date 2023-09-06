@@ -466,17 +466,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Ten KH</label><input name="ten" class="form-control" value="${HoaDonTo.khachhang.ten}" required oninvalid="this.setCustomValidity('Vui lòng nhập tên')" >
+                    <label>Ten KH</label><input name="ten" class="form-control" value="${HoaDonTo.khachhang.ten}">
 
                 </div>
                 <div class="form-group">
 
 
                     <label>Ten dem</label><input name="tendem" class=" form-control"
-                                                 value="${HoaDonTo.khachhang.tendem}" required oninvalid="this.setCustomValidity('Vui lòng nhập tên đệm')">
+                                                 value="${HoaDonTo.khachhang.tendem}">
 
 
                 </div>
+
 
                 <div class="form-group">
 
@@ -486,17 +487,18 @@
                 </div>
 
 
-<%--                <div class="form-group">--%>
-<%--                    <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"--%>
-<%--                                    var="formattedNgaySinh"/>--%>
+                <%--                <div class="form-group">--%>
+                <%--                    <fmt:formatDate value="${HoaDonTo.khachhang.ngaysinh}" pattern="dd/MM/yyyy"--%>
+                <%--                                    var="formattedNgaySinh"/>--%>
 
 
-<%--                    <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"--%>
-<%--                                                   value="${formattedNgaySinh}">--%>
-<%--                </div>--%>
+                <%--                    <label>Ngay Sinh</label><input type="date" name="ngaysinh" class="form-control"--%>
+                <%--                                                   value="${formattedNgaySinh}">--%>
+                <%--                </div>--%>
                 <div class="form-group">
 
-                    <button id="btnThemKH" formmethod="post" formaction="/banhang-hoadon/themkhachhang" class="btn btn-warning">them
+                    <button type="submit"  formmethod="post" formaction="/banhang-hoadon/themkhachhang"
+                            class="btn btn-warning" id="btnThemKH">them
                     </button>
 
 
@@ -510,9 +512,9 @@
                 &#160&#160&#160
                 <div class="col-4">
                     <a href="#" class="btn btn-danger">Huy Don</a>
-<%--                </div>--%>
-                &#160&#160&#160
-<%--                <div class="col-4">--%>
+                    <%--                </div>--%>
+                    &#160&#160&#160
+                    <%--                <div class="col-4">--%>
                     <button type="submit" formmethod="post" formaction="/banhang-hoadon/thanhtoan"
                             id="btnThanhToanHoaDon"
                             class="btn btn-success">Thanh Toan
@@ -523,10 +525,10 @@
 
             </div>
 
-<%--            <div class="col-custom">--%>
-<%--                <label>Nhap MaKH</label><input class="">--%>
-<%--                <a class="btn btn-primary" href="">Check</a>--%>
-<%--            </div>--%>
+            <%--            <div class="col-custom">--%>
+            <%--                <label>Nhap MaKH</label><input class="">--%>
+            <%--                <a class="btn btn-primary" href="">Check</a>--%>
+            <%--            </div>--%>
             <div class="col-custom">
                 <label>Chọn MaKM</label>
                 <select class="form-control" id="khuyenmai" name="">
@@ -613,17 +615,34 @@
 
     });
     // validate them KH
-    document.getElementById('btnThemKH').addEventListener('click',function () {
+    document.getElementById('btnThemKH').addEventListener('click', function () {
+        event.preventDefault();
+        var ten = document.getElementsByName('ten')[0].value;
+        var tendem = document.getElementsByName('tendem')[0].value;
 
-        var sdtElement = document.getElementsByName('sdt')[0].value ;
-        var sdt = sdtElement ? parseInt(sdtElement.value) :NaN
+        var sdtElement = document.getElementsByName('sdt')[0];
+        // var sdt = sdtElement ? parseInt(sdtElement.value) : NaN
+        var sdt = sdtElement.value;
+        const regex = /^[0-9]{10}$/;
+        if (ten === null || ten === "") {
+            alert("hay nhap du ten");
+            return;
+        } else if (tendem === null || tendem === "") {
+            alert("hay nhap du ten dem");
+            return;
+        }else if ( sdt !== "" && (!regex.test(sdt)  || parseInt(sdt) < 0) ){
+            alert("so dien thoai khong hop le");
+            return;
+        }
+        var KHform = new FormData(document.getElementById('khachHangForm'));
+            axios.post("/banhang-hoadon/themkhachhang",KHform)
+                .then(function (reponse) {
+                    alert("da them khach hang!");
+                    window.location.reload();
 
-            if( sdt< 0 ){
-                alert("nhap so dien thoai hop le");
-                return;
-            }
-        // var KHform = new FormData(document.getElementById('khachHangForm'));
-        //     axios.post("/banhang-hoadon/themkhachhang",KHform)
+                }).catch(function (error) {
+                alert(" that bai");
+            });
 
     });
 
@@ -645,7 +664,7 @@
         } else if (isNaN(tienKhachTra) || tienKhachTra < 0) {
             alert("số tiền khách trả phải hợp lệ");
             return;
-        } else if (isNaN(tongtien) || tienKhachTra <= tongtien ) {
+        } else if (isNaN(tongtien) || tienKhachTra <= tongtien) {
             alert("tien khach tra phai lon hon tong tien");
             return;
         }

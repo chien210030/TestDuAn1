@@ -59,9 +59,9 @@ public class HoaDon {
     @JoinColumn(name = "idkhachhang")
     private KhachHang khachhang;
 
-    @ManyToOne
-    @JoinColumn(name = "idnhanvien")
-    private  NhanVien nhanVien ;
+//    @ManyToOne
+//    @JoinColumn(name = "idnhanvien")
+//    private  NhanVien nhanVien ;
     
     @ManyToOne
     @JoinColumn(name = "idkhuyenmai")
