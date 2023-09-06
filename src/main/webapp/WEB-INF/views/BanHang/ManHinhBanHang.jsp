@@ -532,7 +532,9 @@
                 <label>Chọn MaKM</label>
                 <select class="form-control" id="khuyenmai" name="">
                     <c:forEach items="${khuyenmai}" var="khuyenmai">
-                        <option value="${khuyenmai.giatrigiam}">${khuyenmai.giatrigiam} %</option>
+                        <c:if test="${khuyenmai.trangthai == 1}">
+                            <option value="${khuyenmai.giatrigiam}">${khuyenmai.giatrigiam} %</option>
+                        </c:if>
                     </c:forEach>
                 </select>
             </div>

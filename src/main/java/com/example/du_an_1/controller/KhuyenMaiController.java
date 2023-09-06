@@ -4,6 +4,7 @@ package com.example.du_an_1.controller;
 import com.example.du_an_1.Service.KhuyenMaiService;
 import com.example.du_an_1.entity.KhachHang;
 import com.example.du_an_1.entity.KhuyenMai;
+import jakarta.annotation.PostConstruct;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -207,6 +209,9 @@ public class KhuyenMaiController {
         return "redirect:/khuyen-mai/index";
     }
 
-
+    @PostConstruct
+    public void updateTTKhuyenMai() {
+        khuyenMaiService.updateTrangThaiKhuyenMai();
+    }
 
 }
