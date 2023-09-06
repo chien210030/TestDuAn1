@@ -101,6 +101,14 @@
             <input class="form-control" name="ma">
             <span style="color: red">${erro}</span>
             <br>
+            <label>Họ :</label>
+            <input class="form-control" name="ho">
+            <span style="color: red">${erro}</span>
+            <br>
+            <label>Tên Đệm :</label>
+            <input class="form-control" name="tendem">
+            <span style="color: red">${erro}</span>
+            <br>
             <label>Tên NV :</label>
             <input class="form-control" name="ten">
             <span style="color: red">${erro}</span>

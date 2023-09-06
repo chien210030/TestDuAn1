@@ -43,7 +43,7 @@ public class NhanVienChucVuController {
         return "/NhanVienChucVu/index";
     }
     @GetMapping("/nhan-vien-chuc-vu/delete/{id}")
-    public String delete(Model model,@PathVariable("id") UUID id){
+    public String delete(@PathVariable("id") UUID id){
         repository.deleteById(id);
         return "redirect:/nhan-vien-chuc-vu/hien-thi";
     }
@@ -91,7 +91,9 @@ public class NhanVienChucVuController {
                       @RequestParam("matkhau") String matkhau,
                       @RequestParam("email") String email,
                       @RequestParam("trangthai") String trangthai,
-                      @RequestParam("gioitinh") String gioitinh
+                      @RequestParam("gioitinh") String gioitinh,
+                      @RequestParam("ho") String ho,
+                      @RequestParam("tendem") String tendem
 
     ){
       //  ChucVu chucVu =  chucVuRepository.getReferenceById(Integer.valueOf(chucvu));
@@ -106,6 +108,8 @@ public class NhanVienChucVuController {
                 .taikhoan(taikhoan)
                 .matkhau(matkhau)
                 .email(email)
+                .ho(ho)
+                .tendem(tendem)
                 .trangthai(Integer.valueOf(trangthai))
                 .gioitinh(Integer.valueOf(gioitinh))
                 .build();
@@ -137,7 +141,9 @@ public class NhanVienChucVuController {
                          @RequestParam("matkhau") String matkhau,
                          @RequestParam("email") String email,
                          @RequestParam("trangthai") String trangthai,
-                         @RequestParam("gioitinh") String gioitinh){
+                         @RequestParam("gioitinh") String gioitinh,
+                         @RequestParam("ho") String ho,
+                         @RequestParam("tendem") String tendem){
         ChucVu chucvu = chucVuRepository.findById(UUID.fromString(chucVu)).get();
         NhanVien nhanVien = repository.findById(UUID.fromString(id)).get();
         NhanVien nv = NhanVien.builder()
@@ -151,6 +157,8 @@ public class NhanVienChucVuController {
                 .email(email)
                 .trangthai(Integer.valueOf(trangthai))
                 .gioitinh(Integer.valueOf(gioitinh))
+                .ho(ho)
+                .tendem(tendem)
                 .build();
         nv.setId(UUID.fromString(id));
         BeanUtils.copyProperties(nv,nhanVien);

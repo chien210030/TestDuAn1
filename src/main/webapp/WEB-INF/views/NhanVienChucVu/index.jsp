@@ -122,7 +122,7 @@
                     <thead>
                     <tr>
                         <th>Mã NV</th>
-                        <th>Tên NV</th>
+                        <th>Họ Và Tên NV</th>
                         <th>Ngày Sinh</th>
                         <th>Giới Tính</th>
                         <th>Số Điện</th>
@@ -140,7 +140,7 @@
                         <c:forEach items="${NVCV.content}" var="ds" varStatus="i">
                             <tr>
                                 <td>${ds.ma}</td>
-                                <td>${ds.ten}</td>
+                                <td>${ds.ho} ${ds.tendem} ${ds.ten}</td>
                                 <td>${ds.ngaysinh}</td>
                                 <td>${ds.gioitinh == 1? "Nam" : "Nữ"}</td>
                                 <td>${ds.sdt}</td>

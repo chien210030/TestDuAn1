@@ -20,9 +20,19 @@
             <label>Tên Chức Vụ :</label>
             <span style="color: red">${nhanVien.chucVu.ten}</span>
             <br>
+
+            <label>Họ :</label>
+            <span style="color: red">${nhanVien.ho}</span>
+            <br>
+
+            <label>Tên Đệm :</label>
+            <span style="color: red">${nhanVien.tendem}</span>
+            <br>
+
             <label>Tên NV :</label>
             <span style="color: red">${nhanVien.ten}</span>
             <br>
+            
             <label>Ngày Sinh :</label>
             <span style="color: red">${nhanVien.ngaysinh}</span>
             <br>

@@ -107,6 +107,14 @@
             <input class="form-control" name=ma value="${update.ma}">
             <br>
 
+            <label>Họ :</label>
+            <input class="form-control" name="ho" value="${update.ho}">
+            <br>
+
+            <label>Tên Đệm :</label>
+            <input class="form-control" name="tendem" value="${update.tendem}">
+            <br>
+
             <label>Tên Nhân Viên :</label>
             <input class="form-control" name="ten" value="${update.ten}">
             <br>
