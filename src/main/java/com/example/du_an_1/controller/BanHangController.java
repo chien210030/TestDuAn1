@@ -352,26 +352,37 @@ public class BanHangController {
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
     }
 
-
-    @PostMapping("/removeall")
-    public String RemoveALl() {
-        for (HoaDonChiTiet rhdct : hdct) {
-
-            UUID idsp = rhdct.getChiTietSP().getId();
-            ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
-            if (rhdct.getChiTietSP().getId().equals(ctsp.getId())) {
-                System.out.println("vao if");
-                int soluongthemvao = ctsp.getSoluongton() + rhdct.getSoluong();
-                ctsp.setSoluongton(soluongthemvao);
-                hoaDonChiTietRepository.deleteById(rhdct.getId());
-            }
-
-            System.out.println("in ra chi tiet sp:" + ctsp);
-
-        }
+    @PostMapping("/XoaSanPham/{idhdct}")
+public String RemoveSanPham(@PathVariable("idhdct") UUID idhdct){
+        HoaDonChiTiet hdctChon = hoaDonChiTietRepository.findById(idhdct).orElse(null);
+        UUID idctsp = hdctChon.getChiTietSP().getId();
+        ChiTietSP spct = chiTietSPRepository.findById(idctsp).orElse(null);
+        spct.setSoluongton(spct.getSoluongton() + hdctChon.getSoluong());
+        chiTietSPRepository.save(spct);
+        hoaDonChiTietRepository.delete(hdctChon);
 
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
-    }
+}
+
+//    @PostMapping("/removeall")
+//    public String RemoveALl() {
+//        for (HoaDonChiTiet rhdct : hdct) {
+//
+//            UUID idsp = rhdct.getChiTietSP().getId();
+//            ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
+//            if (rhdct.getChiTietSP().getId().equals(ctsp.getId())) {
+//                System.out.println("vao if");
+//                int soluongthemvao = ctsp.getSoluongton() + rhdct.getSoluong();
+//                ctsp.setSoluongton(soluongthemvao);
+//                hoaDonChiTietRepository.deleteById(rhdct.getId());
+//            }
+//
+//            System.out.println("in ra chi tiet sp:" + ctsp);
+//
+//        }
+//
+//        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+//    }
 
     @PostMapping("/huydon")
     public String huydon() {

@@ -441,10 +441,14 @@
                                 <td>
                                     <button type="submit" id="idbutton"
                                             formmethod="post"
-                                            class="btn btn-primary glyphicon glyphicon-ok-circle"
+                                            class="btn btn-primary glyphicon glyphicon-plus"
                                             formaction="/banhang-hoadon/updateSoLuong/${chitiet.id }"
                                     ></button>
 
+
+                                </td>
+                                <td>
+                                    <button type="submit" formmethod="post" formaction="/banhang-hoadon/XoaSanPham/${chitiet.id}"  class="btn btn-danger glyphicon glyphicon-trash" onclick="return confirm('bạn có muốn xóa sản phẩm')"></button>
 
                                 </td>
                             </form>
@@ -482,7 +486,7 @@
                 <div class="form-group">
                     <label>Khach Thanh Toan</label>
                     <input type="number" class="form-control-range" name="tienkhachhangtra"
-                           value="${HoaDonTo.tienkhachhangtra}" required title="vui lòng nhập tiền khách trả">
+                           value="${HoaDonTo.tienkhachhangtra}" >
 
                     <c:if test="${ empty tienkhachhangtra}">
                         <label>${loiTienKhach}</label>
