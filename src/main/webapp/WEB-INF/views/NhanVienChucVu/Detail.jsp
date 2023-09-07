@@ -32,7 +32,7 @@
             <label>Tên NV :</label>
             <span style="color: red">${nhanVien.ten}</span>
             <br>
-            
+
             <label>Ngày Sinh :</label>
             <span style="color: red">${nhanVien.ngaysinh}</span>
             <br>

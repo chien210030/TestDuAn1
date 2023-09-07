@@ -1,17 +1,9 @@
 <div class="col-md-3">
 
     <div id="sidebar">
-        <div class="container-fluid tmargin">
-            <%--                <form action="#" class="search-wrap"></form>--%>
-            <div class="input-group">
-                <input type="search" class="form-control" placeholder="Search..."/>
-                <span class="input-group-btn">
-              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
-            </div>
-        </div>
 
         <ul class="nav navbar-nav side-bar">
+            <li class="side-bar "><a href="/banhang-hoadon/banhang"><span class="glyphicon glyphicon-shopping-cart">&nbsp;</span>Ban Hang</a></li>
             <li class="side-bar tmargin"><a class = "tesst1" href="${pageContext.request.contextPath}/loadsp">
                 <span class="glyphicon glyphicon-list">&nbsp;</span>Products
             </a>
@@ -44,20 +36,11 @@
 
 
             </li>
-            <li class="side-bar"><a href="/nhan-vien-chuc-vu/hien-thi"><span class="glyphicon glyphicon-flag">&nbsp;</span>Users</a></li>
-            <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-star">&nbsp;</span>Blotter</a></li>
-
-            <li class="side-bar"><a href="/khuyen-mai/index">
-                <span class="glyphicon glyphicon-star">&nbsp;</span>Promotions</a>
-
-            </li>
-
-            <li class="side-bar">
-                <a href="#"><span class="glyphicon glyphicon-certificate">&nbsp;</span>Officials</a></li>
-            <li class="side-bar"><a href="#"><span class="glyphicon glyphicon-signal">&nbsp;</span>Statistics</a>
-            </li>
-
-
+            <li class="side-bar"><a href="/nhan-vien-chuc-vu/hien-thi"><span class="glyphicon glyphicon-flag">&nbsp;</span>NhanVien</a></li>
+            <li class="side-bar"><a href="/khach-hang/hien-thi"><span class="glyphicon glyphicon-star">&nbsp;</span>KhachHang</a></li>
+            <li class="side-bar"><a href="/ca"><span class="glyphicon glyphicon-certificate">&nbsp;</span>GiaoCa</a></li>
+            <li class="side-bar"><a href="/thongke/dashboard"><span class="glyphicon glyphicon-signal">&nbsp;</span>ThongKe</a></li>
+            <li class="side-bar"><a href="/khuyen-mai/index"><span class="glyphicon glyphicon-star">&nbsp;</span>KhuyenMai</a></li>
         </ul>
     </div>
 </div>

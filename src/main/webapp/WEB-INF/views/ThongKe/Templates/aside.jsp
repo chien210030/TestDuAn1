@@ -39,6 +39,7 @@
             <li class="side-bar"><a href="/khach-hang/hien-thi"><span class="glyphicon glyphicon-star">&nbsp;</span>KhachHang</a></li>
             <li class="side-bar"><a href="/ca"><span class="glyphicon glyphicon-certificate">&nbsp;</span>GiaoCa</a></li>
             <li class="side-bar"><a href="/thongke/dashboard"><span class="glyphicon glyphicon-signal">&nbsp;</span>ThongKe</a></li>
+            <li class="side-bar"><a href="/khuyen-mai/index"><span class="glyphicon glyphicon-star">&nbsp;</span>KhuyenMai</a></li>
         </ul>
     </div>
 </div>
