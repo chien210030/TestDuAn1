@@ -5,6 +5,7 @@ import com.example.du_an_1.Service.KhuyenMaiService;
 import com.example.du_an_1.entity.KhachHang;
 import com.example.du_an_1.entity.KhuyenMai;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -106,32 +107,49 @@ public class KhuyenMaiController {
         return "KhuyenMai/_add";
     }
 
-    @PostMapping("/khuyen-mai/add")
-    public String createKhuyenMai(Model model,
-                                  @ModelAttribute("khuyenmai") KhuyenMai khuyenMai,
-                                  BindingResult bindingResult) {
-
-        boolean hasErrors = bindingResult.hasErrors();
-
-        if(khuyenMai.getNgaybatdau() != null && khuyenMai.getNgayketthuc() != null &&
-                khuyenMai.getNgaybatdau().getTime() > khuyenMai.getNgayketthuc().getTime()
-        ) {
-            model.addAttribute("dateError", "Ngày bắt đầu phải trước ngày kết thúc");
-            hasErrors = true;
-        }
-
-        //Nối bảng nào
-//        if(khuyenMai.gettablegi().getMa() == null) {
-//            model.addAttribute("maKHError", " không được bỏ trống");
+//    @PostMapping("/khuyen-mai/add")
+//    public String createKhuyenMai(Model model,
+//                                  @ModelAttribute("khuyenmai") KhuyenMai khuyenMai,
+//                                  BindingResult bindingResult) {
+//
+//        boolean hasErrors = bindingResult.hasErrors();
+//
+//        if(khuyenMai.getNgaybatdau() != null && khuyenMai.getNgayketthuc() != null &&
+//                khuyenMai.getNgaybatdau().getTime() > khuyenMai.getNgayketthuc().getTime()
+//        ) {
+//            model.addAttribute("dateError", "Ngày bắt đầu phải trước ngày kết thúc");
 //            hasErrors = true;
 //        }
+//
+//        if(hasErrors){
+//            model.addAttribute("searchForm", new SearchForm());
+//            model.addAttribute("message", "Một số trường đang có lỗi");
+//            return "KhuyenMai/index";
+//        }
+//
+//        khuyenMaiService.save(khuyenMai);
+//        return "redirect:/khuyen-mai/index";
+//    }
 
-        if(hasErrors){
+    @PostMapping("/khuyen-mai/add")
+    public String createKhuyenMai(Model model,
+                                  @ModelAttribute("khuyenmai") @Valid KhuyenMai khuyenMai,
+                                  BindingResult bindingResult) {
+
+        if (bindingResult.hasErrors()) {
+            // Nếu có lỗi validation, trả về màn hình nhập liệu với thông báo lỗi
             model.addAttribute("searchForm", new SearchForm());
             model.addAttribute("message", "Một số trường đang có lỗi");
-            return "KhuyenMai/index";
+            return "KhuyenMai/_add";
         }
 
+        if (khuyenMai.getNgaybatdau() != null && khuyenMai.getNgayketthuc() != null &&
+                khuyenMai.getNgaybatdau().getTime() > khuyenMai.getNgayketthuc().getTime()) {
+            model.addAttribute("dateError", "Ngày bắt đầu phải trước ngày kết thúc");
+            return "KhuyenMai/_add";
+        }
+
+        // Tiếp tục lưu dữ liệu nếu không có lỗi
         khuyenMaiService.save(khuyenMai);
         return "redirect:/khuyen-mai/index";
     }
