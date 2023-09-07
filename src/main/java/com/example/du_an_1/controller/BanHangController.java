@@ -108,7 +108,7 @@ public class BanHangController {
 
         NhanCa nhanCa = (NhanCa) session.getAttribute("currentNhanCa");
 
-        if (nhanCa == null){
+        if (nhanCa == null) {
             // Return an error response
             return ResponseEntity.badRequest().body("Không thể tạo hóa đơn vì chưa nhận ca.");
         }
@@ -371,6 +371,28 @@ public class BanHangController {
         }
 
         return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+    }
+
+    @PostMapping("/huydon")
+    public String huydon() {
+        if (hoadonngoai.getTrangthai() == 0) {
+            for (HoaDonChiTiet hhdct : hdct) {
+                UUID idsp = hhdct.getChiTietSP().getId();
+                ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
+                if (hhdct.getChiTietSP().getId().equals(ctsp.getId())) {
+                    int soluongthemvao = ctsp.getSoluongton() + hhdct.getSoluong();
+                    ctsp.setSoluongton(soluongthemvao);
+                    hoaDonChiTietRepository.deleteById(hhdct.getId());
+
+                }
+
+            }
+            hoaDonRepository.delete(hoadonngoai);
+
+        } else {
+            System.out.println("loi");
+        }
+        return "redirect:/banhang-hoadon/banhang";
     }
 
     @PostMapping("/thanhtoan")
