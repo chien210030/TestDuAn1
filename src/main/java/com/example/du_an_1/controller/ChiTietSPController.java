@@ -3,6 +3,9 @@ package com.example.du_an_1.controller;
 import com.example.du_an_1.entity.*;
 import com.example.du_an_1.repository.*;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,9 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.document.AbstractXlsxView;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -158,5 +164,102 @@ private List<SanPham> getsanpham(){
         return "ChiTietSP/update";
     }
 
+    @GetMapping("/exportExcelCTSP/{id}")
+    public ModelAndView exportExcel(@PathVariable UUID id) {
+        ChiTietSP product = chiTietSPRepository.findById(id).orElse(null);
 
+        return new ModelAndView(new AbstractXlsxView() {
+            @Override
+            protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
+                response.setHeader("Content-Disposition", "attachment; filename=\"" + product.getSanpham().getTen() + "CTSP.xlsx\"");
+                Sheet sheet = workbook.createSheet("Product Detail");
+                Row header = sheet.createRow(0);
+                header.createCell(0).setCellValue("Ma");
+                header.createCell(1).setCellValue("Ten");
+                header.createCell(2).setCellValue("Mo Ta");
+                header.createCell(3).setCellValue("So Luong Ton");
+                header.createCell(4).setCellValue("Gia Ban");
+                header.createCell(5).setCellValue("Dong SP");
+                header.createCell(6).setCellValue("Nha San Xuat");
+                header.createCell(7).setCellValue("Mau Sac");
+                header.createCell(8).setCellValue("Kich Co");
+                header.createCell(9).setCellValue("Chat Lieu");
+                header.createCell(10).setCellValue("Thuong Hieu");
+
+
+
+                // Thêm các cột khác tương tự
+
+                Row dataRow = sheet.createRow(1);
+                dataRow.createCell(0).setCellValue(product.getSanpham().getMa());
+                dataRow.createCell(1).setCellValue(product.getSanpham().getTen());
+                dataRow.createCell(2).setCellValue(product.getMota());
+                dataRow.createCell(3).setCellValue(product.getSoluongton());
+                dataRow.createCell(4).setCellValue(product.getGiaban().toString());
+                dataRow.createCell(5).setCellValue(product.getDongsp().getTen());
+                dataRow.createCell(6).setCellValue(product.getNsx().getTen());
+                dataRow.createCell(7).setCellValue(product.getMausac().getTen());
+                dataRow.createCell(8).setCellValue(product.getKichco().getTen());
+                dataRow.createCell(9).setCellValue(product.getChatlieu().getTen());
+                dataRow.createCell(10).setCellValue(product.getThuonghieu().getTen());
+
+                // Điền dữ liệu của sản phẩm vào các cột tương ứng
+
+                // Ghi xuống response
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                workbook.write(response.getOutputStream());
+            }
+        });
+    }
+
+    @GetMapping("/exportChiTietSPExcel")
+    public ModelAndView exportChiTietSPExcel(HttpServletRequest request, HttpServletResponse response) {
+        List<ChiTietSP> chiTietSPList = chiTietSPRepository.findAll();
+
+        return new ModelAndView(new AbstractXlsxView() {
+            @Override
+            protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
+                response.setHeader("Content-Disposition", "attachment; filename=\"ChiTietSP.xlsx\"");
+                Sheet sheet = workbook.createSheet("ChiTietSP Data");
+
+                // Tạo header cho Excel
+                Row headerRow = sheet.createRow(0);
+                headerRow.createCell(0).setCellValue("ID");
+                headerRow.createCell(1).setCellValue("Mô tả");
+                headerRow.createCell(2).setCellValue("Số lượng tồn");
+                headerRow.createCell(3).setCellValue("Giá bán");
+                headerRow.createCell(4).setCellValue("Chat liệu");
+                headerRow.createCell(5).setCellValue("Thương hiệu");
+                headerRow.createCell(6).setCellValue("Kích cỡ");
+                headerRow.createCell(7).setCellValue("Màu sắc");
+                headerRow.createCell(8).setCellValue("NSX");
+                headerRow.createCell(9).setCellValue("Sản phẩm");
+                headerRow.createCell(10).setCellValue("Dòng SP");
+
+                // Điền dữ liệu từ danh sách vào Excel
+                int rowNum = 1;
+                for (ChiTietSP chiTietSP : chiTietSPList) {
+                    Row dataRow = sheet.createRow(rowNum++);
+                    dataRow.createCell(0).setCellValue(chiTietSP.getId().toString());
+                    dataRow.createCell(1).setCellValue(chiTietSP.getMota());
+                    dataRow.createCell(2).setCellValue(chiTietSP.getSoluongton());
+                    dataRow.createCell(3).setCellValue(chiTietSP.getGiaban().toString());
+                    dataRow.createCell(4).setCellValue(chiTietSP.getChatlieu().getTen());
+                    dataRow.createCell(5).setCellValue(chiTietSP.getThuonghieu().getTen());
+                    dataRow.createCell(6).setCellValue(chiTietSP.getKichco().getTen());
+                    dataRow.createCell(7).setCellValue(chiTietSP.getMausac().getTen());
+                    dataRow.createCell(8).setCellValue(chiTietSP.getNsx().getTen());
+                    dataRow.createCell(9).setCellValue(chiTietSP.getSanpham().getTen());
+                    dataRow.createCell(10).setCellValue(chiTietSP.getDongsp().getTen());
+                }
+
+                // Ghi xuống response
+                response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                workbook.write(response.getOutputStream());
+            }
+        });
+    }
 }
+
+
+
