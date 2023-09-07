@@ -132,25 +132,24 @@ public class BanHangController {
 
     @GetMapping("/gethoadon/{id}")
     public String ReadHD(@PathVariable("id") UUID idhd, Model model) {
-        hoadonngoai = hoaDonRepository.findById(idhd).orElse(null);
-        System.out.println("hoa don" + hoadonngoai);
 
-        hdct = hoadonngoai.getHoaDonChiTiets();
-        System.out.println("HD CT NE" + hdct);
-        BigDecimal tongtienhang = hdct
-                .stream().map(sp -> sp.getDongia())
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        hoadonngoai.setTongtien(tongtienhang);
-//        hoadonngoai.setTongtientt(tongtienhang);
+            hoadonngoai = hoaDonRepository.findById(idhd).orElse(null);
+            System.out.println("hoa don" + hoadonngoai);
 
-        model.addAttribute("HoaDonTo", hoadonngoai);
-        model.addAttribute("CTHoaDon", hdct);
+            hdct = hoadonngoai.getHoaDonChiTiets();
+            System.out.println("HD CT NE" + hdct);
+            BigDecimal tongtienhang = hdct
+                    .stream().map(sp -> sp.getDongia())
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            hoadonngoai.setTongtien(tongtienhang);
 
 
-        return "forward:/banhang-hoadon/banhang";
-    }
+            model.addAttribute("HoaDonTo", hoadonngoai);
+            model.addAttribute("CTHoaDon", hdct);
+            if (hoadonngoai == null) {
+                return "redirect:/banhang-hoadon/banhang";
+            }
 
-    public String xoaSanPham() {
 
         return "forward:/banhang-hoadon/banhang";
     }
@@ -353,55 +352,45 @@ public class BanHangController {
     }
 
     @PostMapping("/XoaSanPham/{idhdct}")
-public String RemoveSanPham(@PathVariable("idhdct") UUID idhdct){
+    public String RemoveSanPham(@PathVariable("idhdct") UUID idhdct) {
         HoaDonChiTiet hdctChon = hoaDonChiTietRepository.findById(idhdct).orElse(null);
         UUID idctsp = hdctChon.getChiTietSP().getId();
         ChiTietSP spct = chiTietSPRepository.findById(idctsp).orElse(null);
         spct.setSoluongton(spct.getSoluongton() + hdctChon.getSoluong());
         chiTietSPRepository.save(spct);
+        hoadonngoai.setTongtien(null);
+        hoaDonRepository.save(hoadonngoai);
+
         hoaDonChiTietRepository.delete(hdctChon);
 
-        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
-}
 
-//    @PostMapping("/removeall")
-//    public String RemoveALl() {
-//        for (HoaDonChiTiet rhdct : hdct) {
-//
-//            UUID idsp = rhdct.getChiTietSP().getId();
-//            ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
-//            if (rhdct.getChiTietSP().getId().equals(ctsp.getId())) {
-//                System.out.println("vao if");
-//                int soluongthemvao = ctsp.getSoluongton() + rhdct.getSoluong();
-//                ctsp.setSoluongton(soluongthemvao);
-//                hoaDonChiTietRepository.deleteById(rhdct.getId());
-//            }
-//
-//            System.out.println("in ra chi tiet sp:" + ctsp);
-//
-//        }
-//
-//        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
-//    }
+        return "redirect:/banhang-hoadon/gethoadon/" + hoadonngoai.getId().toString();
+    }
 
     @PostMapping("/huydon")
     public String huydon() {
-        if (hoadonngoai.getTrangthai() == 0) {
-            for (HoaDonChiTiet hhdct : hdct) {
-                UUID idsp = hhdct.getChiTietSP().getId();
-                ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
-                if (hhdct.getChiTietSP().getId().equals(ctsp.getId())) {
-                    int soluongthemvao = ctsp.getSoluongton() + hhdct.getSoluong();
-                    ctsp.setSoluongton(soluongthemvao);
-                    hoaDonChiTietRepository.deleteById(hhdct.getId());
+        try {
+            if (hoadonngoai != null) {
+                System.out.println("huy don ");
 
+                if (hdct != null) {
+                    for (HoaDonChiTiet hhdct : hdct) {
+                        UUID idsp = hhdct.getChiTietSP().getId();
+                        ChiTietSP ctsp = chiTietSPRepository.findById(idsp).orElse(null);
+                        if (hhdct.getChiTietSP().getId().equals(ctsp.getId())) {
+                            int soluongthemvao = ctsp.getSoluongton() + hhdct.getSoluong();
+                            ctsp.setSoluongton(soluongthemvao);
+                            hoaDonChiTietRepository.deleteById(hhdct.getId());
+                        }
+                    }
                 }
-
+                hoaDonRepository.delete(hoadonngoai);
+                return "redirect:/banhang-hoadon/banhang";
+            } else if (hoadonngoai == null) {
+                return "redirect:/banhang-hoadon/banhang";
             }
-            hoaDonRepository.delete(hoadonngoai);
-
-        } else {
-            System.out.println("loi");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return "redirect:/banhang-hoadon/banhang";
     }
