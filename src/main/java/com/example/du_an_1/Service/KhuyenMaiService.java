@@ -15,6 +15,6 @@ public interface KhuyenMaiService {
     public List<KhuyenMai> getDsKhuyenMai();
     public Page<KhuyenMai> search(Date fromDate, Date toDate,UUID id, Pageable pageable);
 
-    public void capNhatTrangThaiKhuyenMai();
+    void updateTrangThaiKhuyenMai();
 
 }

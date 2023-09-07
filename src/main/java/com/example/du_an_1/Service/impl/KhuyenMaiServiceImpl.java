@@ -40,17 +40,17 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
     }
 
     @Override
-    public void capNhatTrangThaiKhuyenMai() {
+    public void updateTrangThaiKhuyenMai() {
         Date currentDate = new Date();
-        List<KhuyenMai> danhSachKhuyenMai = khuyenMaiRepository.findAll();
+        List<KhuyenMai> khuyenMais = khuyenMaiRepository.findAll();
 
-        if (danhSachKhuyenMai != null) {
-            danhSachKhuyenMai.forEach(km -> {
-                if (currentDate.after(km.getNgayketthuc())) {
-                    km.setTrangthai(0);
-                    khuyenMaiRepository.save(km);
-                }
-            });
+        for (KhuyenMai khuyenMai : khuyenMais) {
+            if (currentDate.after(khuyenMai.getNgayketthuc())) {
+                khuyenMai.setTrangthai(0);
+                khuyenMaiRepository.save(khuyenMai);
+                // In ra thông tin của khuyến mãi đã được cập nhật
+                System.out.printf("Khuyến mãi với ID %s đã được cập nhật. Trạng thái: %d%n", khuyenMai.getId(), khuyenMai.getTrangthai());
+            }
         }
     }
 
