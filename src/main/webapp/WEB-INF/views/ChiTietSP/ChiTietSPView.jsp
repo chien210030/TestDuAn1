@@ -129,6 +129,11 @@
                                href="${pageContext.request.contextPath}/delete/${sp.id}">Remove</a></td>
                         <td><a class="btn btn-warning" href="${pageContext.request.contextPath}/viewupdate/${sp.id}">Update</a>
                         </td>
+                        <td>
+                            <a class="btn btn-success"
+                               href="${pageContext.request.contextPath}/exportExcel/${sp.id}">Excel</a>
+                        </td>
+
                     </tr>
 
 
