@@ -88,8 +88,10 @@
             <%--            <li><a href="#">Dashboard</a></li>--%>
         </ul>
         <a class="btn btn-primary" href="${pageContext.request.contextPath}/showcreate">add</a>
+    <a class="btn btn-success" href="${pageContext.request.contextPath}/exportChiTietSPExcel">Excel</a>
 
-        <form action="${pageContext.request.contextPath}/loadsp" >
+
+    <form action="${pageContext.request.contextPath}/loadsp" >
             <table class="table table-hover" border="1">
                 <thead>
                 <th>ma</th>
@@ -131,7 +133,7 @@
                         </td>
                         <td>
                             <a class="btn btn-success"
-                               href="${pageContext.request.contextPath}/exportExcel/${sp.id}">Excel</a>
+                               href="${pageContext.request.contextPath}/exportExcelCTSP/${sp.id}">Excel</a>
                         </td>
 
                     </tr>
