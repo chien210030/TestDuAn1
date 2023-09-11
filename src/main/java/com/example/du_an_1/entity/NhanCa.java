@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Entity
 @Data
-
+@Table(name = "nhanCa")
 public class NhanCa {
 
     @Id
