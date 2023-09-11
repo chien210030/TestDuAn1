@@ -161,9 +161,9 @@
                     <th>Ngay Tao</th>
                     <th>Ten KH</th>
                     <th>Tong tien</th>
-                    <th>Tien km</th>
-                    <th>Tien Thanh Toan</th>
-                    <th>Ngay Thanh Toan</th>
+<%--                    <th>Tien km</th>--%>
+<%--                    <th>Tien Thanh Toan</th>--%>
+<%--                    <th>Ngay Thanh Toan</th>--%>
                     <th>Trang Thai</th>
 
                 </tr>
@@ -184,10 +184,10 @@
                                     <%--                                <td>${i.nhanVien.ten}</td>--%>
                                 <td>${i.khachhang.ten}</td>
                                 <td>${i.tongtien}</td>
-                                <td>${i.tongtienkm}</td>
-                                <td>${i.tongtientt}</td>
-                                <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>
-                                </td>
+<%--                                <td>${i.tongtienkm}</td>--%>
+<%--                                <td>${i.tongtientt}</td>--%>
+<%--                                <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>--%>
+<%--                                </td>--%>
                                 <td>${i.trangthai == 0 ? 'Chưa Thanh toán':''}</td>
                                 <td><a class="btn btn-primary glyphicon glyphicon-pencil"
                                        href="/banhang-hoadon/gethoadon/${i.id}"></a></td>
@@ -702,17 +702,17 @@
 
     });
     //huy don
-    document.getElementById('HuyDonBtn').addEventListener('click', function (event) {
-        event.preventDefault();
-        var formData = new FormData(document.getElementById('hoaDonForm'));
-        axios.post("/banhang-hoadon/huydon", formData)
-            .then(function (respone) {
-                alert("Hủy Hóa đơn Thành Công");
-                window.location.reload();
-            }).catch(function (error) {
-            alert("that bai");
-        });
-    });
+    // document.getElementById('HuyDonBtn').addEventListener('click', function (event) {
+    //     event.preventDefault();
+    //     var formData = new FormData(document.getElementById('hoaDonForm'));
+    //     axios.post("/banhang-hoadon/huydon", formData)
+    //         .then(function (respone) {
+    //             alert("Hủy Hóa đơn Thành Công");
+    //             window.location.reload();
+    //         }).catch(function (error) {
+    //         alert("that bai");
+    //     });
+    // });
 
     //validate thanh toan
     //thanh toan
