@@ -152,9 +152,8 @@
 
     <div class="col-md-5">
         <%--        --HOA DON  ----%>
-        <div class="col-6 bmarin groove">
+        <div  class="col-6 bmarin groove">
             <h4><b>Hóa Đơn </b></h4>
-
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -162,11 +161,7 @@
                     <th>Ngay Tao</th>
                     <th>Ten KH</th>
                     <th>Tong tien</th>
-<%--                    <th>Tien km</th>--%>
-<%--                    <th>Tien Thanh Toan</th>--%>
-<%--                    <th>Ngay Thanh Toan</th>--%>
                     <th>Trang Thai</th>
-
                 </tr>
                 </thead>
                 <c:forEach items="${HoaDon}" var="i">
@@ -185,10 +180,10 @@
                                     <%--                                <td>${i.nhanVien.ten}</td>--%>
                                 <td>${i.khachhang.ten}</td>
                                 <td>${i.tongtien}</td>
-<%--                                <td>${i.tongtienkm}</td>--%>
-<%--                                <td>${i.tongtientt}</td>--%>
-<%--                                <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>--%>
-<%--                                </td>--%>
+                                    <%--                                <td>${i.tongtienkm}</td>--%>
+                                    <%--                                <td>${i.tongtientt}</td>--%>
+                                    <%--                                <td><fmt:formatDate value="${i.ngaythanhtoan}" pattern="dd/MM/yyyy "/>--%>
+                                    <%--                                </td>--%>
                                 <td>${i.trangthai == 0 ? 'Chưa Thanh toán':''}</td>
                                 <td><a class="btn btn-primary glyphicon glyphicon-pencil"
                                        href="/banhang-hoadon/gethoadon/${i.id}"></a></td>
@@ -215,71 +210,7 @@
                 <li class="page-item"><a class="page-link" href="?pageNum=${totalPages}">Next</a></li>
             </ul>
         </div>
-        <%--    GIO HANG--%>
-        <%--        <div class="col-6 bmarin groove">--%>
-        <%--            <h4><b>Giỏ Hàng</b></h4>--%>
-        <%--            &lt;%&ndash;            <c:if test="${CTHoaDon != null && not empty CTHoaDon}">&ndash;%&gt;--%>
 
-        <%--            <table class="table table-bordered">--%>
-        <%--                <thead>--%>
-        <%--                <tr>--%>
-        <%--                    &lt;%&ndash;                    <th>Id Hoa Don CT</th>&ndash;%&gt;--%>
-        <%--                    <th>Ma Hoa Don</th>--%>
-        <%--                    <th>san pham</th>--%>
-        <%--                    <th>So luong</th>--%>
-        <%--                    <th>Don Gia</th>--%>
-
-        <%--                </tr>--%>
-        <%--                </thead>--%>
-        <%--                                <c:forEach items="${CTHoaDon}" var="chitiet">--%>
-
-        <%--                                    <tbody>--%>
-        <%--                                    <tr>--%>
-        <%--                                        <form action="#" method="post" id="ChiTietHoaDonForm">--%>
-
-        <%--                                            <td>${chitiet.hoadon.ma}</td>--%>
-        <%--                                            <td> ${chitiet.chiTietSP.sanpham.ten}</td>--%>
-        <%--                                                &lt;%&ndash;                            <td> ${chitiet.soluong}</td>&ndash;%&gt;--%>
-        <%--                                            <td><input type="number" min="1" max="${chitiet.chiTietSP.soluongton}" name="soluong"--%>
-        <%--                                                       class="form-control-range" value="${chitiet.soluong}" id="">--%>
-
-
-        <%--                                            </td>--%>
-        <%--                                            <td>${chitiet.dongia}</td>--%>
-
-        <%--                                            <td>--%>
-        <%--                                                <button type="submit" id="idbutton"--%>
-        <%--                                                        formmethod="post"--%>
-        <%--                                                        class="btn btn-primary glyphicon glyphicon-ok-circle"--%>
-        <%--                                                        formaction="/banhang-hoadon/updateSoLuong/${chitiet.id }"--%>
-        <%--                                                ></button>--%>
-
-
-        <%--                                            </td>--%>
-        <%--                                        </form>--%>
-        <%--                                    </tr>--%>
-        <%--                                    </tbody>--%>
-
-
-        <%--                                </c:forEach>--%>
-
-        <%--            </table>--%>
-
-        <%--            &lt;%&ndash;            </c:if>&ndash;%&gt;--%>
-        <%--            <c:if test="${empty CTHoaDon}">--%>
-        <%--                <p style="font-family:'Segoe UI Black'">Không có sản phẩm trong giỏ.</p>--%>
-        <%--            </c:if>--%>
-        <%--            <div class="row">--%>
-        <%--                <div class="col-custom">--%>
-        <%--                    <button formmethod="post" type="submit" formaction="/banhang-hoadon/removeall" id="RemoveAll"--%>
-        <%--                            class="btn btn-primary">Remove--%>
-        <%--                    </button>--%>
-        <%--                </div>--%>
-        <%--                &lt;%&ndash;                <div class="col-custom">&ndash;%&gt;--%>
-        <%--                &lt;%&ndash;                    <a class="btn btn-primary">Update quantity</a>&ndash;%&gt;--%>
-        <%--                &lt;%&ndash;                </div>&ndash;%&gt;--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
 
         <%--    SAN PHAM--%>
         <div class="col-6 bmarin groove">
@@ -394,30 +325,16 @@
                     <input class="readonly-input form-control" type="text" value="${formattedNgayTao}" readonly/>
                 </div>
 
-                <%--                <div class="form-group">--%>
-                <%--                    <label>NV TT </label>--%>
-                <%--                    <select name="nhanvien" class="form-control">--%>
-                <%--                        <c:forEach items="${nhanvien}" var="v">--%>
-                <%--                            <option value="${v.id}">${v.ten}</option>--%>
-                <%--                        </c:forEach>--%>
-                <%--                    </select>--%>
 
-                <%--                </div>--%>
                 <div class="form-group">
                     <label>Ten Khach Hang</label><input class=" form-control" name="khachhang.ten"
                                                         value="${HoaDonTo.khachhang.tendem} ${HoaDonTo.khachhang.ten}">
 
                 </div>
-                <%--                <div class="form-group">--%>
-                <%--                    <label>Trạng Thái :</label> <input type="radio" name="trangthai" value="1">Đã Thanh Toán--%>
-                <%--                    <input type="radio" name="trangthai" value="0" checked>Chưa Thanh Toán--%>
 
-                <%--                </div>--%>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <%--                    <th>Id Hoa Don CT</th>--%>
-                        <%--                        <th>Ma Hoa Don</th>--%>
                         <th>san pham</th>
                         <th>So luong</th>
                         <th>Don Gia</th>
@@ -429,42 +346,30 @@
                         <tbody>
                         <tr>
                             <form action="#" method="post" id="ChiTietHoaDonForm">
-
-                                    <%--                                <td>${chitiet.hoadon.ma}</td>--%>
                                 <td> ${chitiet.chiTietSP.sanpham.ten}</td>
-                                    <%--                            <td> ${chitiet.soluong}</td>--%>
-                                <td><input type="number" min="0" max="${chitiet.chiTietSP.soluongton} + 1" name="soluong"
+                                <td><input type="number" min="0" max="${chitiet.chiTietSP.soluongton} + 1"
+                                           name="soluong"
                                            class="form-control-range" value="${chitiet.soluong}" id="">
-
-
                                 </td>
                                 <td>${chitiet.dongia}</td>
-
                                 <td>
                                     <button type="submit" id="idbutton"
                                             formmethod="post"
                                             class="btn btn-primary glyphicon glyphicon-plus"
                                             formaction="/banhang-hoadon/updateSoLuong/${chitiet.id }"
                                     ></button>
-
-
                                 </td>
                                 <td>
                                     <button type="submit" formmethod="post"
                                             formaction="/banhang-hoadon/XoaSanPham/${chitiet.id}"
                                             class="btn btn-danger glyphicon glyphicon-trash"
                                             onclick="return confirm('bạn có muốn xóa sản phẩm')"></button>
-
                                 </td>
                             </form>
                         </tr>
                         </tbody>
-
-
                     </c:forEach>
-
                 </table>
-
                 <%--            </c:if>--%>
                 <c:if test="${empty CTHoaDon}">
                     <p style="font-family:'Segoe UI Black'">Không có sản phẩm trong giỏ.</p>
@@ -563,10 +468,10 @@
 
                 &#160&#160&#160
                 <div class="col-4">
-<%--                    <button type="submit" id="HuyDonBtn" formmethod="post" class="btn btn-danger"--%>
-<%--                            formaction="/banhang-hoadon/huydon"--%>
-<%--                            onclick="return confirm('Bạn có muốn hủy hóa đơn này không')">Huy Don--%>
-<%--                    </button>--%>
+                    <%--                    <button type="submit" id="HuyDonBtn" formmethod="post" class="btn btn-danger"--%>
+                    <%--                            formaction="/banhang-hoadon/huydon"--%>
+                    <%--                            onclick="return confirm('Bạn có muốn hủy hóa đơn này không')">Huy Don--%>
+                    <%--                    </button>--%>
                     <%--                </div>--%>
                     &#160&#160&#160
                     <%--                <div class="col-4">--%>
